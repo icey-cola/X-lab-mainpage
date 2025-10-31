@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台管理 | 未来智能实验室</title>
+  <style>
+    :root {
+      font-family: "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+      color: #1f2937;
+      background: #f5f6fa;
+    }
+    body {
+      margin: 0;
+      padding: 32px;
+    }
+    h1 {
+      margin: 0 0 24px;
+      font-size: 28px;
+    }
+    section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+    }
+    section > h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+    form {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+      color: #475569;
+    }
+    input, textarea, select {
+      border: 1px solid #d2d6dc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    textarea { resize: vertical; }
+    button {
+      justify-self: flex-start;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+      word-break: break-word;
+    }
+    th {
+      background: #f1f5f9;
+      color: #111827;
+      font-weight: 600;
+    }
+    td button {
+      margin-right: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .danger {
+      background: #ef4444;
+    }
+    .danger:hover { background: #dc2626; }
+    .empty {
+      padding: 16px;
+      border: 1px dashed #cbd5f5;
+      border-radius: 10px;
+      color: #64748b;
+      background: #f8fafc;
+    }
+    @media (max-width: 720px) {
+      body { padding: 20px; }
+      section { padding: 20px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <h1>未来智能实验室 · 后台管理</h1>
+
+  <section id="slides-section">
+    <h2>首页横幅</h2>
+    <form id="slide-form">
+      <input type="hidden" id="slide-id">
+      <label>
+        标签（中文）
+        <input id="slide-tag-zh">
+      </label>
+      <label>
+        Tag (English)
+        <input id="slide-tag-en">
+      </label>
+      <label>
+        标题（中文）
+        <input id="slide-title-zh" required>
+      </label>
+      <label>
+        Title (English)
+        <input id="slide-title-en" required>
+      </label>
+      <label>
+        描述（中文）
+        <textarea id="slide-desc-zh" rows="3"></textarea>
+      </label>
+      <label>
+        Description (English)
+        <textarea id="slide-desc-en" rows="3"></textarea>
+      </label>
+      <label>
+        媒体路径（相对于 public）
+        <input id="slide-media" placeholder="image/banner.jpg" required>
+      </label>
+      <label>
+        媒体类型
+        <select id="slide-media-type">
+          <option value="image">image</option>
+          <option value="video">video</option>
+        </select>
+      </label>
+      <label>
+        跳转链接（可选）
+        <input id="slide-link" placeholder="https://example.com">
+      </label>
+      <button type="submit">保存横幅</button>
+    </form>
+    <div id="slides-table-wrapper" class="empty">正在加载横幅列表…</div>
+  </section>
+
+  <section id="key-tech-section">
+    <h2>关键技术</h2>
+    <form id="tech-form">
+      <input type="hidden" id="tech-id">
+      <label>标签（中文）
+        <input id="tech-tag-zh">
+      </label>
+      <label>Tag (English)
+        <input id="tech-tag-en">
+      </label>
+      <label>标题（中文）
+        <input id="tech-title-zh" required>
+      </label>
+      <label>Title (English)
+        <input id="tech-title-en" required>
+      </label>
+      <label>描述（中文）
+        <textarea id="tech-desc-zh" rows="3"></textarea>
+      </label>
+      <label>Description (English)
+        <textarea id="tech-desc-en" rows="3"></textarea>
+      </label>
+      <label>媒体路径（支持图片/GIF/视频）
+        <input id="tech-media" placeholder="image/key-tech.png" required>
+      </label>
+      <label>媒体类型
+        <select id="tech-media-type">
+          <option value="image">image / gif</option>
+          <option value="video">video</option>
+        </select>
+      </label>
+      <label>替代文字（中文，可选）
+        <input id="tech-alt-zh">
+      </label>
+      <label>Alt text (English, optional)
+        <input id="tech-alt-en">
+      </label>
+      <label>跳转链接（可选）
+        <input id="tech-link">
+      </label>
+      <label>链接文字（中文，可选）
+        <input id="tech-link-label-zh">
+      </label>
+      <label>Link label (English, optional)
+        <input id="tech-link-label-en">
+      </label>
+      <button type="submit">保存关键技术</button>
+    </form>
+    <div id="tech-table-wrapper" class="empty">正在加载关键技术…</div>
+  </section>
+
+  <section id="members-section">
+    <h2>团队成员</h2>
+    <form id="member-form">
+      <input type="hidden" id="member-id">
+      <label>姓名（中文）
+        <input id="member-name-zh" required>
+      </label>
+      <label>Name (English)
+        <input id="member-name-en" required>
+      </label>
+      <label>角色（中文）
+        <input id="member-role-zh" required>
+      </label>
+      <label>Role (English)
+        <input id="member-role-en" required>
+      </label>
+      <label>所属分组
+        <select id="member-group">
+          <option value="teacher">教师 Teacher</option>
+          <option value="phd">博士研究生 PhD</option>
+          <option value="master">硕士研究生 Master</option>
+          <option value="alumni">毕业生 Alumni</option>
+        </select>
+      </label>
+      <label>头像文件名（可选）
+        <input id="member-avatar" placeholder="avatar.png">
+      </label>
+      <button type="submit">保存成员</button>
+    </form>
+    <div id="member-table-wrapper" class="empty">正在加载团队成员…</div>
+  </section>
+
+  <section id="publications-section">
+    <h2>精选出版物</h2>
+    <form id="pub-form">
+      <input type="hidden" id="pub-id">
+      <label>标题（中文）
+        <input id="pub-title-zh" required>
+      </label>
+      <label>Title (English)
+        <input id="pub-title-en" required>
+      </label>
+      <label>会议 / 期刊（中文）
+        <input id="pub-venue-zh" required>
+      </label>
+      <label>Venue (English)
+        <input id="pub-venue-en" required>
+      </label>
+      <label>作者
+        <input id="pub-authors">
+      </label>
+      <label>摘要 / 简介（中文）
+        <textarea id="pub-summary-zh" rows="3"></textarea>
+      </label>
+      <label>Summary (English)
+        <textarea id="pub-summary-en" rows="3"></textarea>
+      </label>
+      <label>Paper 链接
+        <input id="pub-paper">
+      </label>
+      <label>Code 链接
+        <input id="pub-code">
+      </label>
+      <button type="submit">保存出版物</button>
+    </form>
+    <div id="pub-table-wrapper" class="empty">正在加载出版物…</div>
+  </section>
+
+  <script>
+    const slideForm = document.getElementById('slide-form');
+    const slidesWrapper = document.getElementById('slides-table-wrapper');
+    const techForm = document.getElementById('tech-form');
+    const techWrapper = document.getElementById('tech-table-wrapper');
+    const memberForm = document.getElementById('member-form');
+    const memberWrapper = document.getElementById('member-table-wrapper');
+    const pubForm = document.getElementById('pub-form');
+    const pubWrapper = document.getElementById('pub-table-wrapper');
+
+    const renderTable = (wrapper, headers, rowsHtml) => {
+      if (!rowsHtml) {
+        wrapper.className = 'empty';
+        wrapper.innerHTML = '暂无数据。';
+        return;
+      }
+      wrapper.className = '';
+      wrapper.innerHTML = `
+        <table>
+          <thead>
+            <tr>${headers.map((label) => `<th>${label}</th>`).join('')}</tr>
+          </thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      `;
+    };
+
+    const handleRequest = async (url, options, successMessage) => {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const text = await response.text().catch(() => '');
+        throw new Error(`${successMessage}失败：${response.status} ${text}`);
+      }
+      return response.status === 204 ? null : response.json();
+    };
+
+    const loadSlides = async () => {
+      try {
+        const res = await fetch('/api/slides');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const rows = data.map((item) => `
+          <tr>
+            <td>${item.tagZh || ''}<br><small>${item.tagEn || ''}</small></td>
+            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
+            <td>${item.media} <br><small>${item.mediaType || ''}</small></td>
+            <td>${item.link || ''}</td>
+            <td>
+              <button data-type="slide" data-action="edit" data-id="${item.id}">编辑</button>
+              <button class="danger" data-type="slide" data-action="delete" data-id="${item.id}">删除</button>
+            </td>
+          </tr>
+        `).join('');
+        renderTable(slidesWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
+      } catch (err) {
+        console.error(err);
+        slidesWrapper.className = 'empty';
+        slidesWrapper.textContent = '横幅加载失败，请检查服务器日志。';
+      }
+    };
+
+    slideForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        tagZh: document.getElementById('slide-tag-zh').value,
+        tagEn: document.getElementById('slide-tag-en').value,
+        titleZh: document.getElementById('slide-title-zh').value,
+        titleEn: document.getElementById('slide-title-en').value,
+        descriptionZh: document.getElementById('slide-desc-zh').value,
+        descriptionEn: document.getElementById('slide-desc-en').value,
+        media: document.getElementById('slide-media').value,
+        mediaType: document.getElementById('slide-media-type').value,
+        link: document.getElementById('slide-link').value,
+      };
+      const id = document.getElementById('slide-id').value;
+      try {
+        if (id) {
+          await handleRequest(`/api/slides/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '更新横幅');
+        } else {
+          await handleRequest('/api/slides', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '新增横幅');
+        }
+        slideForm.reset();
+        await loadSlides();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    slidesWrapper.addEventListener('click', async (event) => {
+      const btn = event.target.closest('button[data-type="slide"]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      if (btn.dataset.action === 'edit') {
+        const res = await fetch('/api/slides');
+        const data = await res.json();
+        const target = data.find((item) => item.id === id);
+        if (!target) return;
+        document.getElementById('slide-id').value = target.id;
+        document.getElementById('slide-tag-zh').value = target.tagZh || '';
+        document.getElementById('slide-tag-en').value = target.tagEn || '';
+        document.getElementById('slide-title-zh').value = target.titleZh || '';
+        document.getElementById('slide-title-en').value = target.titleEn || '';
+        document.getElementById('slide-desc-zh').value = target.descriptionZh || '';
+        document.getElementById('slide-desc-en').value = target.descriptionEn || '';
+        document.getElementById('slide-media').value = target.media || '';
+        document.getElementById('slide-media-type').value = target.mediaType || 'image';
+        document.getElementById('slide-link').value = target.link || '';
+      }
+      if (btn.dataset.action === 'delete' && confirm('确定删除该横幅吗？')) {
+        try {
+          await handleRequest(`/api/slides/${id}`, { method: 'DELETE' }, '删除横幅');
+          await loadSlides();
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+    });
+
+    const loadKeyTech = async () => {
+      try {
+        const res = await fetch('/api/key-tech');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const rows = data.map((item) => `
+          <tr>
+            <td>${item.tagZh || ''}<br><small>${item.tagEn || ''}</small></td>
+            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
+            <td>${item.media}<br><small>${item.mediaType || ''}</small></td>
+            <td>${item.link || ''}</td>
+            <td>
+              <button data-type="tech" data-action="edit" data-id="${item.id}">编辑</button>
+              <button class="danger" data-type="tech" data-action="delete" data-id="${item.id}">删除</button>
+            </td>
+          </tr>
+        `).join('');
+        renderTable(techWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
+      } catch (err) {
+        console.error(err);
+        techWrapper.className = 'empty';
+        techWrapper.textContent = '关键技术加载失败，请检查服务器日志。';
+      }
+    };
+
+    techForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        tagZh: document.getElementById('tech-tag-zh').value,
+        tagEn: document.getElementById('tech-tag-en').value,
+        titleZh: document.getElementById('tech-title-zh').value,
+        titleEn: document.getElementById('tech-title-en').value,
+        descriptionZh: document.getElementById('tech-desc-zh').value,
+        descriptionEn: document.getElementById('tech-desc-en').value,
+        media: document.getElementById('tech-media').value,
+        mediaType: document.getElementById('tech-media-type').value,
+        altZh: document.getElementById('tech-alt-zh').value,
+        altEn: document.getElementById('tech-alt-en').value,
+        link: document.getElementById('tech-link').value,
+        linkLabelZh: document.getElementById('tech-link-label-zh').value,
+        linkLabelEn: document.getElementById('tech-link-label-en').value,
+      };
+      const id = document.getElementById('tech-id').value;
+      try {
+        if (id) {
+          await handleRequest(`/api/key-tech/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '更新关键技术');
+        } else {
+          await handleRequest('/api/key-tech', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '新增关键技术');
+        }
+        techForm.reset();
+        await loadKeyTech();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    techWrapper.addEventListener('click', async (event) => {
+      const btn = event.target.closest('button[data-type="tech"]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      if (btn.dataset.action === 'edit') {
+        const res = await fetch('/api/key-tech');
+        const data = await res.json();
+        const target = data.find((item) => item.id === id);
+        if (!target) return;
+        document.getElementById('tech-id').value = target.id;
+        document.getElementById('tech-tag-zh').value = target.tagZh || '';
+        document.getElementById('tech-tag-en').value = target.tagEn || '';
+        document.getElementById('tech-title-zh').value = target.titleZh || '';
+        document.getElementById('tech-title-en').value = target.titleEn || '';
+        document.getElementById('tech-desc-zh').value = target.descriptionZh || '';
+        document.getElementById('tech-desc-en').value = target.descriptionEn || '';
+        document.getElementById('tech-media').value = target.media || '';
+        document.getElementById('tech-media-type').value = (target.mediaType || 'image').toLowerCase();
+        document.getElementById('tech-alt-zh').value = target.altZh || '';
+        document.getElementById('tech-alt-en').value = target.altEn || '';
+        document.getElementById('tech-link').value = target.link || '';
+        document.getElementById('tech-link-label-zh').value = target.linkLabelZh || '';
+        document.getElementById('tech-link-label-en').value = target.linkLabelEn || '';
+      }
+      if (btn.dataset.action === 'delete' && confirm('确定删除该关键技术条目吗？')) {
+        try {
+          await handleRequest(`/api/key-tech/${id}`, { method: 'DELETE' }, '删除关键技术');
+          await loadKeyTech();
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+    });
+
+    const loadMembers = async () => {
+      try {
+        const res = await fetch('/api/members');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const rows = data.map((item) => `
+          <tr>
+            <td>${item.nameZh || ''}<br><small>${item.nameEn || ''}</small></td>
+            <td>${item.roleZh || ''}<br><small>${item.roleEn || ''}</small></td>
+            <td>${item.group || ''}</td>
+            <td>${item.avatar || ''}</td>
+            <td>
+              <button data-type="member" data-action="edit" data-id="${item.id}">编辑</button>
+              <button class="danger" data-type="member" data-action="delete" data-id="${item.id}">删除</button>
+            </td>
+          </tr>
+        `).join('');
+        renderTable(memberWrapper, ['姓名', '角色', '分组', '头像', '操作'], rows);
+      } catch (err) {
+        console.error(err);
+        memberWrapper.className = 'empty';
+        memberWrapper.textContent = '团队成员加载失败，请检查服务器日志。';
+      }
+    };
+
+    memberForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        nameZh: document.getElementById('member-name-zh').value,
+        nameEn: document.getElementById('member-name-en').value,
+        roleZh: document.getElementById('member-role-zh').value,
+        roleEn: document.getElementById('member-role-en').value,
+        group: document.getElementById('member-group').value,
+        avatar: document.getElementById('member-avatar').value,
+      };
+      const id = document.getElementById('member-id').value;
+      try {
+        if (id) {
+          await handleRequest(`/api/members/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '更新成员');
+        } else {
+          await handleRequest('/api/members', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '新增成员');
+        }
+        memberForm.reset();
+        await loadMembers();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    memberWrapper.addEventListener('click', async (event) => {
+      const btn = event.target.closest('button[data-type="member"]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      if (btn.dataset.action === 'edit') {
+        const res = await fetch('/api/members');
+        const data = await res.json();
+        const item = data.find((entry) => entry.id === id);
+        if (!item) return;
+        document.getElementById('member-id').value = item.id;
+        document.getElementById('member-name-zh').value = item.nameZh || '';
+        document.getElementById('member-name-en').value = item.nameEn || '';
+        document.getElementById('member-role-zh').value = item.roleZh || '';
+        document.getElementById('member-role-en').value = item.roleEn || '';
+        document.getElementById('member-group').value = item.group || 'teacher';
+        document.getElementById('member-avatar').value = item.avatar || '';
+      }
+      if (btn.dataset.action === 'delete' && confirm('确定删除该成员吗？')) {
+        try {
+          await handleRequest(`/api/members/${id}`, { method: 'DELETE' }, '删除成员');
+          await loadMembers();
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+    });
+
+    const loadPublications = async () => {
+      try {
+        const res = await fetch('/api/publications');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const rows = data.map((item) => `
+          <tr>
+            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
+            <td>${item.venueZh || ''}<br><small>${item.venueEn || ''}</small></td>
+            <td>${item.authors || ''}</td>
+            <td>
+              <button data-type="pub" data-action="edit" data-id="${item.id}">编辑</button>
+              <button class="danger" data-type="pub" data-action="delete" data-id="${item.id}">删除</button>
+            </td>
+          </tr>
+        `).join('');
+        renderTable(pubWrapper, ['标题', '会议 / 期刊', '作者', '操作'], rows);
+      } catch (err) {
+        console.error(err);
+        pubWrapper.className = 'empty';
+        pubWrapper.textContent = '出版物加载失败，请检查服务器日志。';
+      }
+    };
+
+    pubForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = {
+        titleZh: document.getElementById('pub-title-zh').value,
+        titleEn: document.getElementById('pub-title-en').value,
+        venueZh: document.getElementById('pub-venue-zh').value,
+        venueEn: document.getElementById('pub-venue-en').value,
+        authors: document.getElementById('pub-authors').value,
+        summaryZh: document.getElementById('pub-summary-zh').value,
+        summaryEn: document.getElementById('pub-summary-en').value,
+        paperUrl: document.getElementById('pub-paper').value,
+        codeUrl: document.getElementById('pub-code').value,
+      };
+      const id = document.getElementById('pub-id').value;
+      try {
+        if (id) {
+          await handleRequest(`/api/publications/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '更新出版物');
+        } else {
+          await handleRequest('/api/publications', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }, '新增出版物');
+        }
+        pubForm.reset();
+        await loadPublications();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    pubWrapper.addEventListener('click', async (event) => {
+      const btn = event.target.closest('button[data-type="pub"]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      if (btn.dataset.action === 'edit') {
+        const res = await fetch('/api/publications');
+        const data = await res.json();
+        const item = data.find((entry) => entry.id === id);
+        if (!item) return;
+        document.getElementById('pub-id').value = item.id;
+        document.getElementById('pub-title-zh').value = item.titleZh || '';
+        document.getElementById('pub-title-en').value = item.titleEn || '';
+        document.getElementById('pub-venue-zh').value = item.venueZh || '';
+        document.getElementById('pub-venue-en').value = item.venueEn || '';
+        document.getElementById('pub-authors').value = item.authors || '';
+        document.getElementById('pub-summary-zh').value = item.summaryZh || '';
+        document.getElementById('pub-summary-en').value = item.summaryEn || '';
+        document.getElementById('pub-paper').value = item.paperUrl || '';
+        document.getElementById('pub-code').value = item.codeUrl || '';
+      }
+      if (btn.dataset.action === 'delete' && confirm('确定删除该出版物吗？')) {
+        try {
+          await handleRequest(`/api/publications/${id}`, { method: 'DELETE' }, '删除出版物');
+          await loadPublications();
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+    });
+
+    const bootstrap = async () => {
+      await Promise.allSettled([
+        loadSlides(),
+        loadKeyTech(),
+        loadMembers(),
+        loadPublications(),
+      ]);
+    };
+
+    bootstrap();
+  </script>
+</body>
+</html>
+

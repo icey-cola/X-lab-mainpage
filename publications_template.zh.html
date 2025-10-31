@@ -1,0 +1,561 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未来智能实验室 | 官方网站</title>
+  <meta name="description" content="未来智能实验室官方网站，展示前沿科研方向、关键技术成果、团队成员与最新动态。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="logo">
+      <span class="logo-mark">FIL</span>
+      <div class="logo-text">
+        <strong>未来智能实验室</strong>
+        <span>Future Intelligence Lab</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <nav class="main-nav" aria-label="主导航" data-i18n-attr="aria-label:navAriaLabel">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a data-i18n="navHome" href="#hero">首页</a></li>
+          <li><a data-i18n="navResearch" href="#research">研究方向</a></li>
+          <li><a data-i18n="navKeyTech" href="#key-tech">科研成果</a></li>
+          <li><a data-i18n="navTeam" href="#team">团队成员</a></li>
+          <li><a data-i18n="navPublications" href="#publications">出版物</a></li>
+          <li><a data-i18n="navJoin" href="#join">加入我们</a></li>
+          <li><a data-i18n="navContact" href="#contact">联系方式</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="语言切换" data-i18n-attr="aria-label:langSwitchLabel">
+        <div class="lang-indicator"></div>
+        <button type="button" class="lang-btn active" data-lang="zh" data-i18n="langChinese">中文</button>
+        <button type="button" class="lang-btn" data-lang="en" data-i18n="langEnglish">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-media" role="presentation" aria-hidden="true">
+        <div class="pulse-layer layer-1"></div>
+        <div class="pulse-layer layer-2"></div>
+        <div class="pulse-layer layer-3"></div>
+      </div>
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="heroEyebrow">探索科学前沿 · 驱动未来智能</p>
+        <h1 data-i18n="heroHeadline">Stay&nbsp;Simple&nbsp;&#8226;&nbsp;Stay&nbsp;Diverse</h1>
+        <p class="intro" data-i18n="heroIntro">
+          未来智能实验室聚焦视觉智能、认知计算与多模态 AI，打造从基础理论到产业落地的全链条创新平台。
+        </p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#research" data-i18n="heroCTAResearch">探索研究方向</a>
+          <a class="btn ghost" href="#join" data-i18n="heroCTAJoin">加入我们</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <article>
+          <strong>120+</strong>
+          <span data-i18n="heroStatPapers">学术论文 (Top-tier)</span>
+        </article>
+        <article>
+          <strong>30+</strong>
+          <span data-i18n="heroStatPatents">授权发明专利</span>
+        </article>
+        <article>
+          <strong>15</strong>
+          <span data-i18n="heroStatPartners">国际合作伙伴</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="research" id="research">
+      <header class="section-heading">
+        <h2 data-i18n="researchHeading">核心研究方向</h2>
+        <p data-i18n="researchSubheading">围绕人工智能与计算机视觉的关键议题，布局未来十年的技术突破口。</p>
+      </header>
+      <div class="research-grid">
+        <article class="research-card">
+          <div class="icon">
+            <span class="material-icon">🪞</span>
+          </div>
+          <h3 data-i18n="researchCard1Title">反射去除与层析重建</h3>
+          <p data-i18n="researchCard1Desc">围绕单幅图像反射去除（SIRR）与场景分层，打造 XReflection 等高效工具链，实现真实场景的清晰重建。</p>
+          <a href="#" class="link" data-i18n="researchLearnMore">了解详情</a>
+        </article>
+        <article class="research-card">
+          <div class="icon">
+            <span class="material-icon">🌫️</span>
+          </div>
+          <h3 data-i18n="researchCard2Title">极端条件下的图像增强</h3>
+          <p data-i18n="researchCard2Desc">研究恶劣天气与低光照退化建模，开发 MODEM 等视觉恢复方法，提升复杂环境中的成像质量。</p>
+          <a href="#" class="link" data-i18n="researchLearnMore">了解详情</a>
+        </article>
+        <article class="research-card">
+          <div class="icon">
+            <span class="material-icon">🔤</span>
+          </div>
+          <h3 data-i18n="researchCard3Title">文本感知超分与生成</h3>
+          <p data-i18n="researchCard3Desc">以扩散模型和联合解码器为核心，面向真实场景文本区域，构建高保真的图像超分辨技术。</p>
+          <a href="#" class="link" data-i18n="researchLearnMore">了解详情</a>
+        </article>
+        <article class="research-card">
+          <div class="icon">
+            <span class="material-icon">🎥</span>
+          </div>
+          <h3 data-i18n="researchCard4Title">鲁棒视频理解与跨域感知</h3>
+          <p data-i18n="researchCard4Desc">聚焦高效视频目标检测与差异化对齐策略，提升跨场景的数据泛化与实时感知能力。</p>
+          <a href="#" class="link" data-i18n="researchLearnMore">了解详情</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="key-tech" id="key-tech">
+      <div class="section-heading">
+        <h2 data-i18n="keyTechHeading">关键技术与代表性成果</h2>
+        <p data-i18n="keyTechSubheading">从原创算法到产业级系统，持续输出高影响力的科研成果。</p>
+      </div>
+      <div class="tech-showcase">
+        <article class="tech-item primary">
+          <div class="tech-media">
+            <img src="image/xreflection.png" alt="XReflection toolbox interface">
+          </div>
+          <div class="tech-content">
+            <span class="tag" data-i18n="tech1Tag">开源工具</span>
+            <h3 data-i18n="tech1Title">XReflection</h3>
+            <p data-i18n="tech1Desc">XReflection is a neat toolbox tailored for single-image reflection removal (SIRR). We offer state-of-the-art SIRR solutions for training and inference, with a high-performance data pipeline, multi-GPU/TPU support, and more!</p>
+            <a class="link" href="https://github.com/hainuo-wang/XReflection" target="_blank" rel="noopener" data-i18n="tech1Cta">Explore Project</a>
+          </div>
+        </article>
+        <article class="tech-item secondary">
+          <div class="tech-media">
+            <img src="image/modem.png" alt="MODEM degradation estimation framework">
+          </div>
+          <div class="tech-content">
+            <span class="tag alt" data-i18n="tech2Tag">NeurIPS 2025</span>
+            <h3 data-i18n="tech2Title">MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery</h3>
+            <p data-i18n="tech2Desc">引入 Morton 顺序建模与多尺度退化估计机制，精准解析暴雨、雾霾等极端天气下的视觉退化，实现高质量的图像恢复。</p>
+            <a class="link" href="#" data-i18n="tech2Cta">查看论文</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="publications" id="publications">
+      <header class="section-heading">
+        <h2 data-i18n="pubsHeading">精选出版物</h2>
+        <p data-i18n="pubsSubheading">聚焦顶级会议与期刊的最新成果，展现我们在视觉智能与多模态 AI 领域的持续突破。</p>
+      </header>
+      <div class="pub-list">
+        <article class="pub-card">
+          <span class="pub-tag" data-i18n="pub1Tag">NeurIPS · 2025</span>
+          <h3 data-i18n="pub1Title">MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery</h3>
+          <p class="pub-authors" data-i18n="pub1Authors">Hainuo Wang, Qiming Hu, and Xiaojie Guo*</p>
+          <p data-i18n="pub1Desc">面向恶劣天气视觉恢复，提出 Morton 顺序退化估计机制，显著提升复杂场景的图像质量。</p>
+          <div class="pub-links">
+            <a class="link" href="#" data-i18n="pubPaper">Paper</a>
+            <a class="link" href="#" data-i18n="pubCode">Code</a>
+          </div>
+        </article>
+        <article class="pub-card">
+          <span class="pub-tag" data-i18n="pub2Tag">NeurIPS · 2025</span>
+          <h3 data-i18n="pub2Title">Text-Aware Real-World Image Super-Resolution via Diffusion Model with Joint Segmentation Decoders</h3>
+          <p class="pub-authors" data-i18n="pub2Authors">Qiming Hu, Linglong Fan, Yiyan Luo, Yuhang Yu, Qingnan Fan, and Xiaojie Guo*</p>
+          <p data-i18n="pub2Desc">引入联合分割解码器的扩散模型，提升真实场景中文本区域的超分辨效果。</p>
+          <div class="pub-links">
+            <a class="link" href="#" data-i18n="pubPaper">Paper</a>
+            <a class="link" href="#" data-i18n="pubCode">Code</a>
+          </div>
+        </article>
+        <article class="pub-card">
+          <span class="pub-tag" data-i18n="pub3Tag">CVPR · 2025</span>
+          <h3 data-i18n="pub3Title">Reversible Decoupling Network for Single Image Reflection Removal</h3>
+          <p class="pub-authors" data-i18n="pub3Authors">Hao Zhao, Mingjia Li, Qiming Hu, and Xiaojie Guo*</p>
+          <p data-i18n="pub3Desc">提出可逆解耦网络，实现复杂玻璃场景下的单幅图像反射分离。</p>
+          <div class="pub-links">
+            <a class="link" href="#" data-i18n="pubPaper">Paper</a>
+            <a class="link" href="#" data-i18n="pubCode">Code</a>
+          </div>
+        </article>
+      </div>
+      <div class="publications-cta">
+        <a class="btn primary" href="publications.html" data-i18n="pubsCTA">查看全部出版物</a>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <header class="section-heading">
+        <h2 data-i18n="teamHeading">团队介绍</h2>
+        <p data-i18n="teamSubheading">跨学科精英团队，汇聚计算机视觉、机器学习、硬件架构与应用科学的顶尖人才。</p>
+      </header>
+      <div class="team-groups" id="team-groups"></div>
+      <div class="team-cta">
+        <a class="btn ghost" href="team.html" data-i18n="teamCTA">查看完整团队</a>
+      </div>
+    </section>
+
+    <section class="join" id="join">
+      <div class="join-content">
+        <h2 data-i18n="joinHeading">与我们一起探索未来智能</h2>
+        <p data-i18n="joinDescription">我们正在寻找对人工智能、计算机视觉与跨学科创新充满热情的研究者与工程师。加入我们，一起突破技术边界。</p>
+        <a class="btn primary" href="#" data-i18n="joinCTA">立即投递简历</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <div>
+        <h3 data-i18n="footerContactTitle">联系我们</h3>
+        <ul class="contact-list">
+          <li><strong data-i18n="footerAddressLabel">地址：</strong><span data-i18n="footerAddressText">中国北京市海淀区学府大道 88 号未来科技园 B 座</span></li>
+          <li><strong data-i18n="footerPhoneLabel">电话：</strong><span data-i18n="footerPhoneText">+86 10 1234 5678</span></li>
+          <li><strong data-i18n="footerEmailLabel">邮箱：</strong><a href="mailto:contact@futurelab.ai" data-i18n="footerEmailText">contact@futurelab.ai</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerLinksTitle">快速链接</h3>
+        <ul class="quick-links">
+          <li><a href="#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="#key-tech" data-i18n="navKeyTech">科研成果</a></li>
+          <li><a href="#publications" data-i18n="navPublications">出版物</a></li>
+          <li><a href="#join" data-i18n="navJoin">加入我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerFollowTitle">关注我们</h3>
+        <ul class="social-links">
+          <li><a href="#" data-i18n="footerSocialGithub">GitHub</a></li>
+          <li><a href="#" data-i18n="footerSocialLinkedIn">LinkedIn</a></li>
+          <li><a href="#" data-i18n="footerSocialTwitter">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="partners">
+        <span data-i18n="footerPartnersLabel">合作伙伴：</span>
+        <div class="partner-logos">
+          <span class="badge">TechNova</span>
+          <span class="badge">DeepVision</span>
+          <span class="badge">GlobalAI</span>
+        </div>
+      </div>
+      <p data-i18n="footerCopyright">© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('#nav-menu');
+    const langSwitch = document.querySelector('.lang-switch');
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    const i18nAttrElements = document.querySelectorAll('[data-i18n-attr]');
+    const teamGroups = document.querySelector('#team-groups');
+
+    const memberGroupLabels = {
+      teacher: { zh: '教师团队', en: 'Teachers' },
+      phd: { zh: '博士研究生', en: 'PhD Candidates' },
+      master: { zh: '硕士研究生', en: 'Master Students' },
+      alumni: { zh: '毕业生', en: 'Alumni' }
+    };
+    const memberGroupOrder = ['teacher', 'phd', 'master', 'alumni'];
+    let currentLang = 'zh';
+    let membersCache = [];
+
+    const translations = {
+      zh: {
+        navAriaLabel: '主导航',
+        langSwitchLabel: '语言切换',
+        langChinese: '中文',
+        langEnglish: 'EN',
+        navHome: '首页',
+        navResearch: '研究方向',
+        navKeyTech: '科研成果',
+        navTeam: '团队成员',
+        navPublications: '出版物',
+        navJoin: '加入我们',
+        navContact: '联系方式',
+        heroEyebrow: '探索科学前沿 · 驱动未来智能',
+        heroHeadline: 'Stay&nbsp;Simple&nbsp;&#8226;&nbsp;Stay&nbsp;Diverse',
+        heroIntro: '未来智能实验室聚焦视觉智能、认知计算与多模态 AI，打造从基础理论到产业落地的全链条创新平台。',
+        heroCTAResearch: '探索研究方向',
+        heroCTAJoin: '加入我们',
+        heroStatPapers: '学术论文 (Top-tier)',
+        heroStatPatents: '授权发明专利',
+        heroStatPartners: '国际合作伙伴',
+        researchHeading: '核心研究方向',
+        researchSubheading: '围绕人工智能与计算机视觉的关键议题，布局未来十年的技术突破口。',
+        researchCard1Title: '反射去除与层析重建',
+        researchCard1Desc: '围绕单幅图像反射去除（SIRR）与场景分层，打造 XReflection 等高效工具链，实现真实场景的清晰重建。',
+        researchCard2Title: '极端条件下的图像增强',
+        researchCard2Desc: '研究恶劣天气与低光照退化建模，开发 MODEM 等视觉恢复方法，提升复杂环境中的成像质量。',
+        researchCard3Title: '文本感知超分与生成',
+        researchCard3Desc: '以扩散模型和联合解码器为核心，面向真实场景文本区域，构建高保真的图像超分辨技术。',
+        researchCard4Title: '鲁棒视频理解与跨域感知',
+        researchCard4Desc: '聚焦高效视频目标检测与差异化对齐策略，提升跨场景的数据泛化与实时感知能力。',
+        researchLearnMore: '了解详情',
+        keyTechHeading: '关键技术与代表性成果',
+        keyTechSubheading: '从原创算法到产业级系统，持续输出高影响力的科研成果。',
+        tech1Tag: '开源工具',
+        tech1Title: 'XReflection',
+        tech1Desc: 'XReflection 是面向单幅图像反射去除（SIRR）的高效工具箱，覆盖训练与推理流程，具备高性能数据管线与多 GPU/TPU 支持。',
+        tech1Cta: '访问项目',
+        tech2Tag: 'NeurIPS 2025',
+        tech2Title: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
+        tech2Desc: '引入 Morton 顺序建模与多尺度退化估计机制，精准解析暴雨、雾霾等极端天气下的视觉退化，实现高质量的图像恢复。',
+        tech2Cta: '查看论文',
+        pubsHeading: '精选出版物',
+        pubsSubheading: '聚焦顶级会议与期刊的最新成果，展现我们在视觉智能与多模态 AI 领域的持续突破。',
+        pub1Tag: 'NeurIPS · 2025',
+        pub1Title: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
+        pub1Authors: 'Hainuo Wang, Qiming Hu, and Xiaojie Guo*',
+        pub1Desc: '面向恶劣天气视觉恢复，提出 Morton 顺序退化估计机制，显著提升复杂场景的图像质量。',
+        pub2Tag: 'NeurIPS · 2025',
+        pub2Title: 'Text-Aware Real-World Image Super-Resolution via Diffusion Model with Joint Segmentation Decoders',
+        pub2Authors: 'Qiming Hu, Linglong Fan, Yiyan Luo, Yuhang Yu, Qingnan Fan, and Xiaojie Guo*',
+        pub2Desc: '引入联合分割解码器的扩散模型，提升真实场景中文本区域的超分辨效果。',
+        pub3Tag: 'CVPR · 2025',
+        pub3Title: 'Reversible Decoupling Network for Single Image Reflection Removal',
+        pub3Authors: 'Hao Zhao, Mingjia Li, Qiming Hu, and Xiaojie Guo*',
+        pub3Desc: '提出可逆解耦网络，实现复杂玻璃场景下的单幅图像反射分离。',
+        pubPaper: '论文',
+        pubCode: '代码',
+        pubsCTA: '查看全部出版物',
+        teamHeading: '团队介绍',
+        teamSubheading: '跨学科精英团队，汇聚计算机视觉、机器学习、硬件架构与应用科学的顶尖人才。',
+        teamCTA: '查看完整团队',
+        joinHeading: '与我们一起探索未来智能',
+        joinDescription: '我们正在寻找对人工智能、计算机视觉与跨学科创新充满热情的研究者与工程师。加入我们，一起突破技术边界。',
+        joinCTA: '立即投递简历',
+        footerContactTitle: '联系我们',
+        footerAddressLabel: '地址：',
+        footerAddressText: '中国北京市海淀区学府大道 88 号未来科技园 B 座',
+        footerPhoneLabel: '电话：',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: '邮箱：',
+        footerEmailText: 'contact@futurelab.ai',
+        footerLinksTitle: '快速链接',
+        footerFollowTitle: '关注我们',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: '合作伙伴：',
+        footerCopyright: '© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号'
+      },
+      en: {
+        navAriaLabel: 'Main navigation',
+        langSwitchLabel: 'Language toggle',
+        langChinese: 'ZH',
+        langEnglish: 'EN',
+        navHome: 'Home',
+        navResearch: 'Research',
+        navKeyTech: 'Key Technologies',
+        navTeam: 'Team',
+        navPublications: 'Publications',
+        navJoin: 'Join Us',
+        navContact: 'Contact',
+        heroEyebrow: 'Exploring the scientific frontier · Powering future intelligence',
+        heroHeadline: 'Stay&nbsp;Simple&nbsp;&#8226;&nbsp;Stay&nbsp;Diverse',
+        heroIntro: 'Future Intelligence Lab advances visual intelligence, cognitive computing, and multimodal AI, building an end-to-end innovation pipeline from theory to real-world impact.',
+        heroCTAResearch: 'Explore Research',
+        heroCTAJoin: 'Join Our Lab',
+        heroStatPapers: 'Top-tier papers',
+        heroStatPatents: 'Granted patents',
+        heroStatPartners: 'Global partners',
+        researchHeading: 'Core Research Areas',
+        researchSubheading: 'We target the most critical topics in AI and computer vision, laying the groundwork for the next decade of breakthroughs.',
+        researchCard1Title: 'Reflection Removal & Layered Reconstruction',
+        researchCard1Desc: 'Building XReflection and related toolchains for single-image reflection removal (SIRR) and scene decomposition to produce crystal-clear imagery.',
+        researchCard2Title: 'Imaging Enhancement in Extreme Conditions',
+        researchCard2Desc: 'Modeling degradations from harsh weather and low light, and creating solutions such as MODEM to recover reliable visuals in the wild.',
+        researchCard3Title: 'Text-aware Super-resolution & Generation',
+        researchCard3Desc: 'Leveraging diffusion models with joint decoders to generate high-fidelity text regions for real-world imagery.',
+        researchCard4Title: 'Robust Video Understanding & Cross-domain Perception',
+        researchCard4Desc: 'Designing efficient video detection and differential alignment strategies to generalize across domains in real time.',
+        researchLearnMore: 'Learn more',
+        keyTechHeading: 'Key Technologies & Flagship Outcomes',
+        keyTechSubheading: 'From original algorithms to production-grade systems, we consistently deliver high-impact research.',
+        tech1Tag: 'Open-source',
+        tech1Title: 'XReflection',
+        tech1Desc: 'XReflection is a purpose-built toolbox for single-image reflection removal, offering state-of-the-art training and inference with high-performance pipelines and multi-GPU/TPU support.',
+        tech1Cta: 'Explore Project',
+        tech2Tag: 'NeurIPS 2025',
+        tech2Title: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
+        tech2Desc: 'Morton-order modeling with multi-scale degradation estimation delivers superior restoration quality under severe rain, fog, and haze conditions.',
+        tech2Cta: 'Read Paper',
+        pubsHeading: 'Featured Publications',
+        pubsSubheading: 'Highlights from top-tier conferences and journals that showcase our progress in visual intelligence and multimodal AI.',
+        pub1Tag: 'NeurIPS · 2025',
+        pub1Title: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
+        pub1Authors: 'Hainuo Wang, Qiming Hu, and Xiaojie Guo*',
+        pub1Desc: 'A Morton-order degradation estimator that substantially boosts restoration quality for images captured in adverse weather.',
+        pub2Tag: 'NeurIPS · 2025',
+        pub2Title: 'Text-Aware Real-World Image Super-Resolution via Diffusion Model with Joint Segmentation Decoders',
+        pub2Authors: 'Qiming Hu, Linglong Fan, Yiyan Luo, Yuhang Yu, Qingnan Fan, and Xiaojie Guo*',
+        pub2Desc: 'A diffusion-based SR framework that preserves real-world text regions with precision via joint segmentation decoders.',
+        pub3Tag: 'CVPR · 2025',
+        pub3Title: 'Reversible Decoupling Network for Single Image Reflection Removal',
+        pub3Authors: 'Hao Zhao, Mingjia Li, Qiming Hu, and Xiaojie Guo*',
+        pub3Desc: 'A reversible decoupling network that separates transmission and reflection layers for challenging glass scenarios.',
+        pubPaper: 'Paper',
+        pubCode: 'Code',
+        pubsCTA: 'View all publications',
+        teamHeading: 'Our Team',
+        teamSubheading: 'An interdisciplinary group spanning computer vision, machine learning, hardware systems, and applied sciences.',
+        teamCTA: 'Meet the full team',
+        joinHeading: 'Join Us in Shaping Future Intelligence',
+        joinDescription: 'We welcome passionate researchers and engineers in AI, computer vision, and cross-disciplinary innovation to push the boundaries with us.',
+        joinCTA: 'Apply Now',
+        footerContactTitle: 'Contact Us',
+        footerAddressLabel: 'Address:',
+        footerAddressText: 'Building B, Future Tech Park, 88 Xuefu Avenue, Haidian District, Beijing, China',
+        footerPhoneLabel: 'Phone:',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: 'Email:',
+        footerEmailText: 'contact@futurelab.ai',
+        footerLinksTitle: 'Quick Links',
+        footerFollowTitle: 'Follow Us',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: 'Partners:',
+        footerCopyright: '© 2024 Future Intelligence Lab · All Rights Reserved | ICP No. 12345678'
+      }
+    };
+
+    function renderMembers(lang = currentLang) {
+      if (!teamGroups) return;
+      if (!membersCache.length) {
+        teamGroups.innerHTML = `<div class="section-empty">${lang === 'en' ? 'No team members yet.' : '暂无团队成员。'}</div>`;
+        return;
+      }
+
+      const grouped = membersCache.reduce((acc, member) => {
+        const group = member.group || 'teacher';
+        if (!acc[group]) acc[group] = [];
+        acc[group].push(member);
+        return acc;
+      }, {});
+
+      const markup = memberGroupOrder.map((groupKey) => {
+        const list = grouped[groupKey];
+        if (!list || !list.length) return '';
+        const label = memberGroupLabels[groupKey]?.[lang === 'en' ? 'en' : 'zh'] || groupKey;
+        const cards = list.map((member) => {
+          const name = lang === 'en' ? (member.nameEn || member.nameZh || '') : (member.nameZh || member.nameEn || '');
+          const role = lang === 'en' ? (member.roleEn || member.roleZh || '') : (member.roleZh || member.roleEn || '');
+          return `
+            <article class="team-card">
+              <div class="avatar"></div>
+              <div class="text">
+                <h3>${name}</h3>
+                <p>${role}</p>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        return `
+          <section class="team-group">
+            <h3>${label}</h3>
+            <div class="team-grid">
+              ${cards}
+            </div>
+          </section>
+        `;
+      }).filter(Boolean).join('');
+
+      teamGroups.innerHTML = markup || `<div class="section-empty">${lang === 'en' ? 'No team members yet.' : '暂无团队成员。'}</div>`;
+    }
+
+    async function loadMembers() {
+      if (!teamGroups) return;
+      try {
+        const response = await fetch('/api/members');
+        if (!response.ok) {
+          throw new Error('Failed to load members');
+        }
+        membersCache = await response.json();
+        renderMembers(currentLang);
+      } catch (error) {
+        console.error(error);
+        teamGroups.innerHTML = `<div class="section-empty">${currentLang === 'en' ? 'Failed to load team members.' : '团队成员加载失败。'}</div>`;
+      }
+    }
+
+    function applyLanguage(lang) {
+      const resolvedLang = lang === 'en' ? 'en' : 'zh';
+      currentLang = resolvedLang;
+      const dict = translations[resolvedLang] || translations.zh;
+      i18nElements.forEach((el) => {
+        const key = el.dataset.i18n;
+        if (key && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      i18nAttrElements.forEach((el) => {
+        const mappings = el.dataset.i18nAttr.split(',');
+        mappings.forEach((mapping) => {
+          const [attr, key] = mapping.split(':').map((part) => part.trim());
+          if (attr && key && dict[key] !== undefined) {
+            el.setAttribute(attr, dict[key]);
+          }
+        });
+      });
+
+      document.documentElement.lang = resolvedLang === 'en' ? 'en' : 'zh-CN';
+      renderMembers(resolvedLang);
+    }
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navMenu.classList.toggle('open');
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    function updateLangButtons(activeLang) {
+      if (langSwitch) {
+        langSwitch.setAttribute('data-active-lang', activeLang);
+      }
+      langButtons.forEach((btn) => {
+        const btnLang = btn.dataset.lang || 'zh';
+        const isActive = btnLang === activeLang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetLang = btn.dataset.lang || 'zh';
+        applyLanguage(targetLang);
+        updateLangButtons(targetLang);
+      });
+    });
+
+    applyLanguage('zh');
+    updateLangButtons('zh');
+    loadMembers();
+  </script>
+</body>
+</html>

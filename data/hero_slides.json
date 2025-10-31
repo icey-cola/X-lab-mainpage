@@ -1,0 +1,38 @@
+[
+  {
+    "id": "s-001",
+    "tagZh": "最新发布",
+    "tagEn": "Latest",
+    "titleZh": "下一代视觉智能平台发布",
+    "titleEn": "Next-gen Vision Intelligence Platform",
+    "descriptionZh": "融合大模型与视觉算法，全面提升科研、工业与城市场景的智能感知能力。",
+    "descriptionEn": "Integrating foundation models with vision AI to power smarter cities, industries, and research labs.",
+    "link": "https://www.sensetime.com/cn/about",
+    "media": "image/xreflection.png",
+    "mediaType": "image"
+  },
+  {
+    "id": "s-002",
+    "tagZh": "学术动态",
+    "tagEn": "Research",
+    "titleZh": "多模态认知推理斩获顶会荣誉",
+    "titleEn": "Multimodal Reasoning Wins Top-tier Award",
+    "descriptionZh": "多模态认知推理研究荣获顶级会议最佳论文，展示视觉与语言融合的新突破。",
+    "descriptionEn": "Our multimodal reasoning work earned a best paper award, showcasing breakthroughs in vision-language fusion.",
+    "link": "https://www.sensetime.com/cn/news",
+    "media": "image/modem.png",
+    "mediaType": "image"
+  },
+  {
+    "id": "s-003",
+    "tagZh": "产业落地",
+    "tagEn": "Solutions",
+    "titleZh": "多行业智能解决方案",
+    "titleEn": "Industry-ready AI Solutions",
+    "descriptionZh": "智慧城市、智能制造与医疗影像等领域全面落地创新方案，创造真实价值。",
+    "descriptionEn": "Delivering intelligent solutions across smart cities, manufacturing, and healthcare to create real-world impact.",
+    "link": "https://www.sensetime.com/cn/solutions",
+    "media": "image/modem.mp4",
+    "mediaType": "video"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "m-001",
+    "nameZh": "李老师",
+    "nameEn": "Professor Li",
+    "roleZh": "导师",
+    "roleEn": "Supervisor",
+    "group": "teacher",
+    "avatar": "li.png"
+  },
+  {
+    "id": "m-002",
+    "nameZh": "张三",
+    "nameEn": "Zhang San",
+    "roleZh": "博士研究生",
+    "roleEn": "PhD Student",
+    "group": "phd",
+    "avatar": "zhangsan.png"
+  }
+]

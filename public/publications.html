@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未来智能实验室 | 出版物</title>
+  <meta name="description" content="未来智能实验室出版物列表，涵盖人工智能、计算机视觉与多模态研究成果。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="logo">
+      <span class="logo-mark">FIL</span>
+      <div class="logo-text">
+        <strong>未来智能实验室</strong>
+        <span>Future Intelligence Lab</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <nav class="main-nav" aria-label="主导航" data-i18n-attr="aria-label:navAriaLabel">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a href="index.html#hero" data-i18n="navHome">首页</a></li>
+          <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
+          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="#publications-list" data-i18n="navPublications">出版物</a></li>
+          <li><a href="index.html#join" data-i18n="navJoin">加入我们</a></li>
+          <li><a href="index.html#contact" data-i18n="navContact">联系方式</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="语言切换" data-i18n-attr="aria-label:langSwitchLabel">
+        <div class="lang-indicator"></div>
+        <button type="button" class="lang-btn active" data-lang="zh" data-i18n="langChinese">中文</button>
+        <button type="button" class="lang-btn" data-lang="en" data-i18n="langEnglish">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="heroEyebrow">未来智能实验室出版物</p>
+        <h1 data-i18n="heroHeadline">持续输出高影响力的科研成果</h1>
+        <p class="intro" data-i18n="heroIntro">覆盖顶级会议、期刊与行业白皮书的研究成果，欢迎查阅并与我们交流合作机会。</p>
+      </div>
+    </section>
+
+    <section class="publications archive" id="publications-list">
+      <header class="section-heading">
+        <h2 data-i18n="pubHeading">全部出版物</h2>
+        <p data-i18n="pubSubheading">出版物信息由后台统一管理，确保中英文版本实时同步。</p>
+      </header>
+      <div class="pub-list" id="pub-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <h3 data-i18n="footerContactTitle">联系我们</h3>
+        <ul class="contact-list">
+          <li><strong data-i18n="footerAddressLabel">地址：</strong><span data-i18n="footerAddressText">中国北京市海淀区学府大道 88 号未来科技园 B 座</span></li>
+          <li><strong data-i18n="footerPhoneLabel">电话：</strong><span data-i18n="footerPhoneText">+86 10 1234 5678</span></li>
+          <li><strong data-i18n="footerEmailLabel">邮箱：</strong><a href="mailto:contact@futurelab.ai" data-i18n="footerEmailText">contact@futurelab.ai</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerLinksTitle">快速链接</h3>
+        <ul class="quick-links">
+          <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
+          <li><a href="#publications-list" data-i18n="navPublications">出版物</a></li>
+          <li><a href="index.html#join" data-i18n="navJoin">加入我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerFollowTitle">关注我们</h3>
+        <ul class="social-links">
+          <li><a href="#" data-i18n="footerSocialGithub">GitHub</a></li>
+          <li><a href="#" data-i18n="footerSocialLinkedIn">LinkedIn</a></li>
+          <li><a href="#" data-i18n="footerSocialTwitter">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="partners">
+        <span data-i18n="footerPartnersLabel">合作伙伴：</span>
+        <div class="partner-logos">
+          <span class="badge">TechNova</span>
+          <span class="badge">DeepVision</span>
+          <span class="badge">GlobalAI</span>
+        </div>
+      </div>
+      <p data-i18n="footerCopyright">© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('#nav-menu');
+    const langSwitch = document.querySelector('.lang-switch');
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    const i18nAttrElements = document.querySelectorAll('[data-i18n-attr]');
+    const pubList = document.querySelector('#pub-list');
+
+    let currentLang = 'zh';
+    let publicationsCache = [];
+
+    const translations = {
+      zh: {
+        navAriaLabel: '主导航',
+        langSwitchLabel: '语言切换',
+        langChinese: '中文',
+        langEnglish: 'EN',
+        navHome: '首页',
+        navResearch: '研究方向',
+        navKeyTech: '科研成果',
+        navTeam: '团队成员',
+        navPublications: '出版物',
+        navJoin: '加入我们',
+        navContact: '联系方式',
+        heroEyebrow: '未来智能实验室出版物',
+        heroHeadline: '持续输出高影响力的科研成果',
+        heroIntro: '覆盖顶级会议、期刊与行业白皮书的研究成果，欢迎查阅并与我们交流合作机会。',
+        pubHeading: '全部出版物',
+        pubSubheading: '出版物信息由后台统一管理，确保中英文版本实时同步。',
+        pubAuthorsLabel: '作者：',
+        pubPaper: 'Paper',
+        pubCode: 'Code',
+        emptyPubs: '暂无出版物。',
+        loadFailed: '出版物加载失败，请稍后重试。',
+        footerContactTitle: '联系我们',
+        footerAddressLabel: '地址：',
+        footerAddressText: '中国北京市海淀区学府大道 88 号未来科技园 B 座',
+        footerPhoneLabel: '电话：',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: '邮箱：',
+        footerEmailText: 'contact@futurelab.ai',
+        footerLinksTitle: '快速链接',
+        footerFollowTitle: '关注我们',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: '合作伙伴：',
+        footerCopyright: '© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号'
+      },
+      en: {
+        navAriaLabel: 'Main navigation',
+        langSwitchLabel: 'Language toggle',
+        langChinese: 'ZH',
+        langEnglish: 'EN',
+        navHome: 'Home',
+        navResearch: 'Research',
+        navKeyTech: 'Key Technologies',
+        navTeam: 'Team',
+        navPublications: 'Publications',
+        navJoin: 'Join Us',
+        navContact: 'Contact',
+        heroEyebrow: 'Publications · Future Intelligence Lab',
+        heroHeadline: 'High-impact research delivered continuously',
+        heroIntro: 'Browse our latest conference, journal, and whitepaper outputs, and reach out for collaboration opportunities.',
+        pubHeading: 'All Publications',
+        pubSubheading: 'Publication data is maintained centrally so Chinese and English versions stay in sync.',
+        pubAuthorsLabel: 'Authors:',
+        pubPaper: 'Paper',
+        pubCode: 'Code',
+        emptyPubs: 'No publications yet.',
+        loadFailed: 'Failed to load publications. Please try again later.',
+        footerContactTitle: 'Contact Us',
+        footerAddressLabel: 'Address:',
+        footerAddressText: 'Building B, Future Tech Park, 88 Xuefu Avenue, Haidian District, Beijing, China',
+        footerPhoneLabel: 'Phone:',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: 'Email:',
+        footerEmailText: 'contact@futurelab.ai',
+        footerLinksTitle: 'Quick Links',
+        footerFollowTitle: 'Follow Us',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: 'Partners:',
+        footerCopyright: '© 2024 Future Intelligence Lab · All Rights Reserved | ICP No. 12345678'
+      }
+    };
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navMenu.classList.toggle('open');
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    function updateLangButtons(activeLang) {
+      if (langSwitch) {
+        langSwitch.setAttribute('data-active-lang', activeLang);
+      }
+      langButtons.forEach((btn) => {
+        const lang = btn.dataset.lang || 'zh';
+        const isActive = lang === activeLang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    function applyLanguage(lang) {
+      const resolved = lang === 'en' ? 'en' : 'zh';
+      currentLang = resolved;
+      const dict = translations[resolved] || translations.zh;
+
+      i18nElements.forEach((el) => {
+        const key = el.dataset.i18n;
+        if (key && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      i18nAttrElements.forEach((el) => {
+        const mappings = (el.dataset.i18nAttr || '').split(',');
+        mappings.forEach((mapping) => {
+          const [attr, key] = mapping.split(':').map((item) => item.trim());
+          if (attr && key && dict[key] !== undefined) {
+            el.setAttribute(attr, dict[key]);
+          }
+        });
+      });
+
+      document.documentElement.lang = resolved === 'en' ? 'en' : 'zh-CN';
+      renderPublications(publicationsCache);
+    }
+
+    function renderPublications(items) {
+      if (!pubList) return;
+      if (!items.length) {
+        pubList.innerHTML = `<div class="section-empty">${translations[currentLang].emptyPubs}</div>`;
+        return;
+      }
+
+      pubList.innerHTML = items.map((pub) => {
+        const title = currentLang === 'en'
+          ? (pub.titleEn || pub.titleZh || '')
+          : (pub.titleZh || pub.titleEn || '');
+        const venue = currentLang === 'en'
+          ? (pub.venueEn || pub.venueZh || '')
+          : (pub.venueZh || pub.venueEn || '');
+        const summary = currentLang === 'en'
+          ? (pub.summaryEn || pub.summaryZh || '')
+          : (pub.summaryZh || pub.summaryEn || '');
+        const authorsLabel = translations[currentLang].pubAuthorsLabel;
+        const paperLabel = translations[currentLang].pubPaper;
+        const codeLabel = translations[currentLang].pubCode;
+
+        return `
+          <article class="pub-card">
+            <span class="pub-tag">${venue}</span>
+            <h3>${title}</h3>
+            <p class="pub-authors">${authorsLabel} ${pub.authors || ''}</p>
+            ${summary ? `<p>${summary}</p>` : ''}
+            <div class="pub-links">
+              ${pub.paperUrl ? `<a class="link" href="${pub.paperUrl}" target="_blank" rel="noopener">${paperLabel}</a>` : ''}
+              ${pub.codeUrl ? `<a class="link" href="${pub.codeUrl}" target="_blank" rel="noopener">${codeLabel}</a>` : ''}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function loadPublications() {
+      if (!pubList) return;
+      try {
+        const res = await fetch('/api/publications');
+        if (!res.ok) throw new Error('Failed to load publications');
+        publicationsCache = await res.json();
+        renderPublications(publicationsCache);
+      } catch (error) {
+        console.error(error);
+        pubList.innerHTML = `<div class="section-empty">${translations[currentLang].loadFailed}</div>`;
+      }
+    }
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetLang = btn.dataset.lang || 'zh';
+        applyLanguage(targetLang);
+        updateLangButtons(targetLang);
+      });
+    });
+
+    applyLanguage('zh');
+    updateLangButtons('zh');
+    loadPublications();
+  </script>
+</body>
+</html>

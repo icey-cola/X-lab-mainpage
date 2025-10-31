@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p-001",
+    "titleZh": "MODEM：用于恶劣天气图像恢复的 Morton 顺序退化估计机制",
+    "titleEn": "MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery",
+    "venueZh": "NeurIPS · 2025",
+    "venueEn": "NeurIPS · 2025",
+    "authors": "Hainuo Wang, Qiming Hu, and Xiaojie Guo*",
+    "summaryZh": "面向恶劣天气视觉恢复，提出 Morton 顺序退化估计机制，显著提升重建质量。",
+    "summaryEn": "Morton-order degradation modeling delivers high-quality restoration in severe weather conditions.",
+    "paperUrl": "#",
+    "codeUrl": "#"
+  },
+  {
+    "id": "p-002",
+    "titleZh": "面向真实场景文字的扩散式图像超分辨框架",
+    "titleEn": "Text-Aware Real-World Image Super-Resolution via Diffusion Model with Joint Segmentation Decoders",
+    "venueZh": "CVPR · 2025",
+    "venueEn": "CVPR · 2025",
+    "authors": "Qiming Hu, Linglong Fan, Yiyan Luo, Yuhang Yu, Qingnan Fan, and Xiaojie Guo*",
+    "summaryZh": "联合分割解码器保持真实场景文字的高保真细节，显著提升可读性。",
+    "summaryEn": "Joint segmentation decoders in a diffusion framework preserve text fidelity in real-world scenarios.",
+    "paperUrl": "#",
+    "codeUrl": "#"
+  }
+]
