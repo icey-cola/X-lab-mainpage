@@ -858,6 +858,13 @@ section {
   font-size: 13px;
 }
 
+.team-card.mini .member-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(32, 33, 39, 0.65);
+  margin-top: 2px;
+}
+
 .team.archive {
   margin-top: clamp(40px, 6vw, 72px);
 }
@@ -954,6 +961,28 @@ section {
   height: 96px;
   border-radius: 28px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(237, 31, 39, 0.88), rgba(255, 107, 82, 0.78));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.team-profile .team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.team-profile .team-photo .team-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .team-profile .team-info {
@@ -970,13 +999,67 @@ section {
 
 .team-profile .bio {
   margin: 0;
-  color: var(--text-secondary);
+  color: rgba(32, 33, 39, 0.65);
+  line-height: 1.7;
 }
 
 .team-links {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.team.archive .team-profiles {
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+@media (min-width: 900px) {
+  .team.archive .team-profiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.team.archive .team-profile {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(28px, 4vw, 40px);
+  gap: 20px;
+  height: 100%;
+}
+
+.team.archive .team-profile .team-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 34px;
+  box-shadow: 0 18px 32px rgba(237, 31, 39, 0.25);
+  font-size: 30px;
+}
+
+.team.archive .team-profile .team-info {
+  gap: 12px;
+  width: 100%;
+}
+
+.team.archive .team-profile .team-info h4 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.team.archive .team-profile .role {
+  color: rgba(237, 31, 39, 0.85);
+  letter-spacing: 0.04em;
+}
+
+.team.archive .team-profile .bio {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: calc(1.7em * 3);
+  overflow: hidden;
+}
+
+.team.archive .team-links {
+  margin-top: auto;
 }
 
 .team-callout {

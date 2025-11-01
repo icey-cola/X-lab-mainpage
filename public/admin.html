@@ -222,6 +222,12 @@
       <label>Role (English)
         <input id="member-role-en" required>
       </label>
+      <label>简介（中文）
+        <textarea id="member-bio-zh" rows="3" placeholder="简要介绍（最多三行）"></textarea>
+      </label>
+      <label>Bio (English)
+        <textarea id="member-bio-en" rows="3" placeholder="Short bio (up to three lines)"></textarea>
+      </label>
       <label>所属分组
         <select id="member-group">
           <option value="teacher">教师 Teacher</option>
@@ -507,6 +513,7 @@
           <tr>
             <td>${item.nameZh || ''}<br><small>${item.nameEn || ''}</small></td>
             <td>${item.roleZh || ''}<br><small>${item.roleEn || ''}</small></td>
+            <td>${item.bioZh || ''}<br><small>${item.bioEn || ''}</small></td>
             <td>${item.group || ''}</td>
             <td>${item.avatar || ''}</td>
             <td>
@@ -515,7 +522,7 @@
             </td>
           </tr>
         `).join('');
-        renderTable(memberWrapper, ['姓名', '角色', '分组', '头像', '操作'], rows);
+        renderTable(memberWrapper, ['姓名', '角色', '简介', '分组', '头像', '操作'], rows);
       } catch (err) {
         console.error(err);
         memberWrapper.className = 'empty';
@@ -530,6 +537,8 @@
         nameEn: document.getElementById('member-name-en').value,
         roleZh: document.getElementById('member-role-zh').value,
         roleEn: document.getElementById('member-role-en').value,
+        bioZh: document.getElementById('member-bio-zh').value,
+        bioEn: document.getElementById('member-bio-en').value,
         group: document.getElementById('member-group').value,
         avatar: document.getElementById('member-avatar').value,
       };
@@ -569,6 +578,8 @@
         document.getElementById('member-name-en').value = item.nameEn || '';
         document.getElementById('member-role-zh').value = item.roleZh || '';
         document.getElementById('member-role-en').value = item.roleEn || '';
+        document.getElementById('member-bio-zh').value = item.bioZh || '';
+        document.getElementById('member-bio-en').value = item.bioEn || '';
         document.getElementById('member-group').value = item.group || 'teacher';
         document.getElementById('member-avatar').value = item.avatar || '';
       }
@@ -684,4 +695,3 @@
   </script>
 </body>
 </html>
-

@@ -296,9 +296,14 @@
               ).join('')
             : '';
 
+          const initialSource = name || role || (currentLang === 'zh' ? '研' : 'F');
+          const initial = String(initialSource).trim().charAt(0) || '';
+          const photo = member.avatar
+            ? `<img src="${member.avatar}" alt="${name}">`
+            : `<span class="team-initial">${initial}</span>`;
           return `
             <article class="team-profile">
-              <div class="team-photo"></div>
+              <div class="team-photo">${photo}</div>
               <div class="team-info">
                 <h4>${name}</h4>
                 <p class="role">${role}</p>

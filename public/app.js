@@ -265,7 +265,9 @@ const FALLBACK_MEMBERS = [
     roleZh: '导师',
     roleEn: 'Supervisor',
     group: 'teacher',
-    avatar: ''
+    avatar: '',
+    bioZh: '未来智能实验室负责人，专注于视觉智能、可信 AI 与跨模态认知研究。',
+    bioEn: 'Head of the lab focusing on vision intelligence, trustworthy AI, and multimodal cognition.'
   },
   {
     id: 'm-002',
@@ -274,7 +276,9 @@ const FALLBACK_MEMBERS = [
     roleZh: '博士研究生',
     roleEn: 'PhD Student',
     group: 'phd',
-    avatar: ''
+    avatar: '',
+    bioZh: '研究多模态感知和极端天气图像恢复，关注真实场景的算法落地。',
+    bioEn: 'Researches multimodal perception and extreme-weather restoration with a focus on deployment.'
   },
   {
     id: 'm-003',
@@ -283,7 +287,9 @@ const FALLBACK_MEMBERS = [
     roleZh: '硕士研究生',
     roleEn: 'Master Student',
     group: 'master',
-    avatar: ''
+    avatar: '',
+    bioZh: '聚焦城市感知与高效视频分析，负责实验室平台化建设。',
+    bioEn: 'Focuses on urban perception and efficient video analytics, contributing to platform engineering.'
   }
 ];
 
@@ -610,6 +616,14 @@ const renderMembers = (items) => {
     const role = document.createElement('p');
     role.textContent = selectText(member, 'role') || member.group || '';
     textBox.appendChild(role);
+
+    const bioText = selectText(member, 'bio');
+    if (bioText) {
+      const desc = document.createElement('p');
+      desc.className = 'member-desc';
+      desc.textContent = bioText;
+      textBox.appendChild(desc);
+    }
 
     card.appendChild(avatarBox);
     card.appendChild(textBox);
