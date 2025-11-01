@@ -1,20 +1,38 @@
 [
   {
     "id": "m-001",
-    "nameZh": "\u674e\u8001\u5e08",
+    "nameZh": "李老师",
     "nameEn": "Professor Li",
-    "roleZh": "\u5bfc\u5e08",
+    "roleZh": "导师",
     "roleEn": "Supervisor",
     "group": "teacher",
     "avatar": "li.png"
   },
   {
     "id": "m-002",
-    "nameZh": "\u5f20\u4e09",
+    "nameZh": "张三",
     "nameEn": "Zhang San",
-    "roleZh": "\u535a\u58eb\u7814\u7a76\u751f",
+    "roleZh": "博士研究生",
     "roleEn": "PhD Student",
     "group": "phd",
     "avatar": "zhangsan.png"
+  },
+  {
+    "id": "m-1761979531524",
+    "nameZh": "1",
+    "nameEn": "1",
+    "roleZh": "1",
+    "roleEn": "1",
+    "group": "phd",
+    "avatar": ""
+  },
+  {
+    "id": "m-1761979536019",
+    "nameZh": "2",
+    "nameEn": "2",
+    "roleZh": "2",
+    "roleEn": "2",
+    "group": "phd",
+    "avatar": ""
   }
 ]
