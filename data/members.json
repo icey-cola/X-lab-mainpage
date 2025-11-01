@@ -1,18 +1,18 @@
 [
   {
     "id": "m-001",
-    "nameZh": "李老师",
+    "nameZh": "\u674e\u8001\u5e08",
     "nameEn": "Professor Li",
-    "roleZh": "导师",
+    "roleZh": "\u5bfc\u5e08",
     "roleEn": "Supervisor",
     "group": "teacher",
     "avatar": "li.png"
   },
   {
     "id": "m-002",
-    "nameZh": "张三",
+    "nameZh": "\u5f20\u4e09",
     "nameEn": "Zhang San",
-    "roleZh": "博士研究生",
+    "roleZh": "\u535a\u58eb\u7814\u7a76\u751f",
     "roleEn": "PhD Student",
     "group": "phd",
     "avatar": "zhangsan.png"

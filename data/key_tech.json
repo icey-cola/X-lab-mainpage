@@ -1,30 +1,30 @@
 [
   {
     "id": "t-001",
-    "tagZh": "开源工具",
+    "tagZh": "\u5f00\u6e90\u5de5\u5177",
     "tagEn": "Open Source",
     "titleZh": "XReflection",
     "titleEn": "XReflection",
-    "descriptionZh": "面向单幅图像反射去除（SIRR）的高效工具箱，覆盖数据构建、训练与推理全流程。",
+    "descriptionZh": "\u9762\u5411\u5355\u5e45\u56fe\u50cf\u53cd\u5c04\u53bb\u9664\uff08SIRR\uff09\u7684\u9ad8\u6548\u5de5\u5177\u7bb1\uff0c\u8986\u76d6\u6570\u636e\u6784\u5efa\u3001\u8bad\u7ec3\u4e0e\u63a8\u7406\u5168\u6d41\u7a0b\u3002",
     "descriptionEn": "A compact toolbox for single-image reflection removal with end-to-end data, training, and inference pipelines.",
     "media": "image/xreflection.png",
     "mediaType": "image",
     "link": "https://github.com/hainuo-wang/XReflection",
-    "linkLabelZh": "访问项目 >",
+    "linkLabelZh": "\u8bbf\u95ee\u9879\u76ee >",
     "linkLabelEn": "Explore Project >"
   },
   {
     "id": "t-002",
-    "tagZh": "旗舰成果",
+    "tagZh": "\u65d7\u8230\u6210\u679c",
     "tagEn": "Flagship",
-    "titleZh": "MODEM：极端天气影像恢复",
+    "titleZh": "MODEM\uff1a\u6781\u7aef\u5929\u6c14\u5f71\u50cf\u6062\u590d",
     "titleEn": "MODEM: Extreme-weather Restoration",
-    "descriptionZh": "引入 Morton 顺序与多尺度退化建模，在暴雨、雾霾场景下实现高质量重建。",
+    "descriptionZh": "\u5f15\u5165 Morton \u987a\u5e8f\u4e0e\u591a\u5c3a\u5ea6\u9000\u5316\u5efa\u6a21\uff0c\u5728\u66b4\u96e8\u3001\u96fe\u973e\u573a\u666f\u4e0b\u5b9e\u73b0\u9ad8\u8d28\u91cf\u91cd\u5efa\u3002",
     "descriptionEn": "Morton-order modeling with multi-scale degradation estimation delivers superior restoration under heavy rain and haze.",
     "media": "image/modem.mp4",
     "mediaType": "video",
     "link": "https://www.sensetime.com/cn/tech",
-    "linkLabelZh": "查看论文 >",
+    "linkLabelZh": "\u67e5\u770b\u8bba\u6587 >",
     "linkLabelEn": "Read Paper >"
   }
 ]
