@@ -12,6 +12,7 @@ const MEMBERS_PATH = path.join(DATA_DIR, 'members.json');
 const PUBLICATIONS_PATH = path.join(DATA_DIR, 'publications.json');
 const SLIDES_PATH = path.join(DATA_DIR, 'hero_slides.json');
 const TECH_PATH = path.join(DATA_DIR, 'key_tech.json');
+const PARTNERS_PATH = path.join(DATA_DIR, 'partners.json');
 
 const app = express();
 
@@ -41,7 +42,8 @@ const ensureDataSetup = async () => {
     { path: MEMBERS_PATH, initial: [] },
     { path: PUBLICATIONS_PATH, initial: [] },
     { path: SLIDES_PATH, initial: [] },
-    { path: TECH_PATH, initial: [] }
+    { path: TECH_PATH, initial: [] },
+    { path: PARTNERS_PATH, initial: [] }
   ];
   for (const entry of map) {
     try {
@@ -223,6 +225,44 @@ app.delete('/api/key-tech/:id', async (req, res) => {
     return res.status(404).json({ message: 'Tech item not found' });
   }
   await writeJson(TECH_PATH, filtered);
+  res.status(204).end();
+});
+
+// Partners API
+app.get('/api/partners', async (_, res) => {
+  const partners = await readJson(PARTNERS_PATH);
+  res.json(partners);
+});
+
+app.post('/api/partners', async (req, res) => {
+  const partners = await readJson(PARTNERS_PATH);
+  const newPartner = {
+    id: `partner-${Date.now()}`,
+    ...req.body,
+  };
+  partners.push(newPartner);
+  await writeJson(PARTNERS_PATH, partners);
+  res.status(201).json(newPartner);
+});
+
+app.put('/api/partners/:id', async (req, res) => {
+  const partners = await readJson(PARTNERS_PATH);
+  const idx = partners.findIndex((item) => item.id === req.params.id);
+  if (idx === -1) {
+    return res.status(404).json({ message: 'Partner not found' });
+  }
+  partners[idx] = { ...partners[idx], ...req.body };
+  await writeJson(PARTNERS_PATH, partners);
+  res.json(partners[idx]);
+});
+
+app.delete('/api/partners/:id', async (req, res) => {
+  const partners = await readJson(PARTNERS_PATH);
+  const filtered = partners.filter((item) => item.id !== req.params.id);
+  if (filtered.length === partners.length) {
+    return res.status(404).json({ message: 'Partner not found' });
+  }
+  await writeJson(PARTNERS_PATH, filtered);
   res.status(204).end();
 });
 

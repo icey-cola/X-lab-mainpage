@@ -1,0 +1,56 @@
+[
+  {
+    "id": "partner-001",
+    "nameZh": "3",
+    "nameEn": "3",
+    "image": "image/partners/tju.webp",
+    "link": "3",
+    "altZh": "",
+    "altEn": ""
+  },
+  {
+    "id": "partner-002",
+    "nameZh": "未来之光",
+    "nameEn": "FutureLight",
+    "image": "image/partners/tju.webp",
+    "link": "https://example.com/futurelight",
+    "altZh": "未来之光 Logo",
+    "altEn": "FutureLight Logo"
+  },
+  {
+    "id": "partner-003",
+    "nameZh": "深视智能",
+    "nameEn": "DeepVision",
+    "image": "image/partners/tju.webp",
+    "link": "https://example.com/deepvision",
+    "altZh": "深视智能 Logo",
+    "altEn": "DeepVision Logo"
+  },
+  {
+    "id": "partner-1761988648854",
+    "nameZh": "1",
+    "nameEn": "1",
+    "image": "image/partners/tju.webp",
+    "link": "1",
+    "altZh": "",
+    "altEn": ""
+  },
+  {
+    "id": "partner-1761988659927",
+    "nameZh": "2",
+    "nameEn": "2",
+    "image": "image/partners/tju.webp",
+    "link": "3",
+    "altZh": "",
+    "altEn": ""
+  },
+  {
+    "id": "partner-1761988857797",
+    "nameZh": "21",
+    "nameEn": "111",
+    "image": "image/partners/tju.webp",
+    "link": "111",
+    "altZh": "",
+    "altEn": ""
+  }
+]

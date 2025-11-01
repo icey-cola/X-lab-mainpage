@@ -4,6 +4,7 @@ const langSwitch = document.querySelector('.lang-switch');
 const langButtons = document.querySelectorAll('.lang-btn');
 const i18nElements = document.querySelectorAll('[data-i18n]');
 const i18nAttrElements = document.querySelectorAll('[data-i18n-attr]');
+const siteHeader = document.querySelector('.site-header');
 const heroSlider = document.querySelector('.hero-slider');
 const sliderTrack = heroSlider?.querySelector('#hero-slider');
 const sliderDots = heroSlider?.querySelector('.slider-dots');
@@ -11,12 +12,14 @@ const sliderPrev = heroSlider?.querySelector('.slider-nav.prev');
 const sliderNext = heroSlider?.querySelector('.slider-nav.next');
 const keyTechList = document.querySelector('#key-tech-list');
 const pubFeatured = document.querySelector('#pub-featured');
+const partnersGrid = document.querySelector('#partners-grid');
 const teamHighlight = document.querySelector('#team-highlight');
 
 let currentLang = 'zh';
 let slidesCache = [];
 let keyTechCache = [];
 let publicationsCache = [];
+let partnersCache = [];
 let membersCache = [];
 
 const HERO_ROTATE_MS = 6000;
@@ -69,6 +72,8 @@ const translations = {
     pubsHeading: '精选出版物',
     pubsSubheading: '聚焦顶级会议与期刊的最新成果，展现我们在视觉智能与多模态 AI 领域的持续突破。',
     pubsCTA: '查看全部出版物',
+    partnersHeading: '合作伙伴',
+    partnersSubheading: '携手产业与科研伙伴，共同推动视觉智能技术的应用与落地。',
     teamHeading: '团队介绍',
     teamSubheading: '跨学科精英团队，汇聚计算机视觉、机器学习、硬件架构与应用科学的顶尖人才。',
     teamCTA: '查看完整团队',
@@ -126,6 +131,8 @@ const translations = {
     pubsHeading: 'Featured Publications',
     pubsSubheading: 'Highlighting breakthroughs in vision intelligence and multimodal AI across top venues.',
     pubsCTA: 'Browse All Publications',
+    partnersHeading: 'Partners',
+    partnersSubheading: 'We collaborate with industry and research allies to accelerate vision intelligence in practice.',
     teamHeading: 'Meet the Team',
     teamSubheading: 'An interdisciplinary crew uniting vision, machine learning, hardware, and applied science experts.',
     teamCTA: 'Meet the Full Team',
@@ -227,6 +234,36 @@ const FALLBACK_KEY_TECH = [
     link: 'https://www.sensetime.com/cn/tech',
     linkLabelZh: '查看论文 >',
     linkLabelEn: 'Read Paper >'
+  }
+];
+
+const FALLBACK_PARTNERS = [
+  {
+    id: 'partner-001',
+    nameZh: '商汤科技',
+    nameEn: 'SenseTime',
+    image: 'image/partners/sensetime.png',
+    link: 'https://www.sensetime.com/cn',
+    altZh: '商汤科技 Logo',
+    altEn: 'SenseTime Logo'
+  },
+  {
+    id: 'partner-002',
+    nameZh: '深视智能',
+    nameEn: 'DeepVision',
+    image: 'image/partners/deepvision.png',
+    link: 'https://example.com/deepvision',
+    altZh: '深视智能 Logo',
+    altEn: 'DeepVision Logo'
+  },
+  {
+    id: 'partner-003',
+    nameZh: '未来之光',
+    nameEn: 'FutureLight',
+    image: 'image/partners/futurelight.png',
+    link: 'https://example.com/futurelight',
+    altZh: '未来之光 Logo',
+    altEn: 'FutureLight Logo'
   }
 ];
 
@@ -350,6 +387,15 @@ const closeNavMenu = () => {
   if (!navMenu || !navToggle) return;
   navMenu.classList.remove('open');
   navToggle.setAttribute('aria-expanded', 'false');
+};
+
+const updateHeaderOnScroll = () => {
+  if (!siteHeader) return;
+  if (window.scrollY > 40) {
+    siteHeader.classList.add('scrolled');
+  } else {
+    siteHeader.classList.remove('scrolled');
+  }
 };
 
 const initNavMenu = () => {
@@ -588,6 +634,34 @@ const renderPublications = (items) => {
   });
 };
 
+const renderPartners = (items) => {
+  if (!partnersGrid) return;
+  partnersGrid.innerHTML = '';
+  if (!items.length) {
+    setLoadingMessage(partnersGrid, currentLang === 'zh' ? '暂无合作伙伴，敬请期待。' : 'No partners yet. Please add one from the admin console.');
+    return;
+  }
+
+  items.forEach((partner) => {
+    const card = document.createElement('a');
+    card.className = 'partner-card';
+    card.href = partner.link || '#';
+    if (partner.link) {
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+    }
+
+    const img = document.createElement('img');
+    img.src = partner.image;
+    const alt = currentLang === 'zh'
+      ? (partner.altZh || partner.nameZh || partner.nameEn || '合作伙伴')
+      : (partner.altEn || partner.nameEn || partner.nameZh || 'Partner');
+    img.alt = alt;
+    card.appendChild(img);
+    partnersGrid.appendChild(card);
+  });
+};
+
 const renderMembers = (items) => {
   if (!teamHighlight) return;
   teamHighlight.innerHTML = '';
@@ -681,6 +755,24 @@ const loadKeyTech = async () => {
   }
 };
 
+const loadPartners = async () => {
+  if (!partnersGrid) return;
+  setLoadingMessage(partnersGrid, currentLang === 'zh' ? '正在加载合作伙伴...' : 'Loading partners...');
+  try {
+    const data = await fetchCollection('/api/partners');
+    partnersCache = data.length ? data : [];
+    if (!partnersCache.length) {
+      renderPartners([]);
+    } else {
+      renderPartners(partnersCache);
+    }
+  } catch (error) {
+    console.error('Failed to load partners.', error);
+    partnersCache = FALLBACK_PARTNERS;
+    renderPartners(partnersCache);
+  }
+};
+
 const loadPublications = async () => {
   if (!pubFeatured) return;
   setLoadingMessage(pubFeatured, currentLang === 'zh' ? '正在加载精选出版物...' : 'Loading featured publications...');
@@ -737,6 +829,7 @@ const initLangSwitch = () => {
       applyTranslations();
       renderSlides(slidesCache);
       renderKeyTech(keyTechCache);
+      renderPartners(partnersCache);
       renderPublications(publicationsCache);
       renderMembers(membersCache);
     });
@@ -774,11 +867,14 @@ const initSliderEvents = () => {
 const init = () => {
   updateLangButtons();
   applyTranslations();
+  updateHeaderOnScroll();
   initNavMenu();
   initLangSwitch();
   initSliderEvents();
+  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   loadSlides();
   loadKeyTech();
+  loadPartners();
   loadPublications();
   loadMembers();
 };
