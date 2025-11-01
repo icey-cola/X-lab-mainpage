@@ -28,9 +28,9 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background:
-    radial-gradient(circle at 15% 18%, rgba(237, 31, 39, 0.08), transparent 58%),
-    radial-gradient(circle at 85% 8%, rgba(255, 107, 82, 0.1), transparent 50%),
-    linear-gradient(180deg, #ffffff 0%, #f6f7f9 60%, #eef0f4 100%);
+    linear-gradient(90deg, rgba(160, 185, 255, 0.32) 0%, rgba(255, 255, 255, 0) 20%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0) 80%, rgba(250, 166, 171, 0.32) 100%),
+    linear-gradient(90deg, #f3f6ff 0%, #ffffff 50%, #ffeff1 100%);
   color: var(--text-primary);
   line-height: 1.6;
 }
@@ -71,8 +71,8 @@ img {
   padding: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 97vw;
-  max-width: 97vw;
+  width: 99vw;
+  max-width: 99vw;
   z-index: 5;
   border-radius: var(--radius-lg);
   background: transparent;
@@ -1392,9 +1392,9 @@ section {
 
 @keyframes heroZoom {
   0% {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(0.97);
+    transform: scale(0.99);
   }
 }
