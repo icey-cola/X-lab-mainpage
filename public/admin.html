@@ -260,6 +260,9 @@
       <label>Venue (English)
         <input id="pub-venue-en" required>
       </label>
+      <label>年份
+        <input id="pub-year" type="number" min="1990" max="2100" step="1" placeholder="2025" required>
+      </label>
       <label>作者
         <input id="pub-authors">
       </label>
@@ -602,6 +605,7 @@
           <tr>
             <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
             <td>${item.venueZh || ''}<br><small>${item.venueEn || ''}</small></td>
+            <td>${item.year || ''}</td>
             <td>${item.authors || ''}</td>
             <td>
               <button data-type="pub" data-action="edit" data-id="${item.id}">编辑</button>
@@ -609,7 +613,7 @@
             </td>
           </tr>
         `).join('');
-        renderTable(pubWrapper, ['标题', '会议 / 期刊', '作者', '操作'], rows);
+        renderTable(pubWrapper, ['标题', '会议 / 期刊', '年份', '作者', '操作'], rows);
       } catch (err) {
         console.error(err);
         pubWrapper.className = 'empty';
@@ -624,6 +628,7 @@
         titleEn: document.getElementById('pub-title-en').value,
         venueZh: document.getElementById('pub-venue-zh').value,
         venueEn: document.getElementById('pub-venue-en').value,
+        year: Number(document.getElementById('pub-year').value) || new Date().getFullYear(),
         authors: document.getElementById('pub-authors').value,
         summaryZh: document.getElementById('pub-summary-zh').value,
         summaryEn: document.getElementById('pub-summary-en').value,
@@ -666,6 +671,7 @@
         document.getElementById('pub-title-en').value = item.titleEn || '';
         document.getElementById('pub-venue-zh').value = item.venueZh || '';
         document.getElementById('pub-venue-en').value = item.venueEn || '';
+        document.getElementById('pub-year').value = item.year || '';
         document.getElementById('pub-authors').value = item.authors || '';
         document.getElementById('pub-summary-zh').value = item.summaryZh || '';
         document.getElementById('pub-summary-en').value = item.summaryEn || '';

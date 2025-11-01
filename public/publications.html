@@ -29,11 +29,10 @@
         <ul id="nav-menu">
           <li><a href="index.html#hero" data-i18n="navHome">首页</a></li>
           <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
-          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
           <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
           <li><a href="#publications-list" data-i18n="navPublications">出版物</a></li>
-          <li><a href="index.html#join" data-i18n="navJoin">加入我们</a></li>
-          <li><a href="index.html#contact" data-i18n="navContact">联系方式</a></li>
+          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
         </ul>
       </nav>
       <div class="lang-switch" role="group" aria-label="语言切换" data-i18n-attr="aria-label:langSwitchLabel">
@@ -76,9 +75,10 @@
         <h3 data-i18n="footerLinksTitle">快速链接</h3>
         <ul class="quick-links">
           <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
           <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
           <li><a href="#publications-list" data-i18n="navPublications">出版物</a></li>
-          <li><a href="index.html#join" data-i18n="navJoin">加入我们</a></li>
+          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
         </ul>
       </div>
       <div>
@@ -126,7 +126,7 @@
         navKeyTech: '科研成果',
         navTeam: '团队成员',
         navPublications: '出版物',
-        navJoin: '加入我们',
+        navJoin: '联系我们',
         navContact: '联系方式',
         heroEyebrow: '未来智能实验室出版物',
         heroHeadline: '持续输出高影响力的科研成果',
@@ -163,7 +163,7 @@
         navKeyTech: 'Key Technologies',
         navTeam: 'Team',
         navPublications: 'Publications',
-        navJoin: 'Join Us',
+        navJoin: 'Contact Us',
         navContact: 'Contact',
         heroEyebrow: 'Publications · Future Intelligence Lab',
         heroHeadline: 'High-impact research delivered continuously',
@@ -252,33 +252,65 @@
         return;
       }
 
-      pubList.innerHTML = items.map((pub) => {
-        const title = currentLang === 'en'
-          ? (pub.titleEn || pub.titleZh || '')
-          : (pub.titleZh || pub.titleEn || '');
-        const venue = currentLang === 'en'
-          ? (pub.venueEn || pub.venueZh || '')
-          : (pub.venueZh || pub.venueEn || '');
-        const summary = currentLang === 'en'
-          ? (pub.summaryEn || pub.summaryZh || '')
-          : (pub.summaryZh || pub.summaryEn || '');
-        const authorsLabel = translations[currentLang].pubAuthorsLabel;
-        const paperLabel = translations[currentLang].pubPaper;
-        const codeLabel = translations[currentLang].pubCode;
+      const sorted = [...items].sort((a, b) => {
+        const yearDiff = (b.year || 0) - (a.year || 0);
+        if (yearDiff !== 0) return yearDiff;
+        return (b.id || '').localeCompare(a.id || '');
+      });
 
-        return `
-          <article class="pub-card">
-            <span class="pub-tag">${venue}</span>
-            <h3>${title}</h3>
-            <p class="pub-authors">${authorsLabel} ${pub.authors || ''}</p>
-            ${summary ? `<p>${summary}</p>` : ''}
-            <div class="pub-links">
-              ${pub.paperUrl ? `<a class="link" href="${pub.paperUrl}" target="_blank" rel="noopener">${paperLabel}</a>` : ''}
-              ${pub.codeUrl ? `<a class="link" href="${pub.codeUrl}" target="_blank" rel="noopener">${codeLabel}</a>` : ''}
+      const grouped = sorted.reduce((acc, pub) => {
+        const year = pub.year || 'Other';
+        if (!acc.has(year)) {
+          acc.set(year, []);
+        }
+        acc.get(year).push(pub);
+        return acc;
+      }, new Map());
+
+      const authorsLabel = translations[currentLang].pubAuthorsLabel;
+      const paperLabel = translations[currentLang].pubPaper;
+      const codeLabel = translations[currentLang].pubCode;
+
+      const sections = [];
+      for (const [year, list] of grouped.entries()) {
+        if (!list.length) continue;
+        const cards = list.map((pub) => {
+          const title = currentLang === 'en'
+            ? (pub.titleEn || pub.titleZh || '')
+            : (pub.titleZh || pub.titleEn || '');
+          const venue = currentLang === 'en'
+            ? (pub.venueEn || pub.venueZh || '')
+            : (pub.venueZh || pub.venueEn || '');
+          const summary = currentLang === 'en'
+            ? (pub.summaryEn || pub.summaryZh || '')
+            : (pub.summaryZh || pub.summaryEn || '');
+
+          return `
+            <article class="pub-card">
+              <span class="pub-tag">${venue}</span>
+              <h3>${title}</h3>
+              <p class="pub-authors">${authorsLabel} ${pub.authors || ''}</p>
+              ${summary ? `<p>${summary}</p>` : ''}
+              <div class="pub-links">
+                ${pub.paperUrl ? `<a class="link" href="${pub.paperUrl}" target="_blank" rel="noopener">${paperLabel}</a>` : ''}
+                ${pub.codeUrl ? `<a class="link" href="${pub.codeUrl}" target="_blank" rel="noopener">${codeLabel}</a>` : ''}
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        const heading = year === 'Other' ? '' : `<h3 class="pub-year-heading">${year}</h3>`;
+        sections.push(`
+          <section class="pub-year-group">
+            ${heading}
+            <div class="pub-year-items">
+              ${cards}
             </div>
-          </article>
-        `;
-      }).join('');
+          </section>
+        `);
+      }
+
+      pubList.innerHTML = sections.join('');
     }
 
     async function loadPublications() {
@@ -286,7 +318,10 @@
       try {
         const res = await fetch('/api/publications');
         if (!res.ok) throw new Error('Failed to load publications');
-        publicationsCache = await res.json();
+        const data = await res.json();
+        publicationsCache = Array.isArray(data)
+          ? [...data].sort((a, b) => (b.year || 0) - (a.year || 0))
+          : [];
         renderPublications(publicationsCache);
       } catch (error) {
         console.error(error);

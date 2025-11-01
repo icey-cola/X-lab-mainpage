@@ -6,7 +6,7 @@
     "roleZh": "导师",
     "roleEn": "Supervisor",
     "group": "teacher",
-    "avatar": "li.png",
+    "avatar": "image/modem.png",
     "bioZh": "未来智能实验室负责人，专注于视觉智能、可信 AI 与跨模态认知研究。",
     "bioEn": "Head of the lab focusing on vision intelligence, trustworthy AI, and multimodal cognition."
   },
@@ -17,8 +17,8 @@
     "roleZh": "博士研究生",
     "roleEn": "PhD Student",
     "group": "phd",
-    "avatar": "zhangsan.png",
-    "bioZh": "研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。研究方向涵盖多模态感知和极端天气图像恢复，关注科研落地。",
+    "avatar": "image/modem.png",
+    "bioZh": "研究方向涵盖多模态感知和极端天气图像恢复，关注科研落 ",
     "bioEn": "Works on multimodal perception and extreme-weather restoration, bridging research with deployment."
   },
   {
@@ -42,5 +42,16 @@
     "avatar": "",
     "bioZh": "",
     "bioEn": ""
+  },
+  {
+    "id": "m-1761982157079",
+    "nameZh": "22",
+    "nameEn": "22",
+    "roleZh": "22",
+    "roleEn": "22",
+    "bioZh": "",
+    "bioEn": "",
+    "group": "phd",
+    "avatar": ""
   }
 ]

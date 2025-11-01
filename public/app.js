@@ -41,7 +41,7 @@ const translations = {
     navKeyTech: '科研成果',
     navTeam: '团队成员',
     navPublications: '出版物',
-    navJoin: '加入我们',
+    navJoin: '联系我们',
     navContact: '联系方式',
     langChinese: '中文',
     langEnglish: 'EN',
@@ -49,7 +49,7 @@ const translations = {
     heroHeadline: 'Stay Simple • Stay Diverse',
     heroIntro: '未来智能实验室聚焦视觉智能、认知计算与多模态 AI，打造从基础理论到产业落地的全链条创新平台。',
     heroCTAResearch: '探索研究方向',
-    heroCTAJoin: '加入我们',
+    heroCTAJoin: '联系我们',
     heroStatPapers: '学术论文 (Top-tier)',
     heroStatPatents: '授权发明专利',
     heroStatPartners: '国际合作伙伴',
@@ -98,7 +98,7 @@ const translations = {
     navKeyTech: 'Key Technologies',
     navTeam: 'Team',
     navPublications: 'Publications',
-    navJoin: 'Join Us',
+    navJoin: 'Contact Us',
     navContact: 'Contact',
     langChinese: '中文',
     langEnglish: 'EN',
@@ -106,7 +106,7 @@ const translations = {
     heroHeadline: 'Stay Simple \u2022 Stay Diverse',
     heroIntro: 'Future Intelligence Lab advances vision intelligence, cognitive computing, and multimodal AI from theory to real-world impact.',
     heroCTAResearch: 'Explore Research',
-    heroCTAJoin: 'Join Us',
+    heroCTAJoin: 'Contact Us',
     heroStatPapers: 'Top-tier publications',
     heroStatPatents: 'Granted patents',
     heroStatPartners: 'Global partners',
@@ -241,7 +241,8 @@ const FALLBACK_PUBLICATIONS = [
     summaryZh: '提出 Morton 顺序退化建模框架，在暴雨、雾霾场景下实现高质量重建。',
     summaryEn: 'Morton-order degradation modeling delivers high-quality restoration in severe weather conditions.',
     paperUrl: '#',
-    codeUrl: '#'
+    codeUrl: '#',
+    year: 2025
   },
   {
     id: 'p-002',
@@ -253,7 +254,8 @@ const FALLBACK_PUBLICATIONS = [
     summaryZh: '联合分割解码器保持真实场景文字细节，显著提升可读性。',
     summaryEn: 'Joint segmentation decoders in a diffusion framework preserve text fidelity in real-world scenarios.',
     paperUrl: '#',
-    codeUrl: '#'
+    codeUrl: '#',
+    year: 2025
   }
 ];
 
@@ -532,7 +534,7 @@ const renderPublications = (items) => {
     setLoadingMessage(pubFeatured, currentLang === 'zh' ? '暂无出版物，敬请期待。' : 'No publications yet. Please add one from the admin console.');
     return;
   }
-  items.forEach((pub) => {
+  items.slice(0, 3).forEach((pub) => {
     const card = document.createElement('article');
     card.className = 'pub-card';
 
@@ -593,7 +595,7 @@ const renderMembers = (items) => {
     setLoadingMessage(teamHighlight, currentLang === 'zh' ? '暂无团队成员，敬请期待。' : 'No team members yet. Please add one from the admin console.');
     return;
   }
-  items.slice(0, 6).forEach((member) => {
+  items.slice(0, 3).forEach((member) => {
     const card = document.createElement('article');
     card.className = 'team-card mini';
 
@@ -684,7 +686,9 @@ const loadPublications = async () => {
   setLoadingMessage(pubFeatured, currentLang === 'zh' ? '正在加载精选出版物...' : 'Loading featured publications...');
   try {
     const data = await fetchCollection('/api/publications');
-    publicationsCache = data.length ? data : [];
+    publicationsCache = data.length
+      ? [...data].sort((a, b) => (b.year || 0) - (a.year || 0))
+      : [];
     if (!publicationsCache.length) {
       renderPublications([]);
     } else {
@@ -692,7 +696,7 @@ const loadPublications = async () => {
     }
   } catch (error) {
     console.error('Failed to load publications.', error);
-    publicationsCache = FALLBACK_PUBLICATIONS;
+    publicationsCache = [...FALLBACK_PUBLICATIONS].sort((a, b) => (b.year || 0) - (a.year || 0));
     renderPublications(publicationsCache);
   }
 };
