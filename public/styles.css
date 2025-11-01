@@ -314,7 +314,7 @@ img {
 }
 
 .lang-btn:hover {
-  color: #fca5a5;
+  color: var(--accent);
 }
 
 .lang-switch[data-active-lang="en"] .lang-indicator {
@@ -349,8 +349,8 @@ img {
 
 .main-nav a:hover,
 .main-nav a:focus {
-  color: #fca5a5;
-  border-color: #fca5a5;
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .nav-toggle {
@@ -444,7 +444,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 12px;
-  color: #fca5a5;
+  color: var(--accent);
 }
 
 .hero h1 {
@@ -491,7 +491,7 @@ img {
 
 .btn.ghost {
   background: rgba(237, 31, 39, 0.08);
-  color: #fca5a5;
+  color: var(--accent);
   border: 1px solid rgba(237, 31, 39, 0.2);
 }
 
@@ -543,7 +543,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 12px;
-  color: #fca5a5;
+  color: var(--accent);
 }
 
 .page-hero h1 {
@@ -641,7 +641,7 @@ section {
 
 .link {
   font-weight: 600;
-  color: #fca5a5;
+  color: var(--accent);
   display: inline-flex;
   gap: 6px;
   align-items: center;
@@ -723,7 +723,7 @@ section {
   padding: 6px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.14);
-  color: #fca5a5;
+  color: var(--accent);
   font-weight: 600;
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -732,7 +732,7 @@ section {
 
 .tag.alt {
   background: rgba(255, 107, 82, 0.18);
-  color: #ed5132;
+  color: var(--accent);
 }
 
 .tech-content h3 {
@@ -772,7 +772,7 @@ section {
 .pub-year-heading {
   margin: 0;
   font-size: clamp(30px, 5vw, 48px);
-  color: #fca5a5;
+  color: var(--accent);
   font-family: var(--font-heading);
   letter-spacing: 0.08em;
 }
@@ -810,7 +810,7 @@ section {
   padding: 4px 12px;
   border-radius: 999px;
   background: rgba(237, 31, 39, 0.08);
-  color: #fca5a5;
+  color: var(--accent);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
