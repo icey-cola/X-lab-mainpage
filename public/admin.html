@@ -31,6 +31,35 @@
       font-size: 20px;
       font-weight: 600;
     }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 16px;
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .collapse-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #d2d6dc;
+      background: rgba(229, 231, 235, 0.5);
+      color: #1f2937;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .collapse-btn:hover {
+      background: rgba(209, 213, 219, 0.8);
+      transform: translateY(-1px);
+    }
+    .collapsible.collapsed > :not(.section-header) {
+      display: none;
+    }
     form {
       display: grid;
       gap: 12px;
@@ -126,8 +155,11 @@
 <body>
   <h1>未来智能实验室 · 后台管理</h1>
 
-  <section id="slides-section">
-    <h2>首页横幅</h2>
+    <section id="slides-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>首页横幅</h2>
+      <button type="button" class="collapse-btn" data-target="slides-section" aria-expanded="false">展开</button>
+    </div>
     <form id="slide-form">
       <input type="hidden" id="slide-id">
       <label>
@@ -174,8 +206,52 @@
     <div id="slides-table-wrapper" class="empty">正在加载横幅列表…</div>
   </section>
 
-  <section id="key-tech-section">
-    <h2>关键技术</h2>
+  <section id="members-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>团队成员</h2>
+      <button type="button" class="collapse-btn" data-target="members-section" aria-expanded="false">展开</button>
+    </div>
+    <form id="member-form">
+      <input type="hidden" id="member-id">
+      <label>姓名（中文）
+        <input id="member-name-zh" required>
+      </label>
+      <label>Name (English)
+        <input id="member-name-en" required>
+      </label>
+      <label>角色（中文）
+        <input id="member-role-zh" required>
+      </label>
+      <label>Role (English)
+        <input id="member-role-en" required>
+      </label>
+      <label>简介（中文，最多三行）
+        <textarea id="member-bio-zh" rows="3"></textarea>
+      </label>
+      <label>Bio (English, up to three lines)
+        <textarea id="member-bio-en" rows="3"></textarea>
+      </label>
+      <label>所属分类
+        <select id="member-group">
+          <option value="teacher">教师 Teacher</option>
+          <option value="phd">博士研究生 PhD</option>
+          <option value="master">硕士研究生 Master</option>
+          <option value="alumni">毕业生 Alumni</option>
+        </select>
+      </label>
+      <label>头像文件名（可选）
+        <input id="member-avatar" placeholder="avatar.png">
+      </label>
+      <button type="submit">保存成员</button>
+    </form>
+    <div id="member-table-wrapper" class="empty">正在加载团队成员…</div>
+  </section>
+
+  <section id="key-tech-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>关键技术</h2>
+      <button type="button" class="collapse-btn" data-target="key-tech-section" aria-expanded="false">展开</button>
+    </div>
     <form id="tech-form">
       <input type="hidden" id="tech-id">
       <label>标签（中文）
@@ -225,73 +301,11 @@
     <div id="tech-table-wrapper" class="empty">正在加载关键技术…</div>
   </section>
 
-  <section id="partners-section">
-    <h2>合作伙伴</h2>
-    <form id="partner-form">
-      <input type="hidden" id="partner-id">
-      <label>名称（中文）
-        <input id="partner-name-zh" required>
-      </label>
-      <label>Name (English)
-        <input id="partner-name-en" required>
-      </label>
-      <label>图片路径（建议 200×200）
-        <input id="partner-image" placeholder="image/partners/logo.png" required>
-      </label>
-      <label>跳转链接
-        <input id="partner-link" placeholder="https://example.com" required>
-      </label>
-      <label>替代文字（中文，可选）
-        <input id="partner-alt-zh">
-      </label>
-      <label>Alt text (English, optional)
-        <input id="partner-alt-en">
-      </label>
-      <button type="submit">保存合作伙伴</button>
-    </form>
-    <div id="partner-table-wrapper" class="empty">正在加载合作伙伴…</div>
-  </section>
-
-  <section id="members-section">
-    <h2>团队成员</h2>
-    <form id="member-form">
-      <input type="hidden" id="member-id">
-      <label>姓名（中文）
-        <input id="member-name-zh" required>
-      </label>
-      <label>Name (English)
-        <input id="member-name-en" required>
-      </label>
-      <label>角色（中文）
-        <input id="member-role-zh" required>
-      </label>
-      <label>Role (English)
-        <input id="member-role-en" required>
-      </label>
-      <label>简介（中文，最多三行）
-        <textarea id="member-bio-zh" rows="3"></textarea>
-      </label>
-      <label>Bio (English, up to three lines)
-        <textarea id="member-bio-en" rows="3"></textarea>
-      </label>
-      <label>所属分类
-        <select id="member-group">
-          <option value="teacher">教师 Teacher</option>
-          <option value="phd">博士研究生 PhD</option>
-          <option value="master">硕士研究生 Master</option>
-          <option value="alumni">毕业生 Alumni</option>
-        </select>
-      </label>
-      <label>头像文件名（可选）
-        <input id="member-avatar" placeholder="avatar.png">
-      </label>
-      <button type="submit">保存成员</button>
-    </form>
-    <div id="member-table-wrapper" class="empty">正在加载团队成员…</div>
-  </section>
-
-  <section id="publications-section">
-    <h2>精选出版物</h2>
+  <section id="publications-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>精选出版物</h2>
+      <button type="button" class="collapse-btn" data-target="publications-section" aria-expanded="false">展开</button>
+    </div>
     <form id="pub-form">
       <input type="hidden" id="pub-id">
       <label>标题（中文）
@@ -327,6 +341,36 @@
       <button type="submit">保存出版物</button>
     </form>
     <div id="pub-table-wrapper" class="empty">正在加载出版物…</div>
+  </section>
+
+  <section id="partners-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>合作伙伴</h2>
+      <button type="button" class="collapse-btn" data-target="partners-section" aria-expanded="false">展开</button>
+    </div>
+    <form id="partner-form">
+      <input type="hidden" id="partner-id">
+      <label>名称（中文）
+        <input id="partner-name-zh" required>
+      </label>
+      <label>Name (English)
+        <input id="partner-name-en" required>
+      </label>
+      <label>图片路径（建议 200×200）
+        <input id="partner-image" placeholder="image/partners/logo.png" required>
+      </label>
+      <label>跳转链接
+        <input id="partner-link" placeholder="https://example.com" required>
+      </label>
+      <label>替代文字（中文，可选）
+        <input id="partner-alt-zh">
+      </label>
+      <label>Alt text (English, optional)
+        <input id="partner-alt-en">
+      </label>
+      <button type="submit">保存合作伙伴</button>
+    </form>
+    <div id="partner-table-wrapper" class="empty">正在加载合作伙伴…</div>
   </section>
 
   <script>
@@ -375,14 +419,36 @@
         }
         return res.json();
       };
-      const handleRequest = async (url, options, label) => {
-        const res = await fetch(url, options);
-        if (!res.ok) {
-          const text = await res.text().catch(() => '');
-          throw new Error(`${label}失败：${res.status} ${text}`);
-        }
-        return res.status === 204 ? null : res.json();
-      };
+    const handleRequest = async (url, options, label) => {
+      const res = await fetch(url, options);
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`${label}失败：${res.status} ${text}`);
+      }
+      return res.status === 204 ? null : res.json();
+    };
+
+    const initCollapsibleSections = () => {
+      document.querySelectorAll('.collapse-btn').forEach((btn) => {
+        const targetId = btn.dataset.target;
+        if (!targetId) return;
+        const section = document.getElementById(targetId);
+        if (!section) return;
+
+        const updateButton = () => {
+          const collapsed = section.classList.contains('collapsed');
+          btn.textContent = collapsed ? '展开' : '收起';
+          btn.setAttribute('aria-expanded', String(!collapsed));
+        };
+
+        btn.addEventListener('click', () => {
+          section.classList.toggle('collapsed');
+          updateButton();
+        });
+
+        updateButton();
+      });
+    };
 
       const slideForm = getEl('slide-form');
       const slidesWrapper = getEl('slides-table-wrapper');
@@ -857,11 +923,12 @@
         }
       });
 
-      const bootstrap = async () => {
-        await Promise.allSettled([
-          loadSlides(),
-          loadKeyTech(),
-          loadPartners(),
+    const bootstrap = async () => {
+      initCollapsibleSections();
+      await Promise.allSettled([
+        loadSlides(),
+        loadKeyTech(),
+        loadPartners(),
           loadMembers(),
           loadPublications(),
         ]);
