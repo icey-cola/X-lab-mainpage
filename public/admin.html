@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>后台管理 | 未来智能实验室</title>
+  <title>未来智能实验室 · 后台管理</title>
   <style>
     :root {
       font-family: "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
@@ -17,6 +17,7 @@
     h1 {
       margin: 0 0 24px;
       font-size: 28px;
+      font-weight: 700;
     }
     section {
       background: #ffffff;
@@ -28,6 +29,7 @@
     section > h2 {
       margin: 0 0 16px;
       font-size: 20px;
+      font-weight: 600;
     }
     form {
       display: grid;
@@ -40,14 +42,18 @@
       font-size: 14px;
       color: #475569;
     }
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       border: 1px solid #d2d6dc;
       border-radius: 8px;
       padding: 10px 12px;
       font-size: 14px;
       font-family: inherit;
     }
-    textarea { resize: vertical; }
+    textarea {
+      resize: vertical;
+    }
     button {
       justify-self: flex-start;
       padding: 10px 18px;
@@ -57,19 +63,23 @@
       color: #ffffff;
       font-size: 14px;
       cursor: pointer;
+      transition: background 0.2s ease;
     }
-    button:hover { background: #1d4ed8; }
+    button:hover {
+      background: #1d4ed8;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 12px;
       font-size: 14px;
-      background: #fff;
+      background: #ffffff;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
     }
-    th, td {
+    th,
+    td {
       padding: 10px 12px;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
@@ -89,7 +99,9 @@
     .danger {
       background: #ef4444;
     }
-    .danger:hover { background: #dc2626; }
+    .danger:hover {
+      background: #dc2626;
+    }
     .empty {
       padding: 16px;
       border: 1px dashed #cbd5f5;
@@ -98,9 +110,16 @@
       background: #f8fafc;
     }
     @media (max-width: 720px) {
-      body { padding: 20px; }
-      section { padding: 20px; }
-      table { display: block; overflow-x: auto; }
+      body {
+        padding: 20px;
+      }
+      section {
+        padding: 20px;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+      }
     }
   </style>
 </head>
@@ -136,7 +155,7 @@
         <textarea id="slide-desc-en" rows="3"></textarea>
       </label>
       <label>
-        媒体路径（相对于 public）
+        媒体路径（相对于 public/）
         <input id="slide-media" placeholder="image/banner.jpg" required>
       </label>
       <label>
@@ -177,7 +196,7 @@
       <label>Description (English)
         <textarea id="tech-desc-en" rows="3"></textarea>
       </label>
-      <label>媒体路径（支持图片/GIF/视频）
+      <label>媒体路径（支持图片 / GIF / 视频）
         <input id="tech-media" placeholder="image/key-tech.png" required>
       </label>
       <label>媒体类型
@@ -193,7 +212,7 @@
         <input id="tech-alt-en">
       </label>
       <label>跳转链接（可选）
-        <input id="tech-link">
+        <input id="tech-link" placeholder="https://example.com">
       </label>
       <label>链接文字（中文，可选）
         <input id="tech-link-label-zh">
@@ -216,7 +235,7 @@
       <label>Name (English)
         <input id="partner-name-en" required>
       </label>
-      <label>图片路径（相对于 public，建议 300×300）
+      <label>图片路径（建议 200×200）
         <input id="partner-image" placeholder="image/partners/logo.png" required>
       </label>
       <label>跳转链接
@@ -249,13 +268,13 @@
       <label>Role (English)
         <input id="member-role-en" required>
       </label>
-      <label>简介（中文）
-        <textarea id="member-bio-zh" rows="3" placeholder="简要介绍（最多三行）"></textarea>
+      <label>简介（中文，最多三行）
+        <textarea id="member-bio-zh" rows="3"></textarea>
       </label>
-      <label>Bio (English)
-        <textarea id="member-bio-en" rows="3" placeholder="Short bio (up to three lines)"></textarea>
+      <label>Bio (English, up to three lines)
+        <textarea id="member-bio-en" rows="3"></textarea>
       </label>
-      <label>所属分组
+      <label>所属分类
         <select id="member-group">
           <option value="teacher">教师 Teacher</option>
           <option value="phd">博士研究生 PhD</option>
@@ -293,17 +312,17 @@
       <label>作者
         <input id="pub-authors">
       </label>
-      <label>摘要 / 简介（中文）
+      <label>摘要（中文）
         <textarea id="pub-summary-zh" rows="3"></textarea>
       </label>
       <label>Summary (English)
         <textarea id="pub-summary-en" rows="3"></textarea>
       </label>
       <label>Paper 链接
-        <input id="pub-paper">
+        <input id="pub-paper" placeholder="https://example.com/paper.pdf">
       </label>
       <label>Code 链接
-        <input id="pub-code">
+        <input id="pub-code" placeholder="https://github.com/xxx">
       </label>
       <button type="submit">保存出版物</button>
     </form>
@@ -311,506 +330,545 @@
   </section>
 
   <script>
-    const slideForm = document.getElementById('slide-form');
-    const slidesWrapper = document.getElementById('slides-table-wrapper');
-    const techForm = document.getElementById('tech-form');
-    const techWrapper = document.getElementById('tech-table-wrapper');
-    const partnerForm = document.getElementById('partner-form');
-    const partnerWrapper = document.getElementById('partner-table-wrapper');
-    const memberForm = document.getElementById('member-form');
-    const memberWrapper = document.getElementById('member-table-wrapper');
-    const pubForm = document.getElementById('pub-form');
-    const pubWrapper = document.getElementById('pub-table-wrapper');
-
-    const renderTable = (wrapper, headers, rowsHtml) => {
-      if (!rowsHtml) {
+    (() => {
+      const getEl = (id) => document.getElementById(id);
+      const escapeHtml = (value) => {
+        if (value === null || value === undefined) return '';
+        return String(value).replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+        })[char]);
+      };
+      const formatCell = (primary, secondary) => {
+        const p = escapeHtml(primary);
+        const s = escapeHtml(secondary);
+        if (!s) return p;
+        return `${p}<br><small>${s}</small>`;
+      };
+      const setEmpty = (wrapper, message) => {
         wrapper.className = 'empty';
-        wrapper.innerHTML = '暂无数据。';
-        return;
-      }
-      wrapper.className = '';
-      wrapper.innerHTML = `
-        <table>
-          <thead>
-            <tr>${headers.map((label) => `<th>${label}</th>`).join('')}</tr>
-          </thead>
-          <tbody>${rowsHtml}</tbody>
-        </table>
-      `;
-    };
-
-    const handleRequest = async (url, options, successMessage) => {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        const text = await response.text().catch(() => '');
-        throw new Error(`${successMessage}失败：${response.status} ${text}`);
-      }
-      return response.status === 204 ? null : response.json();
-    };
-
-    const loadSlides = async () => {
-      try {
-        const res = await fetch('/api/slides');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const rows = data.map((item) => `
-          <tr>
-            <td>${item.tagZh || ''}<br><small>${item.tagEn || ''}</small></td>
-            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
-            <td>${item.media} <br><small>${item.mediaType || ''}</small></td>
-            <td>${item.link || ''}</td>
-            <td>
-              <button data-type="slide" data-action="edit" data-id="${item.id}">编辑</button>
-              <button class="danger" data-type="slide" data-action="delete" data-id="${item.id}">删除</button>
-            </td>
-          </tr>
-        `).join('');
-        renderTable(slidesWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
-      } catch (err) {
-        console.error(err);
-        slidesWrapper.className = 'empty';
-        slidesWrapper.textContent = '横幅加载失败，请检查服务器日志。';
-      }
-    };
-
-    slideForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const payload = {
-        tagZh: document.getElementById('slide-tag-zh').value,
-        tagEn: document.getElementById('slide-tag-en').value,
-        titleZh: document.getElementById('slide-title-zh').value,
-        titleEn: document.getElementById('slide-title-en').value,
-        descriptionZh: document.getElementById('slide-desc-zh').value,
-        descriptionEn: document.getElementById('slide-desc-en').value,
-        media: document.getElementById('slide-media').value,
-        mediaType: document.getElementById('slide-media-type').value,
-        link: document.getElementById('slide-link').value,
+        wrapper.textContent = message;
       };
-      const id = document.getElementById('slide-id').value;
-      try {
-        if (id) {
-          await handleRequest(`/api/slides/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '更新横幅');
-        } else {
-          await handleRequest('/api/slides', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '新增横幅');
+      const renderTable = (wrapper, headers, rowsHtml) => {
+        if (!rowsHtml) {
+          setEmpty(wrapper, '暂无数据');
+          return;
         }
-        slideForm.reset();
-        await loadSlides();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+        wrapper.className = '';
+        wrapper.innerHTML = `
+          <table>
+            <thead>
+              <tr>${headers.map((label) => `<th>${label}</th>`).join('')}</tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        `;
+      };
+      const fetchJson = async (url, label) => {
+        const res = await fetch(url);
+        if (!res.ok) {
+          const text = await res.text().catch(() => '');
+          throw new Error(`${label}失败：${res.status} ${text}`);
+        }
+        return res.json();
+      };
+      const handleRequest = async (url, options, label) => {
+        const res = await fetch(url, options);
+        if (!res.ok) {
+          const text = await res.text().catch(() => '');
+          throw new Error(`${label}失败：${res.status} ${text}`);
+        }
+        return res.status === 204 ? null : res.json();
+      };
 
-    slidesWrapper.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-type="slide"]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'edit') {
-        const res = await fetch('/api/slides');
-        const data = await res.json();
-        const target = data.find((item) => item.id === id);
-        if (!target) return;
-        document.getElementById('slide-id').value = target.id;
-        document.getElementById('slide-tag-zh').value = target.tagZh || '';
-        document.getElementById('slide-tag-en').value = target.tagEn || '';
-        document.getElementById('slide-title-zh').value = target.titleZh || '';
-        document.getElementById('slide-title-en').value = target.titleEn || '';
-        document.getElementById('slide-desc-zh').value = target.descriptionZh || '';
-        document.getElementById('slide-desc-en').value = target.descriptionEn || '';
-        document.getElementById('slide-media').value = target.media || '';
-        document.getElementById('slide-media-type').value = target.mediaType || 'image';
-        document.getElementById('slide-link').value = target.link || '';
-      }
-      if (btn.dataset.action === 'delete' && confirm('确定删除该横幅吗？')) {
+      const slideForm = getEl('slide-form');
+      const slidesWrapper = getEl('slides-table-wrapper');
+      const techForm = getEl('tech-form');
+      const techWrapper = getEl('tech-table-wrapper');
+      const partnerForm = getEl('partner-form');
+      const partnerWrapper = getEl('partner-table-wrapper');
+      const memberForm = getEl('member-form');
+      const memberWrapper = getEl('member-table-wrapper');
+      const pubForm = getEl('pub-form');
+      const pubWrapper = getEl('pub-table-wrapper');
+
+      const loadSlides = async () => {
+        setEmpty(slidesWrapper, '正在加载横幅列表…');
         try {
-          await handleRequest(`/api/slides/${id}`, { method: 'DELETE' }, '删除横幅');
+          const data = await fetchJson('/api/slides', '加载横幅');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${formatCell(item.tagZh, item.tagEn)}</td>
+              <td>${formatCell(item.titleZh, item.titleEn)}</td>
+              <td>${escapeHtml(item.media || '')}<br><small>${escapeHtml(item.mediaType || '')}</small></td>
+              <td>${escapeHtml(item.link || '')}</td>
+              <td>
+                <button data-type="slide" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="slide" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(slidesWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
+        } catch (error) {
+          setEmpty(slidesWrapper, error.message || '加载失败，请检查服务器日志。');
+        }
+      };
+
+      slideForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          tagZh: getEl('slide-tag-zh').value,
+          tagEn: getEl('slide-tag-en').value,
+          titleZh: getEl('slide-title-zh').value,
+          titleEn: getEl('slide-title-en').value,
+          descriptionZh: getEl('slide-desc-zh').value,
+          descriptionEn: getEl('slide-desc-en').value,
+          media: getEl('slide-media').value,
+          mediaType: getEl('slide-media-type').value,
+          link: getEl('slide-link').value,
+        };
+        const id = getEl('slide-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/slides/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新横幅');
+          } else {
+            await handleRequest('/api/slides', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增横幅');
+          }
+          slideForm.reset();
           await loadSlides();
-        } catch (err) {
-          alert(err.message);
+        } catch (error) {
+          alert(error.message);
         }
-      }
-    });
+      });
 
-    const loadKeyTech = async () => {
-      try {
-        const res = await fetch('/api/key-tech');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const rows = data.map((item) => `
-          <tr>
-            <td>${item.tagZh || ''}<br><small>${item.tagEn || ''}</small></td>
-            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
-            <td>${item.media}<br><small>${item.mediaType || ''}</small></td>
-            <td>${item.link || ''}</td>
-            <td>
-              <button data-type="tech" data-action="edit" data-id="${item.id}">编辑</button>
-              <button class="danger" data-type="tech" data-action="delete" data-id="${item.id}">删除</button>
-            </td>
-          </tr>
-        `).join('');
-        renderTable(techWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
-      } catch (err) {
-        console.error(err);
-        techWrapper.className = 'empty';
-        techWrapper.textContent = '关键技术加载失败，请检查服务器日志。';
-      }
-    };
-
-    techForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const payload = {
-        tagZh: document.getElementById('tech-tag-zh').value,
-        tagEn: document.getElementById('tech-tag-en').value,
-        titleZh: document.getElementById('tech-title-zh').value,
-        titleEn: document.getElementById('tech-title-en').value,
-        descriptionZh: document.getElementById('tech-desc-zh').value,
-        descriptionEn: document.getElementById('tech-desc-en').value,
-        media: document.getElementById('tech-media').value,
-        mediaType: document.getElementById('tech-media-type').value,
-        altZh: document.getElementById('tech-alt-zh').value,
-        altEn: document.getElementById('tech-alt-en').value,
-        link: document.getElementById('tech-link').value,
-        linkLabelZh: document.getElementById('tech-link-label-zh').value,
-        linkLabelEn: document.getElementById('tech-link-label-en').value,
-      };
-      const id = document.getElementById('tech-id').value;
-      try {
-        if (id) {
-          await handleRequest(`/api/key-tech/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '更新关键技术');
-        } else {
-          await handleRequest('/api/key-tech', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '新增关键技术');
+      slidesWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="slide"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/slides', '加载横幅');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('slide-id').value = item.id;
+            getEl('slide-tag-zh').value = item.tagZh || '';
+            getEl('slide-tag-en').value = item.tagEn || '';
+            getEl('slide-title-zh').value = item.titleZh || '';
+            getEl('slide-title-en').value = item.titleEn || '';
+            getEl('slide-desc-zh').value = item.descriptionZh || '';
+            getEl('slide-desc-en').value = item.descriptionEn || '';
+            getEl('slide-media').value = item.media || '';
+            getEl('slide-media-type').value = (item.mediaType || 'image').toLowerCase();
+            getEl('slide-link').value = item.link || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
         }
-        techForm.reset();
-        await loadKeyTech();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+        if (action === 'delete' && confirm('确定删除该横幅吗？')) {
+          try {
+            await handleRequest(`/api/slides/${id}`, { method: 'DELETE' }, '删除横幅');
+            await loadSlides();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
 
-    techWrapper.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-type="tech"]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'edit') {
-        const res = await fetch('/api/key-tech');
-        const data = await res.json();
-        const target = data.find((item) => item.id === id);
-        if (!target) return;
-        document.getElementById('tech-id').value = target.id;
-        document.getElementById('tech-tag-zh').value = target.tagZh || '';
-        document.getElementById('tech-tag-en').value = target.tagEn || '';
-        document.getElementById('tech-title-zh').value = target.titleZh || '';
-        document.getElementById('tech-title-en').value = target.titleEn || '';
-        document.getElementById('tech-desc-zh').value = target.descriptionZh || '';
-        document.getElementById('tech-desc-en').value = target.descriptionEn || '';
-        document.getElementById('tech-media').value = target.media || '';
-        document.getElementById('tech-media-type').value = (target.mediaType || 'image').toLowerCase();
-        document.getElementById('tech-alt-zh').value = target.altZh || '';
-        document.getElementById('tech-alt-en').value = target.altEn || '';
-        document.getElementById('tech-link').value = target.link || '';
-        document.getElementById('tech-link-label-zh').value = target.linkLabelZh || '';
-        document.getElementById('tech-link-label-en').value = target.linkLabelEn || '';
-      }
-      if (btn.dataset.action === 'delete' && confirm('确定删除该关键技术条目吗？')) {
+      const loadKeyTech = async () => {
+        setEmpty(techWrapper, '正在加载关键技术…');
         try {
-          await handleRequest(`/api/key-tech/${id}`, { method: 'DELETE' }, '删除关键技术');
+          const data = await fetchJson('/api/key-tech', '加载关键技术');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${formatCell(item.tagZh, item.tagEn)}</td>
+              <td>${formatCell(item.titleZh, item.titleEn)}</td>
+              <td>${escapeHtml(item.media || '')}<br><small>${escapeHtml(item.mediaType || '')}</small></td>
+              <td>${escapeHtml(item.link || '')}</td>
+              <td>
+                <button data-type="tech" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="tech" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(techWrapper, ['标签', '标题', '媒体', '链接', '操作'], rows);
+        } catch (error) {
+          setEmpty(techWrapper, error.message || '加载失败，请检查服务器日志。');
+        }
+      };
+
+      techForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          tagZh: getEl('tech-tag-zh').value,
+          tagEn: getEl('tech-tag-en').value,
+          titleZh: getEl('tech-title-zh').value,
+          titleEn: getEl('tech-title-en').value,
+          descriptionZh: getEl('tech-desc-zh').value,
+          descriptionEn: getEl('tech-desc-en').value,
+          media: getEl('tech-media').value,
+          mediaType: getEl('tech-media-type').value,
+          altZh: getEl('tech-alt-zh').value,
+          altEn: getEl('tech-alt-en').value,
+          link: getEl('tech-link').value,
+          linkLabelZh: getEl('tech-link-label-zh').value,
+          linkLabelEn: getEl('tech-link-label-en').value,
+        };
+        const id = getEl('tech-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/key-tech/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新关键技术');
+          } else {
+            await handleRequest('/api/key-tech', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增关键技术');
+          }
+          techForm.reset();
           await loadKeyTech();
-        } catch (err) {
-          alert(err.message);
+        } catch (error) {
+          alert(error.message);
         }
-      }
-    });
+      });
 
-    const loadPartners = async () => {
-      try {
-        const res = await fetch('/api/partners');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const rows = data.map((item) => `
-          <tr>
-            <td>${item.nameZh || ''}<br><small>${item.nameEn || ''}</small></td>
-            <td>${item.image || ''}</td>
-            <td>${item.link || ''}</td>
-            <td>
-              <button data-type="partner" data-action="edit" data-id="${item.id}">编辑</button>
-              <button class="danger" data-type="partner" data-action="delete" data-id="${item.id}">删除</button>
-            </td>
-          </tr>
-        `).join('');
-        renderTable(partnerWrapper, ['名称', '图片', '链接', '操作'], rows);
-      } catch (err) {
-        console.error(err);
-        partnerWrapper.className = 'empty';
-        partnerWrapper.textContent = '合作伙伴加载失败，请检查服务器日志。';
-      }
-    };
-
-    partnerForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const payload = {
-        nameZh: document.getElementById('partner-name-zh').value,
-        nameEn: document.getElementById('partner-name-en').value,
-        image: document.getElementById('partner-image').value,
-        link: document.getElementById('partner-link').value,
-        altZh: document.getElementById('partner-alt-zh').value,
-        altEn: document.getElementById('partner-alt-en').value,
-      };
-      const id = document.getElementById('partner-id').value;
-      try {
-        if (id) {
-          await handleRequest(`/api/partners/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '更新合作伙伴');
-        } else {
-          await handleRequest('/api/partners', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '新增合作伙伴');
+      techWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="tech"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/key-tech', '加载关键技术');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('tech-id').value = item.id;
+            getEl('tech-tag-zh').value = item.tagZh || '';
+            getEl('tech-tag-en').value = item.tagEn || '';
+            getEl('tech-title-zh').value = item.titleZh || '';
+            getEl('tech-title-en').value = item.titleEn || '';
+            getEl('tech-desc-zh').value = item.descriptionZh || '';
+            getEl('tech-desc-en').value = item.descriptionEn || '';
+            getEl('tech-media').value = item.media || '';
+            getEl('tech-media-type').value = (item.mediaType || 'image').toLowerCase();
+            getEl('tech-alt-zh').value = item.altZh || '';
+            getEl('tech-alt-en').value = item.altEn || '';
+            getEl('tech-link').value = item.link || '';
+            getEl('tech-link-label-zh').value = item.linkLabelZh || '';
+            getEl('tech-link-label-en').value = item.linkLabelEn || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
         }
-        partnerForm.reset();
-        await loadPartners();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+        if (action === 'delete' && confirm('确定删除该关键技术条目吗？')) {
+          try {
+            await handleRequest(`/api/key-tech/${id}`, { method: 'DELETE' }, '删除关键技术');
+            await loadKeyTech();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
 
-    partnerWrapper.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-type="partner"]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'edit') {
-        const res = await fetch('/api/partners');
-        const data = await res.json();
-        const item = data.find((entry) => entry.id === id);
-        if (!item) return;
-        document.getElementById('partner-id').value = item.id;
-        document.getElementById('partner-name-zh').value = item.nameZh || '';
-        document.getElementById('partner-name-en').value = item.nameEn || '';
-        document.getElementById('partner-image').value = item.image || '';
-        document.getElementById('partner-link').value = item.link || '';
-        document.getElementById('partner-alt-zh').value = item.altZh || '';
-        document.getElementById('partner-alt-en').value = item.altEn || '';
-      }
-      if (btn.dataset.action === 'delete' && confirm('确定删除该合作伙伴吗？')) {
+      const loadPartners = async () => {
+        setEmpty(partnerWrapper, '正在加载合作伙伴…');
         try {
-          await handleRequest(`/api/partners/${id}`, { method: 'DELETE' }, '删除合作伙伴');
+          const data = await fetchJson('/api/partners', '加载合作伙伴');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${formatCell(item.nameZh, item.nameEn)}</td>
+              <td>${escapeHtml(item.image || '')}</td>
+              <td>${escapeHtml(item.link || '')}</td>
+              <td>
+                <button data-type="partner" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="partner" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(partnerWrapper, ['名称', '图片', '链接', '操作'], rows);
+        } catch (error) {
+          setEmpty(partnerWrapper, error.message || '加载失败，请检查服务器日志。');
+        }
+      };
+
+      partnerForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          nameZh: getEl('partner-name-zh').value,
+          nameEn: getEl('partner-name-en').value,
+          image: getEl('partner-image').value,
+          link: getEl('partner-link').value,
+          altZh: getEl('partner-alt-zh').value,
+          altEn: getEl('partner-alt-en').value,
+        };
+        const id = getEl('partner-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/partners/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新合作伙伴');
+          } else {
+            await handleRequest('/api/partners', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增合作伙伴');
+          }
+          partnerForm.reset();
           await loadPartners();
-        } catch (err) {
-          alert(err.message);
+        } catch (error) {
+          alert(error.message);
         }
-      }
-    });
+      });
 
-    const loadMembers = async () => {
-      try {
-        const res = await fetch('/api/members');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const rows = data.map((item) => `
-          <tr>
-            <td>${item.nameZh || ''}<br><small>${item.nameEn || ''}</small></td>
-            <td>${item.roleZh || ''}<br><small>${item.roleEn || ''}</small></td>
-            <td>${item.bioZh || ''}<br><small>${item.bioEn || ''}</small></td>
-            <td>${item.group || ''}</td>
-            <td>${item.avatar || ''}</td>
-            <td>
-              <button data-type="member" data-action="edit" data-id="${item.id}">编辑</button>
-              <button class="danger" data-type="member" data-action="delete" data-id="${item.id}">删除</button>
-            </td>
-          </tr>
-        `).join('');
-        renderTable(memberWrapper, ['姓名', '角色', '简介', '分组', '头像', '操作'], rows);
-      } catch (err) {
-        console.error(err);
-        memberWrapper.className = 'empty';
-        memberWrapper.textContent = '团队成员加载失败，请检查服务器日志。';
-      }
-    };
-
-    memberForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const payload = {
-        nameZh: document.getElementById('member-name-zh').value,
-        nameEn: document.getElementById('member-name-en').value,
-        roleZh: document.getElementById('member-role-zh').value,
-        roleEn: document.getElementById('member-role-en').value,
-        bioZh: document.getElementById('member-bio-zh').value,
-        bioEn: document.getElementById('member-bio-en').value,
-        group: document.getElementById('member-group').value,
-        avatar: document.getElementById('member-avatar').value,
-      };
-      const id = document.getElementById('member-id').value;
-      try {
-        if (id) {
-          await handleRequest(`/api/members/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '更新成员');
-        } else {
-          await handleRequest('/api/members', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '新增成员');
+      partnerWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="partner"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/partners', '加载合作伙伴');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('partner-id').value = item.id;
+            getEl('partner-name-zh').value = item.nameZh || '';
+            getEl('partner-name-en').value = item.nameEn || '';
+            getEl('partner-image').value = item.image || '';
+            getEl('partner-link').value = item.link || '';
+            getEl('partner-alt-zh').value = item.altZh || '';
+            getEl('partner-alt-en').value = item.altEn || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
         }
-        memberForm.reset();
-        await loadMembers();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+        if (action === 'delete' && confirm('确定删除该合作伙伴吗？')) {
+          try {
+            await handleRequest(`/api/partners/${id}`, { method: 'DELETE' }, '删除合作伙伴');
+            await loadPartners();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
 
-    memberWrapper.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-type="member"]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'edit') {
-        const res = await fetch('/api/members');
-        const data = await res.json();
-        const item = data.find((entry) => entry.id === id);
-        if (!item) return;
-        document.getElementById('member-id').value = item.id;
-        document.getElementById('member-name-zh').value = item.nameZh || '';
-        document.getElementById('member-name-en').value = item.nameEn || '';
-        document.getElementById('member-role-zh').value = item.roleZh || '';
-        document.getElementById('member-role-en').value = item.roleEn || '';
-        document.getElementById('member-bio-zh').value = item.bioZh || '';
-        document.getElementById('member-bio-en').value = item.bioEn || '';
-        document.getElementById('member-group').value = item.group || 'teacher';
-        document.getElementById('member-avatar').value = item.avatar || '';
-      }
-      if (btn.dataset.action === 'delete' && confirm('确定删除该成员吗？')) {
+      const loadMembers = async () => {
+        setEmpty(memberWrapper, '正在加载团队成员…');
         try {
-          await handleRequest(`/api/members/${id}`, { method: 'DELETE' }, '删除成员');
+          const data = await fetchJson('/api/members', '加载团队成员');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${formatCell(item.nameZh, item.nameEn)}</td>
+              <td>${formatCell(item.roleZh, item.roleEn)}</td>
+              <td>${escapeHtml(item.group || '')}</td>
+              <td>${escapeHtml(item.bioZh || '')}<br><small>${escapeHtml(item.bioEn || '')}</small></td>
+              <td>${escapeHtml(item.avatar || '')}</td>
+              <td>
+                <button data-type="member" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="member" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(memberWrapper, ['姓名', '角色', '分组', '简介', '头像', '操作'], rows);
+        } catch (error) {
+          setEmpty(memberWrapper, error.message || '加载失败，请检查服务器日志。');
+        }
+      };
+
+      memberForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          nameZh: getEl('member-name-zh').value,
+          nameEn: getEl('member-name-en').value,
+          roleZh: getEl('member-role-zh').value,
+          roleEn: getEl('member-role-en').value,
+          bioZh: getEl('member-bio-zh').value,
+          bioEn: getEl('member-bio-en').value,
+          group: getEl('member-group').value,
+          avatar: getEl('member-avatar').value,
+        };
+        const id = getEl('member-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/members/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新成员');
+          } else {
+            await handleRequest('/api/members', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增成员');
+          }
+          memberForm.reset();
           await loadMembers();
-        } catch (err) {
-          alert(err.message);
+        } catch (error) {
+          alert(error.message);
         }
-      }
-    });
+      });
 
-    const loadPublications = async () => {
-      try {
-        const res = await fetch('/api/publications');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        const rows = data.map((item) => `
-          <tr>
-            <td>${item.titleZh || ''}<br><small>${item.titleEn || ''}</small></td>
-            <td>${item.venueZh || ''}<br><small>${item.venueEn || ''}</small></td>
-            <td>${item.year || ''}</td>
-            <td>${item.authors || ''}</td>
-            <td>
-              <button data-type="pub" data-action="edit" data-id="${item.id}">编辑</button>
-              <button class="danger" data-type="pub" data-action="delete" data-id="${item.id}">删除</button>
-            </td>
-          </tr>
-        `).join('');
-        renderTable(pubWrapper, ['标题', '会议 / 期刊', '年份', '作者', '操作'], rows);
-      } catch (err) {
-        console.error(err);
-        pubWrapper.className = 'empty';
-        pubWrapper.textContent = '出版物加载失败，请检查服务器日志。';
-      }
-    };
-
-    pubForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const payload = {
-        titleZh: document.getElementById('pub-title-zh').value,
-        titleEn: document.getElementById('pub-title-en').value,
-        venueZh: document.getElementById('pub-venue-zh').value,
-        venueEn: document.getElementById('pub-venue-en').value,
-        year: Number(document.getElementById('pub-year').value) || new Date().getFullYear(),
-        authors: document.getElementById('pub-authors').value,
-        summaryZh: document.getElementById('pub-summary-zh').value,
-        summaryEn: document.getElementById('pub-summary-en').value,
-        paperUrl: document.getElementById('pub-paper').value,
-        codeUrl: document.getElementById('pub-code').value,
-      };
-      const id = document.getElementById('pub-id').value;
-      try {
-        if (id) {
-          await handleRequest(`/api/publications/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '更新出版物');
-        } else {
-          await handleRequest('/api/publications', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          }, '新增出版物');
+      memberWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="member"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/members', '加载团队成员');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('member-id').value = item.id;
+            getEl('member-name-zh').value = item.nameZh || '';
+            getEl('member-name-en').value = item.nameEn || '';
+            getEl('member-role-zh').value = item.roleZh || '';
+            getEl('member-role-en').value = item.roleEn || '';
+            getEl('member-bio-zh').value = item.bioZh || '';
+            getEl('member-bio-en').value = item.bioEn || '';
+            getEl('member-group').value = item.group || 'teacher';
+            getEl('member-avatar').value = item.avatar || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
         }
-        pubForm.reset();
-        await loadPublications();
-      } catch (err) {
-        alert(err.message);
-      }
-    });
+        if (action === 'delete' && confirm('确定删除该成员吗？')) {
+          try {
+            await handleRequest(`/api/members/${id}`, { method: 'DELETE' }, '删除成员');
+            await loadMembers();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
 
-    pubWrapper.addEventListener('click', async (event) => {
-      const btn = event.target.closest('button[data-type="pub"]');
-      if (!btn) return;
-      const id = btn.dataset.id;
-      if (btn.dataset.action === 'edit') {
-        const res = await fetch('/api/publications');
-        const data = await res.json();
-        const item = data.find((entry) => entry.id === id);
-        if (!item) return;
-        document.getElementById('pub-id').value = item.id;
-        document.getElementById('pub-title-zh').value = item.titleZh || '';
-        document.getElementById('pub-title-en').value = item.titleEn || '';
-        document.getElementById('pub-venue-zh').value = item.venueZh || '';
-        document.getElementById('pub-venue-en').value = item.venueEn || '';
-        document.getElementById('pub-year').value = item.year || '';
-        document.getElementById('pub-authors').value = item.authors || '';
-        document.getElementById('pub-summary-zh').value = item.summaryZh || '';
-        document.getElementById('pub-summary-en').value = item.summaryEn || '';
-        document.getElementById('pub-paper').value = item.paperUrl || '';
-        document.getElementById('pub-code').value = item.codeUrl || '';
-      }
-      if (btn.dataset.action === 'delete' && confirm('确定删除该出版物吗？')) {
+      const loadPublications = async () => {
+        setEmpty(pubWrapper, '正在加载出版物…');
         try {
-          await handleRequest(`/api/publications/${id}`, { method: 'DELETE' }, '删除出版物');
-          await loadPublications();
-        } catch (err) {
-          alert(err.message);
+          const data = await fetchJson('/api/publications', '加载出版物');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${formatCell(item.titleZh, item.titleEn)}</td>
+              <td>${formatCell(item.venueZh, item.venueEn)}</td>
+              <td>${escapeHtml(item.year || '')}</td>
+              <td>${escapeHtml(item.authors || '')}</td>
+              <td>
+                <button data-type="pub" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="pub" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(pubWrapper, ['标题', '会议 / 期刊', '年份', '作者', '操作'], rows);
+        } catch (error) {
+          setEmpty(pubWrapper, error.message || '加载失败，请检查服务器日志。');
         }
-      }
-    });
+      };
 
-    const bootstrap = async () => {
-      await Promise.allSettled([
-        loadSlides(),
-        loadKeyTech(),
-        loadPartners(),
-        loadMembers(),
-        loadPublications(),
-      ]);
-    };
+      pubForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          titleZh: getEl('pub-title-zh').value,
+          titleEn: getEl('pub-title-en').value,
+          venueZh: getEl('pub-venue-zh').value,
+          venueEn: getEl('pub-venue-en').value,
+          year: Number(getEl('pub-year').value) || new Date().getFullYear(),
+          authors: getEl('pub-authors').value,
+          summaryZh: getEl('pub-summary-zh').value,
+          summaryEn: getEl('pub-summary-en').value,
+          paperUrl: getEl('pub-paper').value,
+          codeUrl: getEl('pub-code').value,
+        };
+        const id = getEl('pub-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/publications/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新出版物');
+          } else {
+            await handleRequest('/api/publications', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增出版物');
+          }
+          pubForm.reset();
+          await loadPublications();
+        } catch (error) {
+          alert(error.message);
+        }
+      });
 
-    bootstrap();
+      pubWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="pub"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/publications', '加载出版物');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('pub-id').value = item.id;
+            getEl('pub-title-zh').value = item.titleZh || '';
+            getEl('pub-title-en').value = item.titleEn || '';
+            getEl('pub-venue-zh').value = item.venueZh || '';
+            getEl('pub-venue-en').value = item.venueEn || '';
+            getEl('pub-year').value = item.year || '';
+            getEl('pub-authors').value = item.authors || '';
+            getEl('pub-summary-zh').value = item.summaryZh || '';
+            getEl('pub-summary-en').value = item.summaryEn || '';
+            getEl('pub-paper').value = item.paperUrl || '';
+            getEl('pub-code').value = item.codeUrl || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
+        }
+        if (action === 'delete' && confirm('确定删除该出版物吗？')) {
+          try {
+            await handleRequest(`/api/publications/${id}`, { method: 'DELETE' }, '删除出版物');
+            await loadPublications();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
+
+      const bootstrap = async () => {
+        await Promise.allSettled([
+          loadSlides(),
+          loadKeyTech(),
+          loadPartners(),
+          loadMembers(),
+          loadPublications(),
+        ]);
+      };
+
+      bootstrap();
+    })();
   </script>
 </body>
 </html>

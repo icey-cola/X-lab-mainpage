@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研究方向 · 详情</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="logo">
+      <span class="logo-mark">FIL</span>
+      <div class="logo-text">
+        <strong>未来智能实验室</strong>
+        <span>Future Intelligence Lab</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <nav class="main-nav" aria-label="主导航">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a href="index.html#hero">首页</a></li>
+          <li><a href="index.html#research">研究方向</a></li>
+          <li><a href="index.html#key-tech">科研成果</a></li>
+          <li><a href="index.html#publications">出版物</a></li>
+          <li><a href="index.html#contact">联系我们</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-content">
+        <p class="eyebrow" id="rd-slug">Research</p>
+        <h1 id="rd-title">研究方向标题</h1>
+        <p class="intro" id="rd-intro">研究方向简介</p>
+      </div>
+    </section>
+
+    <section class="publications archive" id="rd-papers">
+      <header class="section-heading">
+        <h2>相关论文</h2>
+        <p>此处列出该方向的代表性论文，内容来自后端，可在后端自行增删。</p>
+      </header>
+      <div class="pub-list" id="paper-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>© 2024 未来智能实验室 · 版权所有</p>
+    </div>
+  </footer>
+
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const id = qs.get('id') || 'rr1';
+    const titleEl = document.getElementById('rd-title');
+    const introEl = document.getElementById('rd-intro');
+    const slugEl = document.getElementById('rd-slug');
+    const listEl = document.getElementById('paper-list');
+
+    async function fetchJSON(url){
+      const r = await fetch(url, { headers: { Accept: 'application/json' }});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.json();
+    }
+
+    function renderPapers(items){
+      if(!items.length){
+        listEl.innerHTML = '<div class="section-empty">暂无论文</div>';
+        return;
+      }
+      listEl.innerHTML = items.map(p=>`
+        <article class="pub-card">
+          <span class="pub-tag">${p.venueZh || p.venueEn || ''}</span>
+          <h3>${p.titleZh || p.titleEn || ''}</h3>
+          ${p.authors ? `<p class="pub-authors">${p.authors}</p>` : ''}
+          <div class="pub-links">
+            ${p.paperUrl?`<a class="link" href="${p.paperUrl}" target="_blank" rel="noopener">Paper</a>`:''}
+            ${p.codeUrl?`<a class="link" href="${p.codeUrl}" target="_blank" rel="noopener">Code</a>`:''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    (async () => {
+      try{
+        const info = await fetchJSON(`/api/research/${id}`);
+        titleEl.textContent = info.titleZh || info.titleEn || '研究方向';
+        introEl.textContent = info.introZh || info.introEn || '';
+        slugEl.textContent = info.titleEn || 'Research';
+      }catch(e){
+        titleEl.textContent = '研究方向';
+        introEl.textContent = '（加载失败）';
+      }
+      try{
+        const papers = await fetchJSON(`/api/research/${id}/papers`);
+        renderPapers(papers);
+      }catch(e){
+        renderPapers([]);
+      }
+    })();
+  </script>
+</body>
+</html>
+

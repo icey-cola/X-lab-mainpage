@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rr1",
+    "order": 1,
+    "titleZh": "反射去除与层析重建",
+    "titleEn": "Reflection Removal & Layered Reconstruction",
+    "introZh": "围绕单幅图像反射去除（SIRR）与场景分层，打造高效工具链，实现真实场景的清晰重建。",
+    "introEn": "Tackles single-image reflection removal and layered decomposition with efficient toolchains.",
+    "slug": "reflection"
+  },
+  {
+    "id": "rr2",
+    "order": 2,
+    "titleZh": "极端条件下的图像增强",
+    "titleEn": "Imaging Enhancement under Extremes",
+    "introZh": "研究恶劣天气与低光照退化建模，开发 MODEM 等视觉恢复方法，提升复杂环境成像质量。",
+    "introEn": "Models adverse weather and low-light degradations to deliver robust restoration in the wild.",
+    "slug": "extreme-enhancement"
+  },
+  {
+    "id": "rr3",
+    "order": 3,
+    "titleZh": "文本感知超分与生成",
+    "titleEn": "Text-aware Super-resolution & Generation",
+    "introZh": "以扩散模型和联合解码器为核心，构建真实场景中文本区域的高保真生成能力。",
+    "introEn": "Text-faithful image synthesis and SR built on diffusion with joint decoders.",
+    "slug": "text-aware"
+  },
+  {
+    "id": "rr4",
+    "order": 4,
+    "titleZh": "鲁棒视频理解与跨域感知",
+    "titleEn": "Robust Video Understanding & Cross-domain Perception",
+    "introZh": "聚焦高效视频目标检测与差异化对齐策略，提升跨场景泛化与实时感知能力。",
+    "introEn": "Efficient video detection and adaptive alignment for real-time cross-domain perception.",
+    "slug": "video-robustness"
+  }
+]

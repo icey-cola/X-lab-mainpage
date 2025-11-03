@@ -1,0 +1,32 @@
+[
+  {
+    "id": "hero",
+    "label": "首页横幅",
+    "order": 1,
+    "collapsed": false
+  },
+  {
+    "id": "team",
+    "label": "团队成员",
+    "order": 2,
+    "collapsed": true
+  },
+  {
+    "id": "key-tech",
+    "label": "关键技术",
+    "order": 3,
+    "collapsed": true
+  },
+  {
+    "id": "publications",
+    "label": "精选出版物",
+    "order": 4,
+    "collapsed": true
+  },
+  {
+    "id": "partners",
+    "label": "合作伙伴",
+    "order": 5,
+    "collapsed": true
+  }
+]

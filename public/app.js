@@ -877,6 +877,46 @@ const init = () => {
   loadPartners();
   loadPublications();
   loadMembers();
+  // apply collapse state from backend, then set up toggle buttons
+  const sectionsMeta = new Map();
+  fetch('/api/sections').then(r=>r.ok?r.json():[]).then((list)=>{
+    if (Array.isArray(list)) {
+      list.forEach((s)=>{
+        sectionsMeta.set(s.id, s);
+        const el = document.getElementById(s.id);
+        if (el) el.classList.toggle('collapsed', !!s.collapsed);
+      });
+    }
+  }).finally(()=>{
+    // wire up toggle buttons
+    document.querySelectorAll('.collapse-toggle').forEach((btn)=>{
+      btn.addEventListener('click', async () => {
+        const targetId = btn.getAttribute('data-target') || btn.closest('section')?.id;
+        if (!targetId) return;
+        const sectionEl = document.getElementById(targetId);
+        if (!sectionEl) return;
+        const nowCollapsed = sectionEl.classList.toggle('collapsed');
+        btn.setAttribute('aria-expanded', String(!nowCollapsed));
+        btn.textContent = nowCollapsed ? '展开' : '收起';
+        // persist to backend if this section is known by API
+        if (sectionsMeta.has(targetId)) {
+          try {
+            await fetch(`/api/sections/${targetId}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ collapsed: nowCollapsed })
+            });
+          } catch (_) { /* ignore network errors here */ }
+        }
+      });
+      // initialize button label from current DOM state
+      const targetId = btn.getAttribute('data-target') || btn.closest('section')?.id;
+      const el = targetId ? document.getElementById(targetId) : null;
+      const isCollapsed = !!el?.classList.contains('collapsed');
+      btn.setAttribute('aria-expanded', String(!isCollapsed));
+      btn.textContent = isCollapsed ? '展开' : '收起';
+    });
+  });
 };
 
 init();

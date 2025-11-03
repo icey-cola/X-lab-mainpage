@@ -12,12 +12,23 @@ const MEMBERS_PATH = path.join(DATA_DIR, 'members.json');
 const PUBLICATIONS_PATH = path.join(DATA_DIR, 'publications.json');
 const SLIDES_PATH = path.join(DATA_DIR, 'hero_slides.json');
 const TECH_PATH = path.join(DATA_DIR, 'key_tech.json');
+const RESEARCH_PATH = path.join(DATA_DIR, 'research.json');
+const RESEARCH_PAPERS_PATH = path.join(DATA_DIR, 'research_papers.json');
 const PARTNERS_PATH = path.join(DATA_DIR, 'partners.json');
+const SECTIONS_PATH = path.join(DATA_DIR, 'sections.json');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// helpers
+const sortByOrderIfPresent = (arr) => {
+  if (!Array.isArray(arr)) return arr;
+  const hasOrder = arr.some((x) => Object.prototype.hasOwnProperty.call(x, 'order'));
+  if (!hasOrder) return arr;
+  return [...arr].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+};
 
 const writeJson = async (filepath, data) => {
   await fs.writeFile(filepath, JSON.stringify(data, null, 2), 'utf-8');
@@ -43,7 +54,16 @@ const ensureDataSetup = async () => {
     { path: PUBLICATIONS_PATH, initial: [] },
     { path: SLIDES_PATH, initial: [] },
     { path: TECH_PATH, initial: [] },
-    { path: PARTNERS_PATH, initial: [] }
+    { path: RESEARCH_PATH, initial: [] },
+    { path: RESEARCH_PAPERS_PATH, initial: {} },
+    { path: PARTNERS_PATH, initial: [] },
+    { path: SECTIONS_PATH, initial: [
+      { id: 'hero', label: '首页横幅', order: 1, collapsed: false },
+      { id: 'team', label: '团队成员', order: 2, collapsed: true },
+      { id: 'key-tech', label: '关键技术', order: 3, collapsed: true },
+      { id: 'publications', label: '精选出版物', order: 4, collapsed: true },
+      { id: 'partners', label: '合作伙伴', order: 5, collapsed: true }
+    ] }
   ];
   for (const entry of map) {
     try {
@@ -99,7 +119,8 @@ app.delete('/api/members/:id', async (req, res) => {
 // Publications API
 app.get('/api/publications', async (_, res) => {
   const publications = await readJson(PUBLICATIONS_PATH);
-  res.json(publications);
+  const sorted = [...publications].sort((a, b) => (b.year || 0) - (a.year || 0));
+  res.json(sorted);
 });
 
 app.post('/api/publications', async (req, res) => {
@@ -184,7 +205,7 @@ app.delete('/api/slides/:id', async (req, res) => {
 // Key technologies API
 app.get('/api/key-tech', async (_, res) => {
   const tech = await readJson(TECH_PATH);
-  res.json(tech);
+  res.json(sortByOrderIfPresent(tech));
 });
 
 app.get('/api/key-tech/:id', async (req, res) => {
@@ -228,10 +249,91 @@ app.delete('/api/key-tech/:id', async (req, res) => {
   res.status(204).end();
 });
 
+// Research API
+app.get('/api/research', async (_, res) => {
+  const items = await readJson(RESEARCH_PATH);
+  res.json(sortByOrderIfPresent(items));
+});
+
+app.get('/api/research/:id', async (req, res) => {
+  const items = await readJson(RESEARCH_PATH);
+  const found = items.find((r) => r.id === req.params.id);
+  if (!found) return res.status(404).json({ message: 'Research not found' });
+  res.json(found);
+});
+
+app.post('/api/research', async (req, res) => {
+  const items = await readJson(RESEARCH_PATH);
+  const newItem = { id: `r-${Date.now()}`, ...req.body };
+  items.push(newItem);
+  await writeJson(RESEARCH_PATH, items);
+  res.status(201).json(newItem);
+});
+
+app.put('/api/research/:id', async (req, res) => {
+  const items = await readJson(RESEARCH_PATH);
+  const idx = items.findIndex((r) => r.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ message: 'Research not found' });
+  items[idx] = { ...items[idx], ...req.body };
+  await writeJson(RESEARCH_PATH, items);
+  res.json(items[idx]);
+});
+
+app.delete('/api/research/:id', async (req, res) => {
+  const items = await readJson(RESEARCH_PATH);
+  const filtered = items.filter((r) => r.id !== req.params.id);
+  if (filtered.length === items.length) return res.status(404).json({ message: 'Research not found' });
+  await writeJson(RESEARCH_PATH, filtered);
+  // also remove papers map entry if exists
+  const papersMap = await readJson(RESEARCH_PAPERS_PATH);
+  if (papersMap[req.params.id]) {
+    delete papersMap[req.params.id];
+    await writeJson(RESEARCH_PAPERS_PATH, papersMap);
+  }
+  res.status(204).end();
+});
+
+// Research papers nested API
+app.get('/api/research/:id/papers', async (req, res) => {
+  const map = await readJson(RESEARCH_PAPERS_PATH);
+  res.json(map[req.params.id] || []);
+});
+
+app.post('/api/research/:id/papers', async (req, res) => {
+  const map = await readJson(RESEARCH_PAPERS_PATH);
+  const list = map[req.params.id] || [];
+  const newPaper = { id: `rp-${Date.now()}`, ...req.body };
+  list.push(newPaper);
+  map[req.params.id] = list;
+  await writeJson(RESEARCH_PAPERS_PATH, map);
+  res.status(201).json(newPaper);
+});
+
+app.put('/api/research/:id/papers/:pid', async (req, res) => {
+  const map = await readJson(RESEARCH_PAPERS_PATH);
+  const list = map[req.params.id] || [];
+  const idx = list.findIndex((p) => p.id === req.params.pid);
+  if (idx === -1) return res.status(404).json({ message: 'Research paper not found' });
+  list[idx] = { ...list[idx], ...req.body };
+  map[req.params.id] = list;
+  await writeJson(RESEARCH_PAPERS_PATH, map);
+  res.json(list[idx]);
+});
+
+app.delete('/api/research/:id/papers/:pid', async (req, res) => {
+  const map = await readJson(RESEARCH_PAPERS_PATH);
+  const list = map[req.params.id] || [];
+  const filtered = list.filter((p) => p.id != req.params.pid);
+  if (filtered.length === list.length) return res.status(404).json({ message: 'Research paper not found' });
+  map[req.params.id] = filtered;
+  await writeJson(RESEARCH_PAPERS_PATH, map);
+  res.status(204).end();
+});
+
 // Partners API
 app.get('/api/partners', async (_, res) => {
   const partners = await readJson(PARTNERS_PATH);
-  res.json(partners);
+  res.json(sortByOrderIfPresent(partners));
 });
 
 app.post('/api/partners', async (req, res) => {
@@ -264,6 +366,32 @@ app.delete('/api/partners/:id', async (req, res) => {
   }
   await writeJson(PARTNERS_PATH, filtered);
   res.status(204).end();
+});
+
+// Sections order/collapse API
+app.get('/api/sections', async (_, res) => {
+  const sections = await readJson(SECTIONS_PATH);
+  const sorted = Array.isArray(sections)
+    ? [...sections].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    : [];
+  res.json(sorted);
+});
+
+app.put('/api/sections/:id', async (req, res) => {
+  const sections = await readJson(SECTIONS_PATH);
+  const idx = sections.findIndex((s) => s.id === req.params.id);
+  if (idx === -1) {
+    return res.status(404).json({ message: 'Section not found' });
+  }
+  sections[idx] = { ...sections[idx], ...req.body };
+  await writeJson(SECTIONS_PATH, sections);
+  res.json(sections[idx]);
+});
+
+// Serve admin.html with no-store to avoid browser caching old admin panel
+app.get('/admin.html', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.sendFile(path.join(ROOT_DIR, 'public', 'admin.html'));
 });
 
 app.use(express.static(path.join(ROOT_DIR, 'public')));

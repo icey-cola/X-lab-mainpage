@@ -577,6 +577,11 @@ section {
   flex-direction: column;
   gap: 12px;
   margin-bottom: 40px;
+  position: relative;
+}
+
+section.collapsed > *:not(.section-heading) {
+  display: none !important;
 }
 
 .section-heading h2 {
@@ -594,6 +599,26 @@ section {
 
 .section-heading .link {
   margin-left: auto;
+}
+
+/* 折叠按钮样式（标题右侧） */
+.collapse-toggle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(4px);
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: rgba(255,255,255,0.7);
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(32,33,39,0.06);
+}
+
+.collapse-toggle:hover {
+  background: rgba(255,255,255,0.9);
 }
 
 .research {
@@ -623,11 +648,15 @@ section {
   position: relative;
   padding: 28px;
   border-radius: var(--radius-md);
-  background: transparent;
-  border: none;
+  /* 为四个研究方向卡片加入与首屏一致的柔和底色与描边 */
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
+  border: 1px solid rgba(32, 33, 39, 0.06);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   min-height: 240px;
-  box-shadow: none;
+  box-shadow: var(--shadow);
 }
 
 .research-card:hover {
