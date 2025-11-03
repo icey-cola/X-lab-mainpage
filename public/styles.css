@@ -443,7 +443,7 @@ img {
 .hero .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--accent);
 }
 
@@ -455,7 +455,7 @@ img {
 }
 
 .hero .intro {
-  font-size: 18px;
+  font-size: 22px;
   color: var(--text-secondary);
   max-width: 520px;
 }
@@ -542,7 +542,7 @@ img {
 .page-hero .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--accent);
 }
 
@@ -554,7 +554,7 @@ img {
 }
 
 .page-hero .intro {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -582,6 +582,7 @@ section {
 .section-heading p {
   margin: 0;
   color: var(--text-secondary);
+  font-size: 19px;
   max-width: 680px;
 }
 
@@ -594,6 +595,11 @@ section {
   border-radius: var(--radius-lg);
   box-shadow: none;
   padding-block: clamp(60px, 8vw, 90px);
+}
+
+/* Make research section subheading larger */
+.research .section-heading p {
+  font-size: 19px;
 }
 
 .research-grid {
@@ -636,6 +642,7 @@ section {
 
 .research-card p {
   color: var(--text-secondary);
+  font-size: 17px;
   margin: 0 0 20px 0;
 }
 
@@ -744,6 +751,7 @@ section {
 .tech-content p {
   margin: 0;
   color: var(--text-secondary);
+  font-size: 17px;
 }
 
 .publications {
@@ -825,11 +833,13 @@ section {
 .pub-card p {
   margin: 0;
   color: var(--text-secondary);
+  font-size: 16px;
 }
 
 .pub-card .pub-authors {
   font-weight: 500;
   color: var(--text-secondary);
+  font-size: 16px;
 }
 
 .pub-card p + p {
@@ -937,11 +947,11 @@ section {
 }
 
 .team-card.mini .text p {
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .team-card.mini .member-desc {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(32, 33, 39, 0.65);
   margin-top: 2px;
@@ -1170,6 +1180,7 @@ section {
 .team-callout p {
   margin: 0 0 8px 0;
   color: var(--text-secondary);
+  font-size: 16px;
 }
 
 .join {
