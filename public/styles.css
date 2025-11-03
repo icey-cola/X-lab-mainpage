@@ -591,10 +591,15 @@ section {
 }
 
 .research {
-  background: transparent;
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
   border-radius: var(--radius-lg);
-  box-shadow: none;
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
   padding-block: clamp(60px, 8vw, 90px);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 /* Make research section subheading larger */
@@ -669,6 +674,18 @@ section {
 .key-tech .tech-showcase {
   display: grid;
   gap: 28px;
+}
+
+/* Key-tech section frame to match hero style */
+.key-tech {
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 .tech-item {
@@ -755,10 +772,15 @@ section {
 }
 
 .publications {
-  background: transparent;
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
   border-radius: var(--radius-lg);
-  box-shadow: none;
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
   padding-block: clamp(60px, 8vw, 90px);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 .publications.archive {
@@ -858,10 +880,15 @@ section {
 }
 
 .partners-showcase {
-  background: transparent;
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
   border-radius: var(--radius-lg);
-  box-shadow: none;
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
   padding-block: clamp(50px, 7vw, 80px);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 .partners-grid {
@@ -910,12 +937,14 @@ section {
 
 .team {
   background:
-    radial-gradient(circle at 25% 35%, rgba(237, 31, 39, 0.06), transparent 60%),
-    radial-gradient(circle at 75% 30%, rgba(255, 107, 82, 0.08), transparent 55%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(246, 247, 249, 0.86));
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
   border-radius: var(--radius-lg);
-  box-shadow: none;
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
   padding-block: clamp(60px, 8vw, 90px);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 .team-highlight {
