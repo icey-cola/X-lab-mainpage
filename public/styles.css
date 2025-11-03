@@ -437,7 +437,7 @@ img {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 620px;
+  max-width: 760px;
 }
 
 .hero .eyebrow {
@@ -449,9 +449,10 @@ img {
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(36px, 5vw, 56px);
-  line-height: 1.1;
+  font-size: clamp(32px, 4.2vw, 50px);
+  line-height: 1.08;
   margin: 20px 0;
+  white-space: nowrap;
 }
 
 .hero .intro {
@@ -511,16 +512,21 @@ img {
 
 .hero-stats article {
   padding: 20px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(32, 33, 39, 0.08);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(110, 155, 245, 0.12), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(245, 138, 130, 0.12), transparent 55%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
+  border: 1px solid rgba(32, 33, 39, 0.06);
   border-radius: var(--radius-sm);
-  box-shadow: 0 16px 34px rgba(32, 33, 39, 0.12);
+  box-shadow: var(--shadow);
 }
 
 .hero-stats strong {
   font-size: 32px;
   font-family: var(--font-heading);
   display: block;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .page-hero {
@@ -690,7 +696,8 @@ section {
 
 .tech-item {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(260px, 1.1fr);
+  /* 左右媒体区域略微缩小，避免遮挡文案 */
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: none;
@@ -699,12 +706,14 @@ section {
 }
 
 .tech-item.secondary {
-  grid-template-columns: minmax(260px, 1.1fr) minmax(240px, 1fr);
+  /* 与非 secondary 一致，保证两条目的媒体尺寸一致 */
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
 }
 
 .tech-media {
   position: relative;
-  min-height: 260px;
+  min-height: 280px;
+  aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -744,18 +753,19 @@ section {
 
 .tag {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  /* 统一为旗舰成果的底色 */
+  background: rgba(255, 107, 82, 0.22);
   color: var(--accent);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .tag.alt {
-  background: rgba(255, 107, 82, 0.18);
+  background: rgba(255, 107, 82, 0.22);
   color: var(--accent);
 }
 
@@ -934,6 +944,14 @@ section {
   }
 }
 
+
+/* Prevent subheadings from wrapping too early on wide screens */
+@media (min-width: 1024px) {
+  .team .section-heading p,
+  .publications .section-heading p {
+    max-width: 960px;
+  }
+}
 
 .team {
   background:
@@ -1217,10 +1235,14 @@ section {
   overflow: hidden;
   border-radius: var(--radius-lg);
   padding: clamp(80px, 12vw, 140px) clamp(32px, 8vw, 96px);
-  background: linear-gradient(135deg, rgba(237, 31, 39, 0.08), rgba(255, 248, 248, 1)),
-              radial-gradient(circle at 15% 40%, rgba(255, 107, 82, 0.16), transparent 65%),
-              var(--bg-secondary);
-  box-shadow: none;
+  /* Match hero-style soft gradient */
+  background:
+    radial-gradient(circle at 22% 40%, rgba(110, 155, 245, 0.12), transparent 62%),
+    radial-gradient(circle at 78% 35%, rgba(245, 138, 130, 0.12), transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.75));
+  border: 1px solid rgba(32, 33, 39, 0.06);
+  box-shadow: var(--shadow);
+  margin-top: clamp(16px, 3vw, 28px);
 }
 
 .join::before,
@@ -1261,12 +1283,13 @@ section {
 .join p {
   margin: 0 0 36px 0;
   color: var(--text-secondary);
+  font-size: 19px;
 }
 
 
 .site-footer {
   background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-  padding: 60px clamp(24px, 5vw, 72px);
+  padding: 40px clamp(24px, 5vw, 72px);
   margin-top: 120px;
   color: rgba(255, 255, 255, 0.78);
 }
