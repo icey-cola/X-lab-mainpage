@@ -303,8 +303,8 @@ const FALLBACK_MEMBERS = [
     id: 'm-001',
     nameZh: '李老师',
     nameEn: 'Professor Li',
-    roleZh: '导师',
-    roleEn: 'Supervisor',
+    roleZh: '2010年入职',
+    roleEn: 'Joined in 2010',
     group: 'teacher',
     avatar: '',
     bioZh: '未来智能实验室负责人，专注于视觉智能、可信 AI 与跨模态认知研究。',
@@ -314,8 +314,8 @@ const FALLBACK_MEMBERS = [
     id: 'm-002',
     nameZh: '张三',
     nameEn: 'Zhang San',
-    roleZh: '博士研究生',
-    roleEn: 'PhD Student',
+    roleZh: '2021级',
+    roleEn: 'Class of 2021',
     group: 'phd',
     avatar: '',
     bioZh: '研究多模态感知和极端天气图像恢复，关注真实场景的算法落地。',
@@ -325,8 +325,8 @@ const FALLBACK_MEMBERS = [
     id: 'm-003',
     nameZh: '王晓',
     nameEn: 'Wang Xiao',
-    roleZh: '硕士研究生',
-    roleEn: 'Master Student',
+    roleZh: '2022级',
+    roleEn: 'Class of 2022',
     group: 'master',
     avatar: '',
     bioZh: '聚焦城市感知与高效视频分析，负责实验室平台化建设。',
@@ -691,9 +691,13 @@ const renderMembers = (items) => {
     name.textContent = selectText(member, 'name');
     textBox.appendChild(name);
 
-    const role = document.createElement('p');
-    role.textContent = selectText(member, 'role') || member.group || '';
-    textBox.appendChild(role);
+    const rawEnroll = selectText(member, 'role');
+    const enroll = document.createElement('p');
+    const enrollLabel = currentLang === 'zh' ? '入学年份：' : 'Enrollment Year: ';
+    enroll.textContent = rawEnroll
+      ? `${enrollLabel}${rawEnroll}`
+      : `${enrollLabel}${currentLang === 'zh' ? '未填写' : 'N/A'}`;
+    textBox.appendChild(enroll);
 
     const bioText = selectText(member, 'bio');
     if (bioText) {

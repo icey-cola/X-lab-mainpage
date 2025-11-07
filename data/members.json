@@ -53,5 +53,16 @@
     "bioEn": "",
     "group": "phd",
     "avatar": ""
+  },
+  {
+    "id": "m-1762050000000",
+    "nameZh": "王嘉睿",
+    "nameEn": "Jiarui Wang",
+    "roleZh": "2026",
+    "roleEn": "2026",
+    "group": "master",
+    "avatar": "",
+    "bioZh": "研究方向涵盖变分自编码器与扩散模型的图像生成、图像恢复、图像超分等领域。",
+    "bioEn": "Research on variational autoencoders and diffusion models for image generation, restoration, and super-resolution."
   }
 ]

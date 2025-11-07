@@ -284,7 +284,7 @@
           const name = currentLang === 'en'
             ? (member.nameEn || member.nameZh || '')
             : (member.nameZh || member.nameEn || '');
-          const role = currentLang === 'en'
+          const rawEnroll = currentLang === 'en'
             ? (member.roleEn || member.roleZh || '')
             : (member.roleZh || member.roleEn || '');
           const bio = currentLang === 'en'
@@ -306,7 +306,7 @@
               <div class="team-photo">${photo}</div>
               <div class="team-info">
                 <h4>${name}</h4>
-                <p class="role">${role}</p>
+                <p class="role">${rawEnroll ? (currentLang === 'zh' ? `${rawEnroll}年入学` : `since ${rawEnroll}`) : ''}</p>
                 ${bio ? `<p class="bio">${bio}</p>` : ''}
                 <div class="team-links">
                   ${links}
