@@ -33,6 +33,7 @@ body {
     linear-gradient(90deg, #f7f9ff 0%, #ffffff 52%, #fff4f5 100%);
   color: var(--text-primary);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -449,10 +450,11 @@ img {
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(32px, 4.2vw, 50px);
+  font-size: clamp(30px, 4vw, 48px);
   line-height: 1.08;
   margin: 20px 0;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .hero .intro {
@@ -1293,11 +1295,11 @@ section {
 
 .site-footer {
   background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-  padding: 40px clamp(24px, 4vw, 56px);
-  margin: 120px auto 0;
+  padding: 48px clamp(32px, 6vw, 96px);
+  margin-top: 120px;
   color: rgba(255, 255, 255, 0.78);
-  max-width: calc(var(--max-width) + 120px);
-  border-radius: var(--radius-lg);
+  width: 100%;
+  border-radius: 0;
 }
 
 .footer-top {
@@ -1432,9 +1434,9 @@ section {
 
   .site-footer {
     margin-top: 80px;
-    border-radius: var(--radius-md);
-    padding-inline: clamp(20px, 6vw, 40px);
-    max-width: calc(100% - 32px);
+    border-radius: 0;
+    padding-inline: clamp(20px, 8vw, 60px);
+    width: 100%;
   }
 }
 
