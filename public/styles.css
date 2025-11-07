@@ -709,6 +709,7 @@ section {
   border: none;
   background: transparent;
   box-shadow: none;
+  width: 100%;
 }
 
 .tech-item.secondary {
@@ -718,12 +719,14 @@ section {
 
 .tech-media {
   position: relative;
-  min-height: 280px;
+  width: 100%;
   aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-tertiary);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .tech-media img {
@@ -731,6 +734,7 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: inherit;
 }
 
 .tech-media video {
@@ -738,6 +742,7 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: inherit;
 }
 
 .gradient-1 {
@@ -755,10 +760,17 @@ section {
   flex-direction: column;
   gap: 16px;
   justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  min-width: 0;
+  align-items: flex-start;
 }
 
 .tag {
-  display: inline-block;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
   padding: 8px 16px;
   border-radius: 999px;
   /* 统一为旗舰成果的底色 */
@@ -768,6 +780,11 @@ section {
   font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: center;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
 }
 
 .tag.alt {
@@ -785,6 +802,8 @@ section {
   margin: 0;
   color: var(--text-secondary);
   font-size: 17px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .publications {
@@ -1412,10 +1431,59 @@ section {
   }
 }
 
+@media (max-width: 900px) {
+  .slide-media {
+    aspect-ratio: 16 / 9;
+    min-height: 240px;
+  }
+  .tech-media {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .slide-media {
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+  }
+  .tech-media {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    aspect-ratio: auto;
+    border-radius: var(--radius-lg);
+  }
+  .tech-media img,
+  .tech-media video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tech-media {
+    min-height: 320px;
+  }
+}
+
 @media (max-width: 740px) {
   .tech-item,
   .tech-item.secondary {
     grid-template-columns: 1fr;
+  }
+
+  .tech-content {
+    padding: clamp(20px, 7vw, 32px);
+  }
+
+  .tech-item .tech-content {
+    order: -1;
+  }
+
+  .tech-item .tech-media {
+    order: 2;
   }
 
   .hero {
