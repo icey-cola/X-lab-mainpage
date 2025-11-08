@@ -14,6 +14,7 @@ const keyTechList = document.querySelector('#key-tech-list');
 const pubFeatured = document.querySelector('#pub-featured');
 const partnersGrid = document.querySelector('#partners-grid');
 const teamHighlight = document.querySelector('#team-highlight');
+const heroSection = document.querySelector('.hero');
 
 let currentLang = 'zh';
 let slidesCache = [];
@@ -870,6 +871,22 @@ const initSliderEvents = () => {
   heroSlider.addEventListener('mouseleave', startHeroAutoplay);
 };
 
+const initHeroReveal = () => {
+  if (!heroSection || typeof IntersectionObserver === 'undefined') return;
+  heroSection.classList.add('hero-floating');
+  heroSection.classList.remove('hero-revealed');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        heroSection.classList.add('hero-revealed');
+        heroSection.classList.remove('hero-floating');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '-10% 0px' });
+  observer.observe(heroSection);
+};
+
 const init = () => {
   updateLangButtons();
   applyTranslations();
@@ -877,6 +894,7 @@ const init = () => {
   initNavMenu();
   initLangSwitch();
   initSliderEvents();
+  initHeroReveal();
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   loadSlides();
   loadKeyTech();
