@@ -163,30 +163,6 @@
     <form id="slide-form">
       <input type="hidden" id="slide-id">
       <label>
-        标签（中文）
-        <input id="slide-tag-zh">
-      </label>
-      <label>
-        Tag (English)
-        <input id="slide-tag-en">
-      </label>
-      <label>
-        标题（中文）
-        <input id="slide-title-zh" required>
-      </label>
-      <label>
-        Title (English)
-        <input id="slide-title-en" required>
-      </label>
-      <label>
-        描述（中文）
-        <textarea id="slide-desc-zh" rows="3"></textarea>
-      </label>
-      <label>
-        Description (English)
-        <textarea id="slide-desc-en" rows="3"></textarea>
-      </label>
-      <label>
         媒体路径（相对于 public/）
         <input id="slide-media" placeholder="image/banner.jpg" required>
       </label>
@@ -485,17 +461,11 @@
 
       slideForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const payload = {
-          tagZh: getEl('slide-tag-zh').value,
-          tagEn: getEl('slide-tag-en').value,
-          titleZh: getEl('slide-title-zh').value,
-          titleEn: getEl('slide-title-en').value,
-          descriptionZh: getEl('slide-desc-zh').value,
-          descriptionEn: getEl('slide-desc-en').value,
-          media: getEl('slide-media').value,
-          mediaType: getEl('slide-media-type').value,
-          link: getEl('slide-link').value,
-        };
+      const payload = {
+        media: getEl('slide-media').value,
+        mediaType: getEl('slide-media-type').value,
+        link: getEl('slide-link').value,
+      };
         const id = getEl('slide-id').value;
         try {
           if (id) {
@@ -529,13 +499,7 @@
             const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
             if (!item) return;
             getEl('slide-id').value = item.id;
-            getEl('slide-tag-zh').value = item.tagZh || '';
-            getEl('slide-tag-en').value = item.tagEn || '';
-            getEl('slide-title-zh').value = item.titleZh || '';
-            getEl('slide-title-en').value = item.titleEn || '';
-            getEl('slide-desc-zh').value = item.descriptionZh || '';
-            getEl('slide-desc-en').value = item.descriptionEn || '';
-            getEl('slide-media').value = item.media || '';
+        getEl('slide-media').value = item.media || '';
             getEl('slide-media-type').value = (item.mediaType || 'image').toLowerCase();
             getEl('slide-link').value = item.link || '';
           } catch (error) {

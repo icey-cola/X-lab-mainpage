@@ -25,17 +25,57 @@
     "codeUrl": "#",
     "year": 2025
   },
+
   {
-    "id": "p-1761988504843",
-    "titleZh": "2",
-    "titleEn": "2",
-    "venueZh": "2",
-    "venueEn": "2",
-    "year": 2024,
-    "authors": "2",
-    "summaryZh": "2",
-    "summaryEn": "2",
-    "paperUrl": "",
-    "codeUrl": ""
+    "id": "p-1762051000001",
+    "titleZh": "Practical Video Object Detection via Feature Selection and Aggregation",
+    "titleEn": "Practical Video Object Detection via Feature Selection and Aggregation",
+    "venueZh": "IJCV · 2025",
+    "venueEn": "IJCV · 2025",
+    "year": 2025,
+    "authors": "Yuheng Shi, Tong Zhang, and Xiaojie Guo*",
+    "summaryZh": "通过特征选择与时序聚合稳固视频目标检测，使其在真实部署中保持高效与稳定。",
+    "summaryEn": "Feature selection and aggregation strengthen video object detection under practical deployment constraints.",
+    "paperUrl": "#",
+    "codeUrl": "#"
+  },
+  {
+    "id": "p-1762051000002",
+    "titleZh": "ShadowHack: Hacking Shadows via Luminance-Color Divide and Conquer",
+    "titleEn": "ShadowHack: Hacking Shadows via Luminance-Color Divide and Conquer",
+    "venueZh": "ICCV · 2025",
+    "venueEn": "ICCV · 2025",
+    "year": 2025,
+    "authors": "Jin Hu, Mingjia Li, and Xiaojie Guo*",
+    "summaryZh": "利用亮度-色彩拆分策略分步处理，精确控制阴影的生成、编辑与消除。",
+    "summaryEn": "A luminance-color divide-and-conquer strategy enables controllable shadow editing and removal.",
+    "paperUrl": "#",
+    "codeUrl": "#"
+  },
+  {
+    "id": "p-1762051000003",
+    "titleZh": "Reversible Decoupling Network for Single Image Reflection Removal",
+    "titleEn": "Reversible Decoupling Network for Single Image Reflection Removal",
+    "venueZh": "CVPR · 2025",
+    "venueEn": "CVPR · 2025",
+    "year": 2025,
+    "authors": "Hao Zhao, Mingjia Li, Qiming Hu, and Xiaojie Guo*",
+    "summaryZh": "可逆结构解耦反射与主景，保持细节的同时完成单幅图像反射去除。",
+    "summaryEn": "A reversible decoupling framework securely removes reflections while preserving fine scene details.",
+    "paperUrl": "#",
+    "codeUrl": "#"
+  },
+  {
+    "id": "p-1762051000004",
+    "titleZh": "Domain Adaptive Object Detection via Differential Alignment",
+    "titleEn": "Domain Adaptive Object Detection via Differential Alignment",
+    "venueZh": "AAAI · 2025",
+    "venueEn": "AAAI · 2025",
+    "year": 2025,
+    "authors": "Xinyu He, Xinhui Li, and Xiaojie Guo*",
+    "summaryZh": "差分对齐策略精准匹配源域与目标域分布，提升跨域目标检测的泛化能力。",
+    "summaryEn": "Differential alignment bridges source-target discrepancies to boost domain adaptive object detection.",
+    "paperUrl": "#",
+    "codeUrl": "#"
   }
 ]

@@ -23,6 +23,19 @@ let publicationsCache = [];
 let partnersCache = [];
 let membersCache = [];
 
+const enableHorizontalScroll = (el) => {
+  if (!el) return;
+  const handleWheel = (event) => {
+    if (!event.deltaY) return;
+    event.preventDefault();
+    el.scrollBy({
+      left: event.deltaY,
+      behavior: 'smooth',
+    });
+  };
+  el.addEventListener('wheel', handleWheel, { passive: false });
+};
+
 const HERO_ROTATE_MS = 6000;
 let heroIndex = 0;
 let heroTimer = null;
@@ -580,63 +593,66 @@ const renderPublications = (items) => {
   if (!pubFeatured) return;
   pubFeatured.innerHTML = '';
   if (!items.length) {
-    setLoadingMessage(pubFeatured, currentLang === 'zh' ? '暂无出版物，敬请期待。' : 'No publications yet. Please add one from the admin console.');
+    setLoadingMessage(pubFeatured, currentLang === 'zh' ? '暂无出版物，请稍后添加' : 'No publications yet. Please add one from the admin console.');
     return;
   }
-  items.slice(0, 3).forEach((pub) => {
+  const list = document.createElement('div');
+  list.className = 'pub-list interactive';
+  items.forEach((pub) => {
     const card = document.createElement('article');
     card.className = 'pub-card';
-
-    const venue = document.createElement('span');
-    venue.className = 'pub-tag';
-    venue.textContent = selectText(pub, 'venue') || (currentLang === 'zh' ? '待定' : 'TBD');
-    card.appendChild(venue);
-
-    const title = document.createElement('h3');
-    title.textContent = selectText(pub, 'title');
-    card.appendChild(title);
-
-    if (pub.authors) {
-      const authors = document.createElement('p');
-      authors.className = 'pub-authors';
-      authors.textContent = pub.authors;
-      card.appendChild(authors);
+
+    const venue = document.createElement('span');
+    venue.className = 'pub-tag';
+    venue.textContent = selectText(pub, 'venue') || (currentLang === 'zh' ? '待定' : 'TBD');
+    card.appendChild(venue);
+
+    const title = document.createElement('h3');
+    title.textContent = selectText(pub, 'title');
+    card.appendChild(title);
+
+    if (pub.authors) {
+      const authors = document.createElement('p');
+      authors.className = 'pub-authors';
+      authors.textContent = pub.authors;
+      card.appendChild(authors);
+    }
+
+    const summaryText = selectText(pub, 'summary');
+    if (summaryText) {
+      const summary = document.createElement('p');
+      summary.textContent = summaryText;
+      card.appendChild(summary);
+    }
+
+    const links = document.createElement('div');
+    links.className = 'pub-links';
+    if (pub.paperUrl && pub.paperUrl !== '#') {
+      const paperLink = document.createElement('a');
+      paperLink.href = pub.paperUrl;
+      paperLink.target = '_blank';
+      paperLink.rel = 'noopener noreferrer';
+      paperLink.className = 'link';
+      paperLink.textContent = currentLang === 'zh' ? '论文链接 >' : 'Paper >';
+      links.appendChild(paperLink);
+    }
+    if (pub.codeUrl && pub.codeUrl !== '#') {
+      const codeLink = document.createElement('a');
+      codeLink.href = pub.codeUrl;
+      codeLink.target = '_blank';
+      codeLink.rel = 'noopener noreferrer';
+      codeLink.className = 'link';
+      codeLink.textContent = currentLang === 'zh' ? '代码仓库 >' : 'Code >';
+      links.appendChild(codeLink);
+    }
+    if (links.children.length) {
+      card.appendChild(links);
     }
-
-    const summaryText = selectText(pub, 'summary');
-    if (summaryText) {
-      const summary = document.createElement('p');
-      summary.textContent = summaryText;
-      card.appendChild(summary);
-    }
-
-    const links = document.createElement('div');
-    links.className = 'pub-links';
-    if (pub.paperUrl && pub.paperUrl !== '#') {
-      const paperLink = document.createElement('a');
-      paperLink.href = pub.paperUrl;
-      paperLink.target = '_blank';
-      paperLink.rel = 'noopener noreferrer';
-      paperLink.className = 'link';
-      paperLink.textContent = currentLang === 'zh' ? '论文链接 >' : 'Paper >';
-      links.appendChild(paperLink);
-    }
-    if (pub.codeUrl && pub.codeUrl !== '#') {
-      const codeLink = document.createElement('a');
-      codeLink.href = pub.codeUrl;
-      codeLink.target = '_blank';
-      codeLink.rel = 'noopener noreferrer';
-      codeLink.className = 'link';
-      codeLink.textContent = currentLang === 'zh' ? '代码仓库 >' : 'Code >';
-      links.appendChild(codeLink);
-    }
-    if (links.children.length) {
-      card.appendChild(links);
-    }
-    pubFeatured.appendChild(card);
+    list.appendChild(card);
   });
+  pubFeatured.appendChild(list);
+  enableHorizontalScroll(list);
 };
-
 const renderPartners = (items) => {
   if (!partnersGrid) return;
   partnersGrid.innerHTML = '';
