@@ -173,6 +173,23 @@ img {
   transform-origin: center;
 }
 
+@media (max-width: 1024px) {
+  .hero-slider,
+  .slider-track,
+  .slide {
+    min-height: 70vh;
+  }
+
+  .hero-slider {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .slide-media {
+    border-radius: var(--radius-lg);
+  }
+}
+
 .slide.is-active .slide-media img,
 .slide.is-active .slide-media video {
   animation: heroZoom 3s ease forwards;

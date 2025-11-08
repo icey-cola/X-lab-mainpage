@@ -26,6 +26,7 @@ let membersCache = [];
 let snapWheelBuffer = 0;
 let snapLock = false;
 let heroLightClassApplied = false;
+let heroAutoBlocked = false;
 
 const enableHorizontalScroll = (el) => {
   if (!el) return;
@@ -442,15 +443,27 @@ const updateHeroSlider = () => {
   const offset = heroIndex * -100;
   sliderTrack.style.transform = `translateX(${offset}%)`;
   const slides = sliderTrack.querySelectorAll('.slide');
+  let activeHasVideo = false;
   slides.forEach((slide, idx) => {
     const isActive = idx === heroIndex;
     slide.classList.toggle('is-active', isActive);
     const video = slide.querySelector('video');
     if (video) {
       if (isActive) {
+        activeHasVideo = true;
+        heroAutoBlocked = true;
+        stopHeroAutoplay();
+        video.onended = null;
         video.currentTime = 0;
         video.play().catch(() => {});
+        video.onended = () => {
+          video.onended = null;
+          heroAutoBlocked = false;
+          goToNextHeroSlide();
+          startHeroAutoplay();
+        };
       } else {
+        video.onended = null;
         video.pause();
       }
     }
@@ -459,15 +472,31 @@ const updateHeroSlider = () => {
   dots.forEach((dot, idx) => {
     dot.classList.toggle('is-active', idx === heroIndex);
   });
+  if (!activeHasVideo) {
+    heroAutoBlocked = false;
+    startHeroAutoplay();
+  }
 };
 
 const startHeroAutoplay = () => {
   stopHeroAutoplay();
   if (slidesCache.length <= 1) return;
+  if (heroAutoBlocked) return;
   heroTimer = setInterval(() => {
-    heroIndex = (heroIndex + 1) % slidesCache.length;
-    updateHeroSlider();
+    goToNextHeroSlide();
   }, HERO_ROTATE_MS);
+};
+
+const goToNextHeroSlide = () => {
+  if (!slidesCache.length) return;
+  heroIndex = (heroIndex + 1) % slidesCache.length;
+  updateHeroSlider();
+};
+
+const goToPreviousHeroSlide = () => {
+  if (!slidesCache.length) return;
+  heroIndex = (heroIndex - 1 + slidesCache.length) % slidesCache.length;
+  updateHeroSlider();
 };
 
 const renderSlides = (slides) => {
@@ -867,14 +896,12 @@ const initSliderEvents = () => {
   if (!heroSlider) return;
   sliderPrev?.addEventListener('click', () => {
     if (!slidesCache.length) return;
-    heroIndex = (heroIndex - 1 + slidesCache.length) % slidesCache.length;
-    updateHeroSlider();
+    goToPreviousHeroSlide();
     startHeroAutoplay();
   });
   sliderNext?.addEventListener('click', () => {
     if (!slidesCache.length) return;
-    heroIndex = (heroIndex + 1) % slidesCache.length;
-    updateHeroSlider();
+    goToNextHeroSlide();
     startHeroAutoplay();
   });
   sliderDots?.addEventListener('click', (event) => {
