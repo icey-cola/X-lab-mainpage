@@ -15,6 +15,7 @@ const pubFeatured = document.querySelector('#pub-featured');
 const partnersGrid = document.querySelector('#partners-grid');
 const teamHighlight = document.querySelector('#team-highlight');
 const heroSection = document.querySelector('.hero');
+const mainSections = Array.from(document.querySelectorAll('main > section'));
 
 let currentLang = 'zh';
 let slidesCache = [];
@@ -22,6 +23,9 @@ let keyTechCache = [];
 let publicationsCache = [];
 let partnersCache = [];
 let membersCache = [];
+let snapWheelBuffer = 0;
+let snapLock = false;
+let heroLightClassApplied = false;
 
 const enableHorizontalScroll = (el) => {
   if (!el) return;
@@ -903,6 +907,73 @@ const initHeroReveal = () => {
   observer.observe(heroSection);
 };
 
+const toggleHeroLightClass = () => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const sliderRect = heroSlider?.getBoundingClientRect();
+  if (!sliderRect) return;
+  const sliderVisibleHeight = Math.min(window.innerHeight, Math.max(0, sliderRect.bottom)) - Math.max(0, sliderRect.top);
+  const sliderRatio = sliderVisibleHeight / window.innerHeight;
+  if (sliderRatio > 0.5) {
+    if (!heroLightClassApplied) {
+      heroLightClassApplied = true;
+      header.classList.add('hero-light');
+    }
+  } else if (heroLightClassApplied) {
+    heroLightClassApplied = false;
+    header.classList.remove('hero-light');
+  }
+};
+const initManualSnap = () => {
+  if (!mainSections.length) return;
+  const threshold = 220;
+  const resolveSectionIndex = () => {
+    const viewportMid = window.scrollY + window.innerHeight / 2;
+    let closestIndex = 0;
+    let minDist = Number.POSITIVE_INFINITY;
+    mainSections.forEach((section, idx) => {
+      const rect = section.getBoundingClientRect();
+      const sectionMid = rect.top + window.scrollY + rect.height / 2;
+      const dist = Math.abs(sectionMid - viewportMid);
+      if (dist < minDist) {
+        minDist = dist;
+        closestIndex = idx;
+      }
+    });
+    return closestIndex;
+  };
+
+  const wheelHandler = (event) => {
+    if (window.innerWidth < 1024) return;
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.target.closest('.pub-list') || event.target.closest('.tech-showcase') || event.target.closest('.partners-grid')) {
+      return;
+    }
+    snapWheelBuffer += event.deltaY;
+    if (snapLock || Math.abs(snapWheelBuffer) < threshold) return;
+    event.preventDefault();
+    const direction = snapWheelBuffer > 0 ? 1 : -1;
+    snapWheelBuffer = 0;
+
+    const currentIndex = resolveSectionIndex();
+    const targetIndex = Math.min(mainSections.length - 1, Math.max(0, currentIndex + direction));
+    if (targetIndex === currentIndex) return;
+    snapLock = true;
+    mainSections[targetIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      snapLock = false;
+    }, 700);
+  };
+
+  window.addEventListener('wheel', wheelHandler, { passive: false });
+  window.addEventListener('scroll', toggleHeroLightClass, { passive: true });
+  window.addEventListener('resize', () => {
+    snapWheelBuffer = 0;
+    toggleHeroLightClass();
+  });
+  toggleHeroLightClass();
+};
+
 const init = () => {
   updateLangButtons();
   applyTranslations();
@@ -911,6 +982,7 @@ const init = () => {
   initLangSwitch();
   initSliderEvents();
   initHeroReveal();
+  initManualSnap();
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   loadSlides();
   loadKeyTech();

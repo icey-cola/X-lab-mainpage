@@ -59,6 +59,35 @@ img {
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
+.site-header.hero-light {
+  color: #ffffff;
+}
+
+.site-header.hero-light .logo-mark,
+.site-header.hero-light .logo-text strong,
+.site-header.hero-light .logo-text span,
+.site-header.hero-light .main-nav a,
+.site-header.hero-light .lang-btn {
+  color: #ffffff;
+}
+
+.site-header.hero-light .lang-switch {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.site-header.hero-light .lang-btn {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.site-header.hero-light .lang-btn.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.site-header.hero-light .lang-indicator {
+  background: rgba(255, 255, 255, 0.28);
+}
+
 .site-header.scrolled {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(14px);
@@ -591,6 +620,10 @@ section {
   margin-inline: auto;
   max-width: var(--max-width);
   position: relative;
+}
+
+section + section {
+  margin-top: clamp(60px, 10vw, 140px);
 }
 
 .section-heading {
