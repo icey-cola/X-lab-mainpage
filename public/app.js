@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('.nav-toggle');
+﻿const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('#nav-menu');
 const langSwitch = document.querySelector('.lang-switch');
 const langButtons = document.querySelectorAll('.lang-btn');
@@ -56,8 +56,8 @@ try {
 
 const translations = {
   zh: {
-    siteNameZh: '未来智能实验室',
-    siteNameEn: 'Future Intelligence Lab',
+    siteNameZh: 'X-Lab',
+    siteNameEn: 'X-Lab',
     navHome: '首页',
     navResearch: '研究方向',
     navKeyTech: '科研成果',
@@ -69,23 +69,21 @@ const translations = {
     langEnglish: 'EN',
     heroEyebrow: '探索科学前沿 · 驱动未来智能',
     heroHeadline: 'Stay Simple • Stay Diverse',
-    heroIntro: '未来智能实验室聚焦视觉智能、认知计算与多模态 AI，打造从基础理论到产业落地的全链条创新平台。',
+    heroIntro: 'X-Lab聚焦视觉智能、模式识别与多模态 AI，打造从基础理论到产业落地的全链条创新平台。',
     heroCTAResearch: '探索研究方向',
     heroCTAJoin: '联系我们',
     heroStatPapers: '学术论文 (Top-tier)',
-    heroStatPatents: '授权发明专利',
+    heroStatPatents: '奖项荣誉',
     heroStatPartners: '国际合作伙伴',
     heroStatProjects: '合作项目',
     researchHeading: '核心研究方向',
     researchSubheading: '围绕人工智能与计算机视觉的关键议题，布局未来十年的技术突破口。',
-    researchCard1Title: '反射去除与层析重建',
-    researchCard1Desc: '围绕单幅图像反射去除（SIRR）与场景分层，打造 XReflection 等高效工具链，实现真实场景的清晰重建。',
-    researchCard2Title: '极端条件下的图像增强',
-    researchCard2Desc: '研究恶劣天气与低光照退化建模，开发 MODEM 等视觉恢复方法，提升复杂环境中的成像质量。',
-    researchCard3Title: '文本感知超分与生成',
-    researchCard3Desc: '以扩散模型和联合解码器为核心，构建真实场景文本区域的高保真生成能力。',
-    researchCard4Title: '鲁棒视频理解与跨域感知',
-    researchCard4Desc: '聚焦高效视频目标检测与差异化对齐策略，提升跨场景的数据泛化与实时感知能力。',
+    researchCard1Title: '图像增强',
+    researchCard1Desc: '研究低光、雾霾与极端天气下的自适应增强模型，并结合大规模超分框架，在抑制噪声的同时放大关键细节，全面提升真实场景成像质量。',
+    researchCard2Title: '图像恢复',
+    researchCard2Desc: '聚焦去反射、去阴影、去雨/去雪等任务，构建端到端恢复框架与工具箱（如 XReflection），保障真实应用的稳定输出。',
+    researchCard3Title: '高层视觉感知',
+    researchCard3Desc: '面向跨域检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理，支撑城市与工业场景的实时智能感知。',
     researchLearnMore: '了解详情',
     keyTechHeading: '关键技术与代表性成果',
     keyTechSubheading: '从原创算法到产业级系统，持续输出高影响力的科研成果。',
@@ -98,7 +96,8 @@ const translations = {
     teamSubheading: '跨学科精英团队，汇聚计算机视觉、机器学习、硬件架构与应用科学的顶尖人才。',
     teamCTA: '查看完整团队',
     joinHeading: '与我们一起探索未来智能',
-    joinDescription: '我们正在寻找对人工智能、计算机视觉与跨学科创新充满热情的研究者与工程师。加入我们，一起突破技术边界。',
+    joinDescription: '我们实验室今年有多个博士与硕士名额，欢迎对计算机视觉、模式识别、机器学习充满热情与创新精神的同学加入，如有兴趣请将个人简历发送给我们。',
+    joinEmail: '邮箱： xj.max.guo (at) gmail.com',
     joinCTA: '立即投递简历',
     footerContactTitle: '联系我们',
     footerAddressLabel: '地址： ',
@@ -113,11 +112,11 @@ const translations = {
     footerSocialLinkedIn: 'LinkedIn',
     footerSocialTwitter: 'Twitter',
     footerPartnersLabel: '合作伙伴：',
-    footerCopyright: '© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号'
+    footerCopyright: '© 2024 X-Lab · 版权所有 | 京ICP备 12345678 号'
   },
   en: {
-    siteNameZh: 'Future Intelligence Lab',
-    siteNameEn: 'Future Intelligence Lab',
+    siteNameZh: 'X-Lab',
+    siteNameEn: 'X-Lab',
     navHome: 'Home',
     navResearch: 'Research',
     navKeyTech: 'Key Technologies',
@@ -129,23 +128,21 @@ const translations = {
     langEnglish: 'EN',
     heroEyebrow: 'Exploring scientific frontiers · Driving future intelligence',
     heroHeadline: 'Stay Simple \u2022 Stay Diverse',
-    heroIntro: 'Future Intelligence Lab advances vision intelligence, cognitive computing, and multimodal AI from theory to real-world impact.',
+    heroIntro: 'X-Lab advances vision intelligence, cognitive computing, and multimodal AI from theory to real-world impact.',
     heroCTAResearch: 'Explore Research',
     heroCTAJoin: 'Contact Us',
     heroStatPapers: 'Top-tier publications',
-    heroStatPatents: 'Granted patents',
+    heroStatPatents: 'Awards & Honors',
     heroStatPartners: 'Global partners',
     heroStatProjects: 'Industry collaborations',
     researchHeading: 'Core Research Areas',
     researchSubheading: 'We map out the next decade of breakthroughs in AI and computer vision.',
-    researchCard1Title: 'Reflection Removal & Layered Reconstruction',
-    researchCard1Desc: 'Toolchains such as XReflection tackle single-image reflection removal and scene decomposition with precision.',
-    researchCard2Title: 'Imaging Enhancement under Extremes',
-    researchCard2Desc: 'We model adverse weather and low-light degradation, delivering MODEM-grade restoration quality.',
-    researchCard3Title: 'Text-aware Super-resolution & Generation',
-    researchCard3Desc: 'Diffusion models with joint decoders retain real-world text fidelity in generated imagery.',
-    researchCard4Title: 'Robust Video Understanding & Cross-domain Perception',
-    researchCard4Desc: 'Efficient detection and adaptive alignment empower real-time perception across diverse scenarios.',
+    researchCard1Title: 'Image Enhancement',
+    researchCard1Desc: 'Develop adaptive enhancement models for low-light, haze, and adverse-weather imagery, coupled with large-scale super-resolution frameworks to preserve fine details.',
+    researchCard2Title: 'Image Restoration',
+    researchCard2Desc: 'Build end-to-end restoration pipelines and toolkits (e.g., XReflection) for reflection, shadow, and rain removal to ensure stable real-world deployment.',
+    researchCard3Title: 'High-level Perception',
+    researchCard3Desc: 'Advance cross-domain detection and semantic segmentation through robust feature alignment, spatiotemporal aggregation, and lightweight inference.',
     researchLearnMore: 'Learn More',
     keyTechHeading: 'Key Technologies & Flagship Outcomes',
     keyTechSubheading: 'From original algorithms to production-grade systems, we deliver high-impact research.',
@@ -158,7 +155,8 @@ const translations = {
     teamSubheading: 'An interdisciplinary crew uniting vision, machine learning, hardware, and applied science experts.',
     teamCTA: 'Meet the Full Team',
     joinHeading: 'Join Us to Explore Future Intelligence',
-    joinDescription: 'We welcome passionate researchers and engineers in AI, computer vision, and cross-disciplinary innovation.',
+    joinDescription: 'Our lab has several Ph.D. and Master positions this year. We are seeking passionate and innovative students to work on CV/PR/ML. Please send me your CV if interested.',
+    joinEmail: 'Email: xj.max.guo (at) gmail.com',
     joinCTA: 'Apply Now',
     footerContactTitle: 'Contact',
     footerAddressLabel: 'Address: ',
@@ -173,7 +171,7 @@ const translations = {
     footerSocialLinkedIn: 'LinkedIn',
     footerSocialTwitter: 'Twitter',
     footerPartnersLabel: 'Partners:',
-    footerCopyright: '© 2024 Future Intelligence Lab · All rights reserved | Beijing ICP 12345678'
+    footerCopyright: '© 2024 X-Lab · All rights reserved | Beijing ICP 12345678'
   }
 };
 
@@ -326,7 +324,7 @@ const FALLBACK_MEMBERS = [
     roleEn: 'Joined in 2010',
     group: 'teacher',
     avatar: '',
-    bioZh: '未来智能实验室负责人，专注于视觉智能、可信 AI 与跨模态认知研究。',
+    bioZh: 'X-Lab负责人，专注于视觉智能、可信 AI 与跨模态认知研究。',
     bioEn: 'Head of the lab focusing on vision intelligence, trustworthy AI, and multimodal cognition.'
   },
   {
@@ -634,52 +632,98 @@ const renderPublications = (items) => {
   items.forEach((pub) => {
     const card = document.createElement('article');
     card.className = 'pub-card';
-
-    const venue = document.createElement('span');
-    venue.className = 'pub-tag';
-    venue.textContent = selectText(pub, 'venue') || (currentLang === 'zh' ? '待定' : 'TBD');
-    card.appendChild(venue);
-
-    const title = document.createElement('h3');
-    title.textContent = selectText(pub, 'title');
-    card.appendChild(title);
-
-    if (pub.authors) {
-      const authors = document.createElement('p');
-      authors.className = 'pub-authors';
-      authors.textContent = pub.authors;
-      card.appendChild(authors);
-    }
-
-    const summaryText = selectText(pub, 'summary');
-    if (summaryText) {
-      const summary = document.createElement('p');
-      summary.textContent = summaryText;
-      card.appendChild(summary);
-    }
-
-    const links = document.createElement('div');
-    links.className = 'pub-links';
-    if (pub.paperUrl && pub.paperUrl !== '#') {
-      const paperLink = document.createElement('a');
-      paperLink.href = pub.paperUrl;
-      paperLink.target = '_blank';
-      paperLink.rel = 'noopener noreferrer';
-      paperLink.className = 'link';
-      paperLink.textContent = currentLang === 'zh' ? '论文链接 >' : 'Paper >';
-      links.appendChild(paperLink);
-    }
-    if (pub.codeUrl && pub.codeUrl !== '#') {
-      const codeLink = document.createElement('a');
-      codeLink.href = pub.codeUrl;
-      codeLink.target = '_blank';
-      codeLink.rel = 'noopener noreferrer';
-      codeLink.className = 'link';
-      codeLink.textContent = currentLang === 'zh' ? '代码仓库 >' : 'Code >';
-      links.appendChild(codeLink);
-    }
-    if (links.children.length) {
-      card.appendChild(links);
+
+
+    const venue = document.createElement('span');
+
+    venue.className = 'pub-tag';
+
+    venue.textContent = selectText(pub, 'venue') || (currentLang === 'zh' ? '待定' : 'TBD');
+
+    card.appendChild(venue);
+
+
+
+    const title = document.createElement('h3');
+
+    title.textContent = selectText(pub, 'title');
+
+    card.appendChild(title);
+
+
+
+    if (pub.authors) {
+
+      const authors = document.createElement('p');
+
+      authors.className = 'pub-authors';
+
+      authors.textContent = pub.authors;
+
+      card.appendChild(authors);
+
+    }
+
+
+
+    const summaryText = selectText(pub, 'summary');
+
+    if (summaryText) {
+
+      const summary = document.createElement('p');
+
+      summary.textContent = summaryText;
+
+      card.appendChild(summary);
+
+    }
+
+
+
+    const links = document.createElement('div');
+
+    links.className = 'pub-links';
+
+    if (pub.paperUrl && pub.paperUrl !== '#') {
+
+      const paperLink = document.createElement('a');
+
+      paperLink.href = pub.paperUrl;
+
+      paperLink.target = '_blank';
+
+      paperLink.rel = 'noopener noreferrer';
+
+      paperLink.className = 'link';
+
+      paperLink.textContent = currentLang === 'zh' ? '论文链接 >' : 'Paper >';
+
+      links.appendChild(paperLink);
+
+    }
+
+    if (pub.codeUrl && pub.codeUrl !== '#') {
+
+      const codeLink = document.createElement('a');
+
+      codeLink.href = pub.codeUrl;
+
+      codeLink.target = '_blank';
+
+      codeLink.rel = 'noopener noreferrer';
+
+      codeLink.className = 'link';
+
+      codeLink.textContent = currentLang === 'zh' ? '代码仓库 >' : 'Code >';
+
+      links.appendChild(codeLink);
+
+    }
+
+    if (links.children.length) {
+
+      card.appendChild(links);
+
     }
     list.appendChild(card);
   });
@@ -743,7 +787,7 @@ const renderMembers = (items) => {
 
     const rawEnroll = selectText(member, 'role');
     const enroll = document.createElement('p');
-    const enrollLabel = currentLang === 'zh' ? '入学年份：' : 'Enrollment Year: ';
+    const enrollLabel = currentLang === 'zh' ? '' : '';
     enroll.textContent = rawEnroll
       ? `${enrollLabel}${rawEnroll}`
       : `${enrollLabel}${currentLang === 'zh' ? '未填写' : 'N/A'}`;
@@ -1019,3 +1063,4 @@ const init = () => {
 };
 
 init();
+

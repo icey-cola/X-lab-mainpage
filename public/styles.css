@@ -439,7 +439,7 @@ img {
 
 .hero.hero-floating {
   opacity: 0;
-  transform: translateY(90px);
+  transform: translateY(120px);
 }
 
 .hero.hero-revealed {
@@ -639,7 +639,7 @@ section {
   position: relative;
 }
 
-section + section {
+main > section + section {
   margin-top: clamp(60px, 10vw, 140px);
 }
 
@@ -1107,6 +1107,7 @@ section + section {
   width: 56px;
   height: 56px;
   border-radius: 18px;
+  flex: 0 0 56px;
 }
 
 .team-card.mini .avatar img {
@@ -1160,6 +1161,13 @@ section + section {
   display: grid;
   position: relative;
   overflow: hidden;
+  flex: 0 0 64px; /* 阻止在窄列里被压扁 */
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 避免纵横比导致头像“拉长”或留白 */
 }
 
 .avatar::after {
@@ -1206,10 +1214,21 @@ section + section {
   gap: clamp(32px, 6vw, 56px);
 }
 
+.team-group {
+  padding: 0;
+  margin: 0;
+}
+
+.team-group + .team-group {
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
 .team-group h3 {
   margin: 0 0 20px 0;
   font-family: var(--font-heading);
   font-size: 24px;
+  padding-left: 8px;
+  border-left: 3px solid rgba(237, 31, 39, 0.35);
 }
 
 .team-profile {

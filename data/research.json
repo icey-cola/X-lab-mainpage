@@ -2,37 +2,28 @@
   {
     "id": "rr1",
     "order": 1,
-    "titleZh": "反射去除与层析重建",
-    "titleEn": "Reflection Removal & Layered Reconstruction",
-    "introZh": "围绕单幅图像反射去除（SIRR）与场景分层，打造高效工具链，实现真实场景的清晰重建。",
-    "introEn": "Tackles single-image reflection removal and layered decomposition with efficient toolchains.",
-    "slug": "reflection"
+    "titleZh": "图像增强",
+    "titleEn": "Image Enhancement",
+    "introZh": "研究低光、雾霾与极端天气下的自适应增强模型，并结合大规模超分重建框架，在抑制噪声的同时放大关键细节，全面提升真实场景中的成像质量。",
+    "introEn": "Develop adaptive enhancement models for low-light, haze, and adverse-weather imagery, coupling them with large-scale super-resolution frameworks to preserve fine details and boost real-world imaging quality.",
+    "slug": "image-enhancement"
   },
   {
     "id": "rr2",
     "order": 2,
-    "titleZh": "极端条件下的图像增强",
-    "titleEn": "Imaging Enhancement under Extremes",
-    "introZh": "研究恶劣天气与低光照退化建模，开发 MODEM 等视觉恢复方法，提升复杂环境成像质量。",
-    "introEn": "Models adverse weather and low-light degradations to deliver robust restoration in the wild.",
-    "slug": "extreme-enhancement"
+    "titleZh": "图像恢复",
+    "titleEn": "Image Restoration",
+    "introZh": "聚焦去反射、去阴影、去雨/去雪等任务，构建端到端恢复框架与工具箱（如 XReflection），覆盖数据构建、训练到推理的全流程，保障真实应用的稳定输出。",
+    "introEn": "Build end-to-end restoration frameworks and toolkits (e.g., XReflection) for reflection, shadow, and rain removal, spanning data curation, training pipelines, and deployment-ready inference to ensure stable real-world output.",
+    "slug": "image-restoration"
   },
   {
     "id": "rr3",
     "order": 3,
-    "titleZh": "文本感知超分与生成",
-    "titleEn": "Text-aware Super-resolution & Generation",
-    "introZh": "以扩散模型和联合解码器为核心，构建真实场景中文本区域的高保真生成能力。",
-    "introEn": "Text-faithful image synthesis and SR built on diffusion with joint decoders.",
-    "slug": "text-aware"
-  },
-  {
-    "id": "rr4",
-    "order": 4,
-    "titleZh": "鲁棒视频理解与跨域感知",
-    "titleEn": "Robust Video Understanding & Cross-domain Perception",
-    "introZh": "聚焦高效视频目标检测与差异化对齐策略，提升跨场景泛化与实时感知能力。",
-    "introEn": "Efficient video detection and adaptive alignment for real-time cross-domain perception.",
-    "slug": "video-robustness"
+    "titleZh": "高层视觉感知",
+    "titleEn": "High-level Perception",
+    "introZh": "面向跨域目标检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理策略，支撑城市与工业场景的实时智能感知。",
+    "introEn": "Tackle cross-domain detection and semantic segmentation via robust feature alignment, spatiotemporal aggregation, and lightweight inference to empower real-time perception in urban and industrial settings.",
+    "slug": "high-level-perception"
   }
 ]

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>未来智能实验室 | 团队成员</title>
-  <meta name="description" content="未来智能实验室团队成员介绍，了解核心教师、博士、硕士与毕业生。">
+  <title>X-Lab | 团队成员</title>
+  <meta name="description" content="X-Lab团队成员介绍，了解核心教师、博士、硕士与毕业生。">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,13 +12,13 @@
 </head>
 <body>
   <header class="site-header" id="top">
-    <div class="logo">
-      <span class="logo-mark">FIL</span>
+    <a class="logo" href="index.html">
+      <span class="logo-mark">X</span>
       <div class="logo-text">
-        <strong>未来智能实验室</strong>
-        <span>Future Intelligence Lab</span>
+        <strong>X-Lab</strong>
+        <span>X-Lab</span>
       </div>
-    </div>
+    </a>
     <div class="header-actions">
       <nav class="main-nav" aria-label="主导航" data-i18n-attr="aria-label:navAriaLabel">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
@@ -46,7 +46,7 @@
   <main>
     <section class="page-hero team-hero">
       <div class="hero-content">
-        <p class="eyebrow" data-i18n="heroEyebrow">未来智能实验室 · 团队</p>
+        <p class="eyebrow" data-i18n="heroEyebrow">X-Lab · 团队</p>
         <h1 data-i18n="heroHeadline">跨学科人才，驱动前沿智能研究</h1>
         <p class="intro" data-i18n="heroIntro">我们的团队覆盖视觉智能、可信 AI、智能计算和多模态学习等方向，以开放协作的方式推动科研成果落地。</p>
       </div>
@@ -107,7 +107,7 @@
           <span class="badge">GlobalAI</span>
         </div>
       </div>
-      <p data-i18n="footerCopyright">© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号</p>
+      <p data-i18n="footerCopyright">© 2024 X-Lab · 版权所有 | 京ICP备 12345678 号</p>
     </div>
   </footer>
 
@@ -144,7 +144,7 @@
         navPublications: '出版物',
         navJoin: '联系我们',
         navContact: '联系方式',
-        heroEyebrow: '未来智能实验室 · 团队',
+        heroEyebrow: 'X-Lab · 团队',
         heroHeadline: '跨学科人才，驱动前沿智能研究',
         heroIntro: '我们的团队覆盖视觉智能、可信 AI、智能计算和多模态学习等方向，以开放协作的方式推动科研成果落地。',
         teamHeading: '核心团队',
@@ -167,7 +167,7 @@
         footerSocialLinkedIn: 'LinkedIn',
         footerSocialTwitter: 'Twitter',
         footerPartnersLabel: '合作伙伴：',
-        footerCopyright: '© 2024 未来智能实验室 · 版权所有 | 京ICP备 12345678 号'
+        footerCopyright: '© 2024 X-Lab · 版权所有 | 京ICP备 12345678 号'
       },
       en: {
         navAriaLabel: 'Main navigation',
@@ -181,7 +181,7 @@
         navPublications: 'Publications',
         navJoin: 'Contact Us',
         navContact: 'Contact',
-        heroEyebrow: 'Future Intelligence Lab · Team',
+        heroEyebrow: 'X-Lab · Team',
         heroHeadline: 'An interdisciplinary team driving intelligent innovation',
         heroIntro: 'We unite experts in visual intelligence, trustworthy AI, intelligent computing, and multimodal learning to transform research breakthroughs into real-world impact.',
         teamHeading: 'Our Team',
@@ -204,8 +204,28 @@
         footerSocialLinkedIn: 'LinkedIn',
         footerSocialTwitter: 'Twitter',
         footerPartnersLabel: 'Partners:',
-        footerCopyright: '© 2024 Future Intelligence Lab · All Rights Reserved | ICP No. 12345678'
+        footerCopyright: '© 2024 X-Lab · All Rights Reserved | ICP No. 12345678'
       }
+    };
+
+    const parseEnrollYear = (value) => {
+      if (value === undefined || value === null) return 0;
+      if (typeof value === 'number') return value;
+      const match = String(value).match(/(19|20)\d{2}/);
+      return match ? Number.parseInt(match[0], 10) : 0;
+    };
+
+    const getMemberYear = (member) => {
+      if (!member) return 0;
+      if ('enrollYear' in member) {
+        const direct = parseEnrollYear(member.enrollYear);
+        if (direct) return direct;
+      }
+      const zhYear = parseEnrollYear(member.roleZh);
+      if (zhYear) return zhYear;
+      const enYear = parseEnrollYear(member.roleEn);
+      if (enYear) return enYear;
+      return 0;
     };
 
     navToggle.addEventListener('click', () => {
@@ -280,7 +300,8 @@
         const list = grouped[key];
         if (!list || !list.length) return '';
         const sectionTitle = groupLabels[key]?.[currentLang] || key;
-        const cards = list.map((member) => {
+        const sortedList = [...list].sort((a, b) => getMemberYear(b) - getMemberYear(a));
+        const cards = sortedList.map((member) => {
           const name = currentLang === 'en'
             ? (member.nameEn || member.nameZh || '')
             : (member.nameZh || member.nameEn || '');
@@ -306,7 +327,7 @@
               <div class="team-photo">${photo}</div>
               <div class="team-info">
                 <h4>${name}</h4>
-                <p class="role">${rawEnroll ? (currentLang === 'zh' ? `${rawEnroll}年入学` : `since ${rawEnroll}`) : ''}</p>
+                <p class="role">${rawEnroll ? (currentLang === 'zh' ? `${rawEnroll}` : `${rawEnroll}`) : ''}</p>
                 ${bio ? `<p class="bio">${bio}</p>` : ''}
                 <div class="team-links">
                   ${links}
