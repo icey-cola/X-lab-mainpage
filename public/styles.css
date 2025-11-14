@@ -299,16 +299,11 @@ img {
 }
 
 .logo-mark {
-  display: grid;
-  place-items: center;
   width: 46px;
   height: 46px;
-  background: linear-gradient(140deg, var(--accent), var(--accent-alt));
-  font-weight: 700;
+  display: block;
   border-radius: 14px;
-  letter-spacing: 0.02em;
-  font-family: var(--font-heading);
-  color: #ffffff;
+  object-fit: contain;
 }
 
 .logo-text {
