@@ -4,8 +4,8 @@
     "order": 1,
     "titleZh": "图像增强",
     "titleEn": "Image Enhancement",
-    "introZh": "研究低光、雾霾与极端天气下的自适应增强模型，并结合大规模超分重建框架，在抑制噪声的同时放大关键细节，全面提升真实场景中的成像质量。",
-    "introEn": "Develop adaptive enhancement models for low-light, haze, and adverse-weather imagery, coupling them with large-scale super-resolution frameworks to preserve fine details and boost real-world imaging quality.",
+    "introZh": "聚焦低光环境下的图像增强，构建自适应照度建模与噪声抑制方案，让真实场景在暗光中依旧保持细节与自然色彩。",
+    "introEn": "Focus on low-light image enhancement by modeling illumination adaptively and suppressing noise, so real-world scenes retain details and natural colors even in darkness.",
     "slug": "image-enhancement"
   },
   {
@@ -13,8 +13,8 @@
     "order": 2,
     "titleZh": "图像恢复",
     "titleEn": "Image Restoration",
-    "introZh": "聚焦去反射、去阴影、去雨/去雪等任务，构建端到端恢复框架与工具箱（如 XReflection），覆盖数据构建、训练到推理的全流程，保障真实应用的稳定输出。",
-    "introEn": "Build end-to-end restoration frameworks and toolkits (e.g., XReflection) for reflection, shadow, and rain removal, spanning data curation, training pipelines, and deployment-ready inference to ensure stable real-world output.",
+    "introZh": "聚焦去反射、去阴影、去雨/去雪与真实场景超分等任务，构建端到端恢复框架与工具箱（如 XReflection），保障真实应用的稳定输出。",
+    "introEn": "Build end-to-end restoration frameworks and toolkits (e.g., XReflection) for reflection, shadow, rain/snow removal, and real-world super-resolution, covering data curation, training pipelines, and deployment-ready inference to ensure stable output.",
     "slug": "image-restoration"
   },
   {

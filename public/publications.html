@@ -48,14 +48,13 @@
       <div class="hero-content">
         <p class="eyebrow" data-i18n="heroEyebrow">X-Lab出版物</p>
         <h1 data-i18n="heroHeadline">持续输出高影响力的科研成果</h1>
-        <p class="intro" data-i18n="heroIntro">覆盖顶级会议、期刊与行业白皮书的研究成果，欢迎查阅并与我们交流合作机会。</p>
+        <p class="intro" data-i18n="heroIntro">覆盖顶级会议、期刊的研究成果，欢迎查阅并与我们交流合作。</p>
       </div>
     </section>
 
     <section class="publications archive" id="publications-list">
       <header class="section-heading">
         <h2 data-i18n="pubHeading">全部出版物</h2>
-        <p data-i18n="pubSubheading">出版物信息由后台统一管理，确保中英文版本实时同步。</p>
       </header>
       <div class="pub-list" id="pub-list"></div>
     </section>
@@ -130,9 +129,8 @@
         navContact: '联系方式',
         heroEyebrow: 'X-Lab出版物',
         heroHeadline: '持续输出高影响力的科研成果',
-        heroIntro: '覆盖顶级会议、期刊与行业白皮书的研究成果，欢迎查阅并与我们交流合作机会。',
+        heroIntro: '覆盖顶级会议、期刊的研究成果，欢迎查阅并与我们交流合作。',
         pubHeading: '全部出版物',
-        pubSubheading: '出版物信息由后台统一管理，确保中英文版本实时同步。',
         pubAuthorsLabel: '作者：',
         pubPaper: 'Paper',
         pubCode: 'Code',
@@ -167,7 +165,7 @@
         navContact: 'Contact',
         heroEyebrow: 'Publications · X-Lab',
         heroHeadline: 'High-impact research delivered continuously',
-        heroIntro: 'Browse our latest conference, journal, and whitepaper outputs, and reach out for collaboration opportunities.',
+        heroIntro: 'Browse our conference and journal publications and get in touch for collaboration opportunities.',
         pubHeading: 'All Publications',
         pubSubheading: 'Publication data is maintained centrally so Chinese and English versions stay in sync.',
         pubAuthorsLabel: 'Authors:',
@@ -258,23 +256,30 @@
         return (b.id || '').localeCompare(a.id || '');
       });
 
-      const grouped = sorted.reduce((acc, pub) => {
-        const year = pub.year || 'Other';
-        if (!acc.has(year)) {
-          acc.set(year, []);
+      const groupedList = [];
+      const groupedMap = new Map();
+
+      sorted.forEach((pub) => {
+        const yearValue = pub.year || 0;
+        const label = pub.yearLabel || (pub.year ? String(pub.year) : 'Other');
+        let group = groupedMap.get(label);
+        if (!group) {
+          group = { label, order: yearValue, items: [] };
+          groupedMap.set(label, group);
+          groupedList.push(group);
         }
-        acc.get(year).push(pub);
-        return acc;
-      }, new Map());
+        group.items.push(pub);
+      });
+
+      groupedList.sort((a, b) => (b.order || 0) - (a.order || 0));
 
       const authorsLabel = translations[currentLang].pubAuthorsLabel;
       const paperLabel = translations[currentLang].pubPaper;
       const codeLabel = translations[currentLang].pubCode;
 
-      const sections = [];
-      for (const [year, list] of grouped.entries()) {
-        if (!list.length) continue;
-        const cards = list.map((pub) => {
+      const sections = groupedList.map((group) => {
+        if (!group.items.length) return '';
+        const cards = group.items.map((pub) => {
           const title = currentLang === 'en'
             ? (pub.titleEn || pub.titleZh || '')
             : (pub.titleZh || pub.titleEn || '');
@@ -299,16 +304,16 @@
           `;
         }).join('');
 
-        const heading = year === 'Other' ? '' : `<h3 class="pub-year-heading">${year}</h3>`;
-        sections.push(`
+        const heading = group.label === 'Other' ? '' : `<h3 class="pub-year-heading">${group.label}</h3>`;
+        return `
           <section class="pub-year-group">
             ${heading}
             <div class="pub-year-items">
               ${cards}
             </div>
           </section>
-        `);
-      }
+        `;
+      }).filter(Boolean);
 
       pubList.innerHTML = sections.join('');
     }

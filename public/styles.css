@@ -914,7 +914,19 @@ main > section + section {
 .pub-year-items {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .pub-year-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .pub-year-items {
+    grid-template-columns: 1fr;
+  }
 }
 
 .publications:not(.archive) .pub-list {
@@ -972,7 +984,9 @@ main > section + section {
 }
 
 .pub-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
   padding: 4px 12px;
   border-radius: 999px;
@@ -981,6 +995,7 @@ main > section + section {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
+  line-height: 1;
 }
 
 .pub-card h3 {
