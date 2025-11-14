@@ -1053,7 +1053,6 @@ const init = () => {
   initLangSwitch();
   initSliderEvents();
   initHeroReveal();
-  initManualSnap();
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   loadSlides();
   loadKeyTech();
