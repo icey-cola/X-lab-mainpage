@@ -14,10 +14,29 @@
       margin: 0;
       padding: 32px;
     }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
     h1 {
-      margin: 0 0 24px;
+      margin: 0;
       font-size: 28px;
       font-weight: 700;
+    }
+    .logout-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .logout-btn:hover {
+      background: #b91c1c;
     }
     section {
       background: #ffffff;
@@ -153,7 +172,10 @@
   </style>
 </head>
 <body>
-  <h1>X-Lab · 后台管理</h1>
+  <div class="header-bar">
+    <h1>X-Lab · 后台管理</h1>
+    <button class="logout-btn" onclick="handleLogout()">退出登录</button>
+  </div>
 
     <section id="slides-section" class="collapsible collapsed">
     <div class="section-header">
@@ -314,6 +336,11 @@
       <label>Code 链接
         <input id="pub-code" placeholder="https://github.com/xxx">
       </label>
+      <label>所属研究方向
+        <select id="pub-research">
+          <option value="">未关联</option>
+        </select>
+      </label>
       <button type="submit">保存出版物</button>
     </form>
     <div id="pub-table-wrapper" class="empty">正在加载出版物…</div>
@@ -388,20 +415,83 @@
         `;
       };
       const fetchJson = async (url, label) => {
-        const res = await fetch(url);
+        const res = await fetch(url, { credentials: 'include' });
         if (!res.ok) {
+          if (res.status === 401) {
+            alert('会话已过期，请重新登录');
+            window.location.href = '/login.html';
+            return;
+          }
           const text = await res.text().catch(() => '');
           throw new Error(`${label}失败：${res.status} ${text}`);
         }
         return res.json();
       };
     const handleRequest = async (url, options, label) => {
-      const res = await fetch(url, options);
+      const res = await fetch(url, { ...options, credentials: 'include' });
       if (!res.ok) {
+        if (res.status === 401) {
+          alert('会话已过期，请重新登录');
+          window.location.href = '/login.html';
+          return;
+        }
         const text = await res.text().catch(() => '');
         throw new Error(`${label}失败：${res.status} ${text}`);
       }
       return res.status === 204 ? null : res.json();
+    };
+
+    const loadResearchOptions = async () => {
+      try {
+        const data = await fetchJson('/api/research', '加载研究方向');
+        researchList = Array.isArray(data) ? data : [];
+      } catch (error) {
+        researchList = [];
+      }
+      if (pubResearchSelect) {
+        const defaultOption = '<option value="">未关联</option>';
+        const options = researchList
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+          .map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.titleZh || item.titleEn || item.id)}</option>`)
+          .join('');
+        pubResearchSelect.innerHTML = defaultOption + options;
+      }
+    };
+
+    const getResearchLabel = (id) => {
+      if (!id) return '';
+      const found = researchList.find((item) => item.id === id);
+      if (!found) return '';
+      return found.titleZh || found.titleEn || id;
+    };
+
+    // Logout function
+    const handleLogout = async () => {
+      if (!confirm('确定要退出登录吗？')) return;
+      
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        window.location.href = '/login.html';
+      } catch (error) {
+        alert('登出失败，请重试');
+      }
+    };
+    window.handleLogout = handleLogout;
+    
+    // Check auth status on load
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/status', { credentials: 'include' });
+        const data = await res.json();
+        if (!data.authenticated) {
+          window.location.href = '/login.html';
+        }
+      } catch (error) {
+        window.location.href = '/login.html';
+      }
     };
 
     const initCollapsibleSections = () => {
@@ -436,6 +526,8 @@
       const memberWrapper = getEl('member-table-wrapper');
       const pubForm = getEl('pub-form');
       const pubWrapper = getEl('pub-table-wrapper');
+      const pubResearchSelect = getEl('pub-research');
+      let researchList = [];
 
       const loadSlides = async () => {
         setEmpty(slidesWrapper, '正在加载横幅列表…');
@@ -803,13 +895,14 @@
               <td>${formatCell(item.venueZh, item.venueEn)}</td>
               <td>${escapeHtml(item.year || '')}</td>
               <td>${escapeHtml(item.authors || '')}</td>
+              <td>${escapeHtml(getResearchLabel(item.researchId) || '未关联')}</td>
               <td>
                 <button data-type="pub" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
                 <button class="danger" data-type="pub" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
               </td>
             </tr>
           `).join('') : '';
-          renderTable(pubWrapper, ['标题', '会议 / 期刊', '年份', '作者', '操作'], rows);
+          renderTable(pubWrapper, ['标题', '会议 / 期刊', '年份', '作者', '研究方向', '操作'], rows);
         } catch (error) {
           setEmpty(pubWrapper, error.message || '加载失败，请检查服务器日志。');
         }
@@ -828,6 +921,7 @@
           summaryEn: getEl('pub-summary-en').value,
           paperUrl: getEl('pub-paper').value,
           codeUrl: getEl('pub-code').value,
+          researchId: getEl('pub-research').value,
         };
         const id = getEl('pub-id').value;
         try {
@@ -872,6 +966,9 @@
             getEl('pub-summary-en').value = item.summaryEn || '';
             getEl('pub-paper').value = item.paperUrl || '';
             getEl('pub-code').value = item.codeUrl || '';
+            if (pubResearchSelect) {
+              pubResearchSelect.value = item.researchId || '';
+            }
           } catch (error) {
             alert(error.message);
           }
@@ -888,7 +985,9 @@
       });
 
     const bootstrap = async () => {
+      await checkAuth(); // Check authentication first
       initCollapsibleSections();
+      await loadResearchOptions();
       await Promise.allSettled([
         loadSlides(),
         loadKeyTech(),

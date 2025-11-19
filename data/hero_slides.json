@@ -7,21 +7,9 @@
     "titleEn": "Next-gen Vision Intelligence Platform",
     "descriptionZh": "融合大模型与视觉算法，全面提升科研、工业与城市场景的智能感知能力。",
     "descriptionEn": "Integrating foundation models with vision AI to power smarter cities, industries, and research labs.",
-    "link": "https://www.sensetime.com/cn/about",
+    "link": "https://cic.tju.edu.cn/",
     "media": "image/顶端横幅/1.png",
     "mediaType": "image"
-  },
-  {
-    "id": "s-002",
-    "tagZh": "学术动态",
-    "tagEn": "Research",
-    "titleZh": "多模态认知推理斩获顶会荣誉",
-    "titleEn": "Multimodal Reasoning Wins Top-tier Award",
-    "descriptionZh": "多模态认知推理研究荣获顶级会议最佳论文，展示视觉与语言融合的新突破。",
-    "descriptionEn": "Our multimodal reasoning work earned a best paper award, showcasing breakthroughs in vision-language fusion.",
-    "link": "https://www.sensetime.com/cn/news",
-    "media": "image/顶端横幅/介绍.mp4",
-    "mediaType": "video"
   },
   {
     "id": "s-1762587875492",
@@ -34,5 +22,15 @@
     "media": "image/顶端横幅/1.png",
     "mediaType": "image",
     "link": ""
+  },
+  {
+    "id": "s-1763393401777",
+    "media": "test.jpg",
+    "mediaType": "image"
+  },
+  {
+    "id": "s-1763440100281",
+    "media": "test.jpg",
+    "mediaType": "image"
   }
 ]

@@ -8,26 +8,32 @@
 </head>
 <body>
   <header class="site-header" id="top">
-    <div class="logo">
+    <a class="logo" href="index.html">
       <img class="logo-mark" src="image/logo.png" alt="X-Lab Logo">
       <div class="logo-text">
         <strong>X-Lab</strong>
         <span>X-Lab</span>
       </div>
-    </div>
+    </a>
     <div class="header-actions">
-      <nav class="main-nav" aria-label="主导航">
+      <nav class="main-nav" aria-label="主导航" data-i18n-attr="aria-label:navAriaLabel">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
           <span></span><span></span><span></span>
         </button>
         <ul id="nav-menu">
-          <li><a href="index.html#hero">首页</a></li>
-          <li><a href="index.html#research">研究方向</a></li>
-          <li><a href="index.html#key-tech">科研成果</a></li>
-          <li><a href="index.html#publications">出版物</a></li>
-          <li><a href="index.html#contact">联系我们</a></li>
+          <li><a href="index.html#hero" data-i18n="navHome">首页</a></li>
+          <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
+          <li><a href="publications.html" data-i18n="navPublications">出版物</a></li>
+          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
         </ul>
       </nav>
+      <div class="lang-switch" role="group" aria-label="语言切换" data-i18n-attr="aria-label:langSwitchLabel">
+        <div class="lang-indicator"></div>
+        <button type="button" class="lang-btn active" data-lang="zh" data-i18n="langChinese">中文</button>
+        <button type="button" class="lang-btn" data-lang="en" data-i18n="langEnglish">EN</button>
+      </div>
     </div>
   </header>
 
@@ -42,7 +48,7 @@
 
     <section class="publications archive" id="rd-papers">
       <header class="section-heading">
-        <h2>相关论文</h2>
+        <h2 data-i18n="papersHeading">相关论文</h2>
      
       </header>
       <div class="pub-list" id="paper-list"></div>
@@ -50,12 +56,43 @@
   </main>
 
   <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <h3 data-i18n="footerContactTitle">联系我们</h3>
+        <ul class="contact-list">
+          <li><strong data-i18n="footerAddressLabel">地址：</strong><span>中国天津市津南区雅观路135号天津大学</span></li>
+          <li><strong data-i18n="footerEmailLabel">邮箱：</strong><span>xj.max.guo (at) gmail.com</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerLinksTitle">快速链接</h3>
+        <ul class="quick-links">
+          <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
+          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
+          <li><a href="publications.html" data-i18n="navPublications">出版物</a></li>
+          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerFollowTitle">关注我们</h3>
+        <ul class="social-links">
+          <li><a href="https://github.com/XGuoTJU" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2024 X-Lab · 版权所有</p>
+      <p data-i18n="footerCopyright">© 2024 X-Lab · 版权所有</p>
     </div>
   </footer>
 
   <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('#nav-menu');
+    const langSwitch = document.querySelector('.lang-switch');
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    const i18nAttrElements = document.querySelectorAll('[data-i18n-attr]');
     const qs = new URLSearchParams(location.search);
     const id = qs.get('id') || 'rr1';
     const titleEl = document.getElementById('rd-title');
@@ -63,45 +100,211 @@
     const slugEl = document.getElementById('rd-slug');
     const listEl = document.getElementById('paper-list');
 
-    async function fetchJSON(url){
-      const r = await fetch(url, { headers: { Accept: 'application/json' }});
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return r.json();
+    let currentLang = 'zh';
+    let currentResearch = null;
+    let paperCache = [];
+    let paperStatus = 'empty';
+
+    try {
+      const saved = localStorage.getItem('fil-lang');
+      if (saved === 'zh' || saved === 'en') {
+        currentLang = saved;
+      }
+    } catch (error) {
+      // ignore
     }
 
-    function renderPapers(items){
-      if(!items.length){
-        listEl.innerHTML = '<div class="section-empty">暂无论文</div>';
+    const translations = {
+      zh: {
+        navHome: '首页',
+        navResearch: '研究方向',
+        navTeam: '团队成员',
+        navKeyTech: '科研成果',
+        navPublications: '出版物',
+        navJoin: '联系我们',
+        langChinese: '中文',
+        langEnglish: 'EN',
+        papersHeading: '相关论文',
+        papersEmpty: '暂无论文。',
+        papersLoadFailed: '论文加载失败，请稍后重试。'
+      },
+      en: {
+        navHome: 'Home',
+        navResearch: 'Research',
+        navTeam: 'Team',
+        navKeyTech: 'Key Technologies',
+        navPublications: 'Publications',
+        navJoin: 'Contact',
+        langChinese: 'ZH',
+        langEnglish: 'EN',
+        papersHeading: 'Related Papers',
+        papersEmpty: 'No papers yet.',
+        papersLoadFailed: 'Failed to load papers. Please try again later.'
+      }
+    };
+
+    const attrTranslations = {
+      zh: {
+        navAriaLabel: '主导航',
+        langSwitchLabel: '语言切换'
+      },
+      en: {
+        navAriaLabel: 'Primary navigation',
+        langSwitchLabel: 'Language toggle'
+      }
+    };
+
+    const selectText = (entry, key) => {
+      if (!entry) return '';
+      const zhKey = `${key}Zh`;
+      const enKey = `${key}En`;
+      if (currentLang === 'zh') {
+        return entry[zhKey] || entry[enKey] || '';
+      }
+      return entry[enKey] || entry[zhKey] || '';
+    };
+
+    const updateResearchContent = () => {
+      if (!titleEl || !introEl || !slugEl) return;
+      const defaultTitle = currentLang === 'zh' ? '研究方向' : 'Research';
+      const defaultSlug = currentLang === 'zh' ? '研究方向' : 'Research';
+      const defaultIntro = currentLang === 'zh' ? '（加载中）' : '(loading)';
+      if (!currentResearch) {
+        titleEl.textContent = defaultTitle;
+        slugEl.textContent = defaultSlug;
+        introEl.textContent = defaultIntro;
         return;
       }
-      listEl.innerHTML = items.map(p=>`
+      const title = currentLang === 'zh'
+        ? (currentResearch.titleZh || currentResearch.titleEn || defaultTitle)
+        : (currentResearch.titleEn || currentResearch.titleZh || defaultTitle);
+      const intro = currentLang === 'zh'
+        ? (currentResearch.introZh || currentResearch.introEn || '')
+        : (currentResearch.introEn || currentResearch.introZh || '');
+      titleEl.textContent = title;
+      introEl.textContent = intro;
+      slugEl.textContent = currentLang === 'zh'
+        ? (currentResearch.titleZh || currentResearch.titleEn || defaultSlug)
+        : (currentResearch.titleEn || currentResearch.titleZh || defaultSlug);
+    };
+
+    const renderPaperState = () => {
+      if (!listEl) return;
+      if (!paperCache.length) {
+        const key = paperStatus === 'error' ? 'papersLoadFailed' : 'papersEmpty';
+        listEl.innerHTML = `<div class="section-empty">${translations[currentLang][key]}</div>`;
+        return;
+      }
+      listEl.innerHTML = paperCache.map((p) => `
         <article class="pub-card">
-          <span class="pub-tag">${p.venueZh || p.venueEn || ''}</span>
-          <h3>${p.titleZh || p.titleEn || ''}</h3>
+          <span class="pub-tag">${selectText(p, 'venue')}</span>
+          <h3>${selectText(p, 'title')}</h3>
           ${p.authors ? `<p class="pub-authors">${p.authors}</p>` : ''}
+          ${selectText(p, 'summary') ? `<p class="pub-summary">${selectText(p, 'summary')}</p>` : ''}
           <div class="pub-links">
-            ${p.paperUrl?`<a class="link" href="${p.paperUrl}" target="_blank" rel="noopener">Paper</a>`:''}
-            ${p.codeUrl?`<a class="link" href="${p.codeUrl}" target="_blank" rel="noopener">Code</a>`:''}
+            ${p.paperUrl ? `<a class="link" href="${p.paperUrl}" target="_blank" rel="noopener">${currentLang === 'zh' ? '论文链接 >' : 'Paper >'}</a>` : ''}
+            ${p.codeUrl ? `<a class="link" href="${p.codeUrl}" target="_blank" rel="noopener">${currentLang === 'zh' ? '代码仓库 >' : 'Code >'}</a>` : ''}
           </div>
         </article>
       `).join('');
+    };
+
+    const updateLangButtons = () => {
+      langButtons.forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+      });
+    };
+
+    const applyTranslations = () => {
+      const dict = translations[currentLang];
+      i18nElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        if (!key) return;
+        element.textContent = dict[key] ?? translations.zh[key] ?? element.textContent;
+      });
+      i18nAttrElements.forEach((element) => {
+        const mapping = element.dataset.i18nAttr;
+        if (!mapping) return;
+        mapping.split(';').forEach((pair) => {
+          const [attr, key] = pair.split(':').map((part) => part.trim());
+          if (!attr || !key) return;
+          const value = attrTranslations[currentLang][key] ?? attrTranslations.zh[key] ?? '';
+          if (value) {
+            element.setAttribute(attr, value);
+          }
+        });
+      });
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      if (langSwitch) {
+        langSwitch.setAttribute('data-active-lang', currentLang);
+      }
+      updateLangButtons();
+      updateResearchContent();
+      renderPaperState();
+    };
+
+    const initLangSwitch = () => {
+      langButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (!lang || lang === currentLang) return;
+          if (!(lang in translations)) return;
+          currentLang = lang;
+          try {
+            localStorage.setItem('fil-lang', currentLang);
+          } catch (error) {
+            // ignore
+          }
+          applyTranslations();
+        });
+      });
+    };
+
+    const initNavMenu = () => {
+      if (!navToggle || !navMenu) return;
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        navMenu.classList.toggle('open', !expanded);
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    };
+
+    async function fetchJSON(url) {
+      const r = await fetch(url, { headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
     }
 
     (async () => {
-      try{
+      initNavMenu();
+      initLangSwitch();
+      applyTranslations();
+      try {
         const info = await fetchJSON(`/api/research/${id}`);
-        titleEl.textContent = info.titleZh || info.titleEn || '研究方向';
-        introEl.textContent = info.introZh || info.introEn || '';
-        slugEl.textContent = info.titleEn || 'Research';
-      }catch(e){
-        titleEl.textContent = '研究方向';
-        introEl.textContent = '（加载失败）';
+        currentResearch = info;
+        updateResearchContent();
+      } catch (error) {
+        currentResearch = null;
+        introEl.textContent = currentLang === 'zh' ? '（加载失败）' : '(failed to load)';
       }
-      try{
-        const papers = await fetchJSON(`/api/research/${id}/papers`);
-        renderPapers(papers);
-      }catch(e){
-        renderPapers([]);
+      try {
+        const publications = await fetchJSON('/api/publications');
+        paperCache = Array.isArray(publications)
+          ? publications.filter((pub) => (pub.researchId || '') === id)
+              .sort((a, b) => (b.year || 0) - (a.year || 0))
+          : [];
+        paperStatus = paperCache.length ? 'ready' : 'empty';
+        renderPaperState();
+      } catch (error) {
+        paperCache = [];
+        paperStatus = 'error';
+        renderPaperState();
       }
     })();
   </script>

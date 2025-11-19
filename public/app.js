@@ -84,6 +84,8 @@ const translations = {
     researchCard2Desc: '聚焦去反射、去阴影、去雨/去雪与真实场景超分等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。',
     researchCard3Title: '高层视觉感知',
     researchCard3Desc: '面向跨域检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理，支撑城市与工业场景的实时智能感知。',
+    researchCard4Title: '多模态融合',
+    researchCard4Desc: '面向视觉、语言与异构传感器的协同理解，构建统一的多模态模型与对齐机制，兼顾泛化、解释性与实时性，赋能更鲁棒的智能决策。',
     researchLearnMore: '了解详情',
     keyTechHeading: '关键技术与代表性成果',
     keyTechSubheading: '从原创算法到产业级系统，持续输出高影响力的科研成果。',
@@ -143,6 +145,8 @@ const translations = {
     researchCard2Desc: 'Build end-to-end restoration pipelines and toolkits (e.g., XReflection) for reflection, shadow, rain/snow removal, and real-world super-resolution to ensure stable deployment.',
     researchCard3Title: 'High-level Perception',
     researchCard3Desc: 'Advance cross-domain detection and semantic segmentation through robust feature alignment, spatiotemporal aggregation, and lightweight inference.',
+    researchCard4Title: 'Multimodal Fusion',
+    researchCard4Desc: 'Unify vision, language, and heterogeneous sensor streams with shared models and alignment mechanisms to balance generalization, interpretability, and real-time decisions.',
     researchLearnMore: 'Learn More',
     keyTechHeading: 'Key Technologies & Flagship Outcomes',
     keyTechSubheading: 'From original algorithms to production-grade systems, we deliver high-impact research.',
@@ -289,7 +293,7 @@ const FALLBACK_PARTNERS = [
 const FALLBACK_PUBLICATIONS = [
   {
     id: 'p-001',
-    titleZh: 'MODEM：用于恶劣天气图像恢复的 Morton 顺序退化估计机制',
+    titleZh: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
     titleEn: 'MODEM: A Morton-Order Degradation Estimation Mechanism for Adverse Weather Image Recovery',
     venueZh: 'NeurIPS · 2025',
     venueEn: 'NeurIPS · 2025',

@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import session from 'express-session';
+import bcrypt from 'bcryptjs';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,10 +19,41 @@ const RESEARCH_PAPERS_PATH = path.join(DATA_DIR, 'research_papers.json');
 const PARTNERS_PATH = path.join(DATA_DIR, 'partners.json');
 const SECTIONS_PATH = path.join(DATA_DIR, 'sections.json');
 
+// Admin credentials (in production, store these securely in environment variables or database)
+// Default: username: admin, password: admin123
+const ADMIN_CREDENTIALS = {
+  username: 'admin',
+  // Password hash for 'admin123'
+  passwordHash: '$2b$10$nk4jlU0rwdF2og5a9VI7he5mKbc0jN80fnqd.Uaw0OazOFl0Ay1UC'
+};
+
 const app = express();
 
-app.use(cors());
+// Session configuration
+app.use(session({
+  secret: 'xlab-secret-key-change-in-production',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // Set to true if using HTTPS
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
+
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
+
+// Authentication middleware
+const requireAuth = (req, res, next) => {
+  if (req.session && req.session.isAuthenticated) {
+    return next();
+  }
+  return res.status(401).json({ error: '未授权访问，请先登录' });
+};
 
 // helpers
 const sortByOrderIfPresent = (arr) => {
@@ -78,13 +111,64 @@ const ensureDataSetup = async () => {
   }
 };
 
+// ============================================
+// Authentication Routes
+// ============================================
+
+// Login
+app.post('/api/auth/login', async (req, res) => {
+  const { username, password } = req.body;
+  
+  if (!username || !password) {
+    return res.status(400).json({ error: '请提供用户名和密码' });
+  }
+  
+  // Verify credentials
+  if (username === ADMIN_CREDENTIALS.username) {
+    const isPasswordValid = await bcrypt.compare(password, ADMIN_CREDENTIALS.passwordHash);
+    
+    if (isPasswordValid) {
+      req.session.isAuthenticated = true;
+      req.session.username = username;
+      return res.json({ success: true, message: '登录成功' });
+    }
+  }
+  
+  return res.status(401).json({ error: '用户名或密码错误' });
+});
+
+// Logout
+app.post('/api/auth/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: '登出失败' });
+    }
+    res.json({ success: true, message: '已登出' });
+  });
+});
+
+// Check auth status
+app.get('/api/auth/status', (req, res) => {
+  if (req.session && req.session.isAuthenticated) {
+    return res.json({ 
+      authenticated: true, 
+      username: req.session.username 
+    });
+  }
+  res.json({ authenticated: false });
+});
+
+// ============================================
+// Data API Routes (Protected)
+// ============================================
+
 // Members API
 app.get('/api/members', async (_, res) => {
   const members = await readJson(MEMBERS_PATH);
   res.json(members);
 });
 
-app.post('/api/members', async (req, res) => {
+app.post('/api/members', requireAuth, async (req, res) => {
   const members = await readJson(MEMBERS_PATH);
   const newMember = {
     id: `m-${Date.now()}`,
@@ -95,7 +179,7 @@ app.post('/api/members', async (req, res) => {
   res.status(201).json(newMember);
 });
 
-app.put('/api/members/:id', async (req, res) => {
+app.put('/api/members/:id', requireAuth, async (req, res) => {
   const members = await readJson(MEMBERS_PATH);
   const idx = members.findIndex((member) => member.id === req.params.id);
   if (idx === -1) {
@@ -106,7 +190,7 @@ app.put('/api/members/:id', async (req, res) => {
   res.json(members[idx]);
 });
 
-app.delete('/api/members/:id', async (req, res) => {
+app.delete('/api/members/:id', requireAuth, async (req, res) => {
   const members = await readJson(MEMBERS_PATH);
   const filtered = members.filter((member) => member.id !== req.params.id);
   if (filtered.length === members.length) {
@@ -123,7 +207,7 @@ app.get('/api/publications', async (_, res) => {
   res.json(sorted);
 });
 
-app.post('/api/publications', async (req, res) => {
+app.post('/api/publications', requireAuth, async (req, res) => {
   const publications = await readJson(PUBLICATIONS_PATH);
   const newPub = {
     id: `p-${Date.now()}`,
@@ -134,7 +218,7 @@ app.post('/api/publications', async (req, res) => {
   res.status(201).json(newPub);
 });
 
-app.put('/api/publications/:id', async (req, res) => {
+app.put('/api/publications/:id', requireAuth, async (req, res) => {
   const publications = await readJson(PUBLICATIONS_PATH);
   const idx = publications.findIndex((pub) => pub.id === req.params.id);
   if (idx === -1) {
@@ -145,7 +229,7 @@ app.put('/api/publications/:id', async (req, res) => {
   res.json(publications[idx]);
 });
 
-app.delete('/api/publications/:id', async (req, res) => {
+app.delete('/api/publications/:id', requireAuth, async (req, res) => {
   const publications = await readJson(PUBLICATIONS_PATH);
   const filtered = publications.filter((pub) => pub.id !== req.params.id);
   if (filtered.length === publications.length) {
@@ -170,7 +254,7 @@ app.get('/api/slides/:id', async (req, res) => {
   res.json(slide);
 });
 
-app.post('/api/slides', async (req, res) => {
+app.post('/api/slides', requireAuth, async (req, res) => {
   const slides = await readJson(SLIDES_PATH);
   const newSlide = {
     id: `s-${Date.now()}`,
@@ -181,7 +265,7 @@ app.post('/api/slides', async (req, res) => {
   res.status(201).json(newSlide);
 });
 
-app.put('/api/slides/:id', async (req, res) => {
+app.put('/api/slides/:id', requireAuth, async (req, res) => {
   const slides = await readJson(SLIDES_PATH);
   const idx = slides.findIndex((slide) => slide.id === req.params.id);
   if (idx === -1) {
@@ -192,7 +276,7 @@ app.put('/api/slides/:id', async (req, res) => {
   res.json(slides[idx]);
 });
 
-app.delete('/api/slides/:id', async (req, res) => {
+app.delete('/api/slides/:id', requireAuth, async (req, res) => {
   const slides = await readJson(SLIDES_PATH);
   const filtered = slides.filter((slide) => slide.id !== req.params.id);
   if (filtered.length === slides.length) {
@@ -217,7 +301,7 @@ app.get('/api/key-tech/:id', async (req, res) => {
   res.json(item);
 });
 
-app.post('/api/key-tech', async (req, res) => {
+app.post('/api/key-tech', requireAuth, async (req, res) => {
   const tech = await readJson(TECH_PATH);
   const newItem = {
     id: `t-${Date.now()}`,
@@ -228,7 +312,7 @@ app.post('/api/key-tech', async (req, res) => {
   res.status(201).json(newItem);
 });
 
-app.put('/api/key-tech/:id', async (req, res) => {
+app.put('/api/key-tech/:id', requireAuth, async (req, res) => {
   const tech = await readJson(TECH_PATH);
   const idx = tech.findIndex((item) => item.id === req.params.id);
   if (idx === -1) {
@@ -239,7 +323,7 @@ app.put('/api/key-tech/:id', async (req, res) => {
   res.json(tech[idx]);
 });
 
-app.delete('/api/key-tech/:id', async (req, res) => {
+app.delete('/api/key-tech/:id', requireAuth, async (req, res) => {
   const tech = await readJson(TECH_PATH);
   const filtered = tech.filter((item) => item.id !== req.params.id);
   if (filtered.length === tech.length) {
@@ -262,7 +346,7 @@ app.get('/api/research/:id', async (req, res) => {
   res.json(found);
 });
 
-app.post('/api/research', async (req, res) => {
+app.post('/api/research', requireAuth, async (req, res) => {
   const items = await readJson(RESEARCH_PATH);
   const newItem = { id: `r-${Date.now()}`, ...req.body };
   items.push(newItem);
@@ -270,7 +354,7 @@ app.post('/api/research', async (req, res) => {
   res.status(201).json(newItem);
 });
 
-app.put('/api/research/:id', async (req, res) => {
+app.put('/api/research/:id', requireAuth, async (req, res) => {
   const items = await readJson(RESEARCH_PATH);
   const idx = items.findIndex((r) => r.id === req.params.id);
   if (idx === -1) return res.status(404).json({ message: 'Research not found' });
@@ -279,7 +363,7 @@ app.put('/api/research/:id', async (req, res) => {
   res.json(items[idx]);
 });
 
-app.delete('/api/research/:id', async (req, res) => {
+app.delete('/api/research/:id', requireAuth, async (req, res) => {
   const items = await readJson(RESEARCH_PATH);
   const filtered = items.filter((r) => r.id !== req.params.id);
   if (filtered.length === items.length) return res.status(404).json({ message: 'Research not found' });
@@ -299,7 +383,7 @@ app.get('/api/research/:id/papers', async (req, res) => {
   res.json(map[req.params.id] || []);
 });
 
-app.post('/api/research/:id/papers', async (req, res) => {
+app.post('/api/research/:id/papers', requireAuth, async (req, res) => {
   const map = await readJson(RESEARCH_PAPERS_PATH);
   const list = map[req.params.id] || [];
   const newPaper = { id: `rp-${Date.now()}`, ...req.body };
@@ -309,7 +393,7 @@ app.post('/api/research/:id/papers', async (req, res) => {
   res.status(201).json(newPaper);
 });
 
-app.put('/api/research/:id/papers/:pid', async (req, res) => {
+app.put('/api/research/:id/papers/:pid', requireAuth, async (req, res) => {
   const map = await readJson(RESEARCH_PAPERS_PATH);
   const list = map[req.params.id] || [];
   const idx = list.findIndex((p) => p.id === req.params.pid);
@@ -320,7 +404,7 @@ app.put('/api/research/:id/papers/:pid', async (req, res) => {
   res.json(list[idx]);
 });
 
-app.delete('/api/research/:id/papers/:pid', async (req, res) => {
+app.delete('/api/research/:id/papers/:pid', requireAuth, async (req, res) => {
   const map = await readJson(RESEARCH_PAPERS_PATH);
   const list = map[req.params.id] || [];
   const filtered = list.filter((p) => p.id != req.params.pid);
@@ -336,7 +420,7 @@ app.get('/api/partners', async (_, res) => {
   res.json(sortByOrderIfPresent(partners));
 });
 
-app.post('/api/partners', async (req, res) => {
+app.post('/api/partners', requireAuth, async (req, res) => {
   const partners = await readJson(PARTNERS_PATH);
   const newPartner = {
     id: `partner-${Date.now()}`,
@@ -347,7 +431,7 @@ app.post('/api/partners', async (req, res) => {
   res.status(201).json(newPartner);
 });
 
-app.put('/api/partners/:id', async (req, res) => {
+app.put('/api/partners/:id', requireAuth, async (req, res) => {
   const partners = await readJson(PARTNERS_PATH);
   const idx = partners.findIndex((item) => item.id === req.params.id);
   if (idx === -1) {
@@ -358,7 +442,7 @@ app.put('/api/partners/:id', async (req, res) => {
   res.json(partners[idx]);
 });
 
-app.delete('/api/partners/:id', async (req, res) => {
+app.delete('/api/partners/:id', requireAuth, async (req, res) => {
   const partners = await readJson(PARTNERS_PATH);
   const filtered = partners.filter((item) => item.id !== req.params.id);
   if (filtered.length === partners.length) {
@@ -377,7 +461,7 @@ app.get('/api/sections', async (_, res) => {
   res.json(sorted);
 });
 
-app.put('/api/sections/:id', async (req, res) => {
+app.put('/api/sections/:id', requireAuth, async (req, res) => {
   const sections = await readJson(SECTIONS_PATH);
   const idx = sections.findIndex((s) => s.id === req.params.id);
   if (idx === -1) {
@@ -388,12 +472,22 @@ app.put('/api/sections/:id', async (req, res) => {
   res.json(sections[idx]);
 });
 
-// Serve admin.html with no-store to avoid browser caching old admin panel
+// ============================================
+// Static Files and Admin Access Control
+// ============================================
+
+// Protect admin.html - require authentication
 app.get('/admin.html', (req, res) => {
+  // Check if user is authenticated
+  if (!req.session || !req.session.isAuthenticated) {
+    return res.redirect('/login.html');
+  }
+  
   res.set('Cache-Control', 'no-store');
   res.sendFile(path.join(ROOT_DIR, 'public', 'admin.html'));
 });
 
+// Serve static files (public pages)
 app.use(express.static(path.join(ROOT_DIR, 'public')));
 
 const PORT = process.env.PORT || 3000;
