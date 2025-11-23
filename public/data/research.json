@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rr1",
+    "order": 1,
+    "titleZh": "图像增强",
+    "titleEn": "Image Enhancement",
+    "introZh": "聚焦低光环境下的图像增强，构建自适应照度建模与噪声抑制方案，让真实场景在暗光中依旧保持细节与自然色彩。",
+    "introEn": "Focus on low-light image enhancement by modeling illumination adaptively and suppressing noise, so real-world scenes retain details and natural colors even in darkness.",
+    "slug": "image-enhancement"
+  },
+  {
+    "id": "rr2",
+    "order": 2,
+    "titleZh": "图像恢复",
+    "titleEn": "Image Restoration",
+    "introZh": "聚焦去反射、去阴影、去雨/去雪与真实场景超分等任务，构建端到端恢复框架与工具箱（如 XReflection），保障真实应用的稳定输出。",
+    "introEn": "Build end-to-end restoration frameworks and toolkits (e.g., XReflection) for reflection, shadow, rain/snow removal, and real-world super-resolution, covering data curation, training pipelines, and deployment-ready inference to ensure stable output.",
+    "slug": "image-restoration"
+  },
+  {
+    "id": "rr3",
+    "order": 3,
+    "titleZh": "高层视觉感知",
+    "titleEn": "High-level Perception",
+    "introZh": "面向跨域目标检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理策略，支撑城市与工业场景的实时智能感知。",
+    "introEn": "Tackle cross-domain detection and semantic segmentation via robust feature alignment, spatiotemporal aggregation, and lightweight inference to empower real-time perception in urban and industrial settings.",
+    "slug": "high-level-perception"
+  },
+  {
+    "id": "rr4",
+    "order": 4,
+    "titleZh": "多模态融合",
+    "titleEn": "Multimodal Fusion",
+    "introZh": "聚焦跨模态感知与融合算法，构建统一的图像、文本、传感器数据协同理解体系，支撑更鲁棒的智能决策。",
+    "introEn": "Advance multimodal perception and fusion algorithms that unify vision, language, and sensor data for more robust intelligent decision-making.",
+    "slug": "multimodal-fusion"
+  }
+]

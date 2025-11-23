@@ -1,0 +1,93 @@
+[
+  {
+    "id": "partner-001",
+    "nameZh": "清华大学",
+    "nameEn": "Tsinghua University",
+    "image": "image/合作伙伴/清华大学.png",
+    "link": "https://www.tsinghua.edu.cn/",
+    "altZh": "",
+    "altEn": ""
+  },
+  {
+    "id": "partner-004",
+    "nameZh": "北京大学",
+    "nameEn": "Peking University",
+    "image": "image/合作伙伴/北京大学.png",
+    "link": "https://www.pku.edu.cn/",
+    "altZh": "北京大学 Logo",
+    "altEn": "Peking University Logo"
+  },
+  {
+    "id": "partner-005",
+    "nameZh": "新加坡国立大学",
+    "nameEn": "National University of Singapore",
+    "image": "image/合作伙伴/新加坡国立大学.png",
+    "link": "https://nus.edu.sg/",
+    "altZh": "新加坡国立大学 Logo",
+    "altEn": "National University of Singapore Logo"
+  },
+  {
+    "id": "partner-006",
+    "nameZh": "中国科学院",
+    "nameEn": "Chinese Academy of Sciences",
+    "image": "image/合作伙伴/中国科学院.png",
+    "link": "https://www.cas.cn/",
+    "altZh": "中国科学院 Logo",
+    "altEn": "Chinese Academy of Sciences Logo"
+  },
+  {
+    "id": "partner-007",
+    "nameZh": "斯坦福大学",
+    "nameEn": "Stanford University",
+    "image": "image/合作伙伴/斯坦福大学.png",
+    "link": "https://www.stanford.edu/",
+    "altZh": "斯坦福大学 Logo",
+    "altEn": "Stanford University Logo"
+  }
+  ,
+  {
+    "id": "partner-008",
+    "nameZh": "腾讯",
+    "nameEn": "Tencent",
+    "image": "image/合作伙伴/腾讯.png",
+    "link": "https://www.tencent.com/",
+    "altZh": "腾讯 Logo",
+    "altEn": "Tencent Logo"
+  },
+  {
+    "id": "partner-009",
+    "nameZh": "华为",
+    "nameEn": "Huawei",
+    "image": "image/合作伙伴/华为.png",
+    "link": "https://www.huawei.com/",
+    "altZh": "华为 Logo",
+    "altEn": "Huawei Logo"
+  },
+  {
+    "id": "partner-010",
+    "nameZh": "小米",
+    "nameEn": "Xiaomi",
+    "image": "image/合作伙伴/小米.png",
+    "link": "https://www.mi.com/",
+    "altZh": "小米 Logo",
+    "altEn": "Xiaomi Logo"
+  },
+  {
+    "id": "partner-011",
+    "nameZh": "京东",
+    "nameEn": "JD.com",
+    "image": "image/合作伙伴/京东.png",
+    "link": "https://www.jd.com/",
+    "altZh": "京东 Logo",
+    "altEn": "JD.com Logo"
+  },
+  {
+    "id": "partner-012",
+    "nameZh": "vivo",
+    "nameEn": "vivo",
+    "image": "image/合作伙伴/vivo.png",
+    "link": "https://www.vivo.com/",
+    "altZh": "vivo Logo",
+    "altEn": "vivo Logo"
+  }
+]
