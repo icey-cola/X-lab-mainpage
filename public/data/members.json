@@ -10,17 +10,7 @@
     "group": "teacher",
     "avatar": "image/members/郭晓杰.jpg"
   },
-  {
-    "id": "m-fuyuanbin-2021",
-    "nameZh": "付园斌",
-    "nameEn": "Yuanbin Fu",
-    "roleZh": "2021级",
-    "roleEn": "Since 2021",
-    "group": "phd",
-    "avatar": "image/members/付园斌.jpg",
-    "bioZh": "研究方向为计算机视觉、图像处理与深度学习。",
-    "bioEn": "Research interests include computer vision, image processing, and deep learning."
-  },
+ 
   {
     "id": "m-huqiming-2022",
     "nameZh": "胡启明",
@@ -372,5 +362,16 @@
     "avatar": "",
     "bioZh": "",
     "bioEn": ""
+  },
+    {
+    "id": "m-fuyuanbin-2021",
+    "nameZh": "付园斌",
+    "nameEn": "Yuanbin Fu",
+    "roleZh": "2021级",
+    "roleEn": "Since 2021",
+    "group": "alumni",
+    "avatar": "image/members/付园斌.jpg",
+    "bioZh": "研究方向为计算机视觉、图像处理与深度学习。",
+    "bioEn": "Research interests include computer vision, image processing, and deep learning."
   }
 ]

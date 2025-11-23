@@ -78,10 +78,8 @@ const translations = {
     heroStatProjects: '合作项目',
     researchHeading: '核心研究方向',
     researchSubheading: '围绕人工智能与计算机视觉的关键议题，布局未来十年的技术突破口。',
-    researchCard1Title: '图像增强',
-    researchCard1Desc: '专注低光场景的自适应增强，通过照度建模与噪声抑制在暗光中恢复自然细节。',
-    researchCard2Title: '图像恢复',
-    researchCard2Desc: '聚焦去反射、去阴影、去雨/去雪与真实场景超分等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。',
+    researchCard1Title: '底层视觉恢复',
+    researchCard1Desc: '涵盖超分、低光增强、去除雨雪雾等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。',
     researchCard3Title: '高层视觉感知',
     researchCard3Desc: '面向跨域检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理，支撑城市与工业场景的实时智能感知。',
     researchCard4Title: '多模态融合',
@@ -139,10 +137,8 @@ const translations = {
     heroStatProjects: 'Industry collaborations',
     researchHeading: 'Core Research Areas',
     researchSubheading: 'We map out the next decade of breakthroughs in AI and computer vision.',
-    researchCard1Title: 'Image Enhancement',
-    researchCard1Desc: 'Focus on low-light enhancement by modeling illumination adaptively and suppressing noise to keep real-world details.',
-    researchCard2Title: 'Image Restoration',
-    researchCard2Desc: 'Build end-to-end restoration pipelines and toolkits (e.g., XReflection) for reflection, shadow, rain/snow removal, and real-world super-resolution to ensure stable deployment.',
+    researchCard1Title: 'Low-level Vision Restoration',
+    researchCard1Desc: 'Covering super-resolution, low-light enhancement, rain/snow/fog removal, etc., building end-to-end restoration toolboxes (e.g., XReflection) to ensure stable output in real-world applications.',
     researchCard3Title: 'High-level Perception',
     researchCard3Desc: 'Advance cross-domain detection and semantic segmentation through robust feature alignment, spatiotemporal aggregation, and lightweight inference.',
     researchCard4Title: 'Multimodal Fusion',
@@ -915,6 +911,33 @@ const loadMembers = async () => {
   }
 };
 
+const loadImageWall = async () => {
+  const track = document.getElementById('image-wall-track');
+  if (!track) return;
+  
+  try {
+    const data = await fetchCollection('/api/image-wall');
+    if (!data || !data.length) return;
+
+    // Duplicate items to create seamless loop effect
+    // We need enough items to fill the screen width + buffer
+    // Simple strategy: repeat the list enough times
+    const itemsToRender = [...data, ...data, ...data, ...data]; 
+
+    track.innerHTML = itemsToRender.map(item => `
+      <div class="image-wall-item">
+        <a href="${item.link || '#'}" target="${item.link ? '_blank' : '_self'}">
+          <img src="${item.image}" alt="${item.title || ''}" loading="lazy">
+          ${item.title ? `<div class="image-wall-caption">${item.title}</div>` : ''}
+        </a>
+      </div>
+    `).join('');
+    
+  } catch (error) {
+    console.error('Failed to load image wall.', error);
+  }
+};
+
 const initLangSwitch = () => {
   updateLangButtons();
   applyTranslations();
@@ -1063,6 +1086,7 @@ const init = () => {
   loadPartners();
   loadPublications();
   loadMembers();
+  loadImageWall();
 };
 
 init();

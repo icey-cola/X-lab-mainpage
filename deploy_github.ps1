@@ -51,6 +51,7 @@ Replace-InFile "$DEPLOY_DIR\app.js" "/api/key-tech" "data/key_tech.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/partners" "data/partners.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/publications" "data/publications.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/members" "data/members.json"
+Replace-InFile "$DEPLOY_DIR\app.js" "/api/image-wall" "data/image_wall.json"
 
 # team.html replacements
 Replace-InFile "$DEPLOY_DIR\team.html" "/api/members" "data/members.json"

@@ -2,20 +2,11 @@
   {
     "id": "rr1",
     "order": 1,
-    "titleZh": "图像增强",
-    "titleEn": "Image Enhancement",
-    "introZh": "聚焦低光环境下的图像增强，构建自适应照度建模与噪声抑制方案，让真实场景在暗光中依旧保持细节与自然色彩。",
-    "introEn": "Focus on low-light image enhancement by modeling illumination adaptively and suppressing noise, so real-world scenes retain details and natural colors even in darkness.",
-    "slug": "image-enhancement"
-  },
-  {
-    "id": "rr2",
-    "order": 2,
-    "titleZh": "图像恢复",
-    "titleEn": "Image Restoration",
-    "introZh": "聚焦去反射、去阴影、去雨/去雪与真实场景超分等任务，构建端到端恢复框架与工具箱（如 XReflection），保障真实应用的稳定输出。",
-    "introEn": "Build end-to-end restoration frameworks and toolkits (e.g., XReflection) for reflection, shadow, rain/snow removal, and real-world super-resolution, covering data curation, training pipelines, and deployment-ready inference to ensure stable output.",
-    "slug": "image-restoration"
+    "titleZh": "底层视觉恢复",
+    "titleEn": "Low-level Vision Restoration",
+    "introZh": "涵盖超分、低光增强、去除雨雪雾等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。",
+    "introEn": "Covering super-resolution, low-light enhancement, rain/snow/fog removal, etc., building end-to-end restoration toolboxes (e.g., XReflection) to ensure stable output in real-world applications.",
+    "slug": "low-level-vision-restoration"
   },
   {
     "id": "rr3",

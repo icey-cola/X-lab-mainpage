@@ -1,0 +1,32 @@
+﻿[
+  {
+    "id": "w-001",
+    "image": "image/顶端横幅/1.png",
+    "link": "research-detail.html?id=rr1",
+    "title": "Low-level Vision Restoration"
+  },
+  {
+    "id": "w-003",
+    "image": "image/顶端横幅/1.png",
+    "link": "research-detail.html?id=rr3",
+    "title": "High-level Vision"
+  },
+  {
+    "id": "w-004",
+    "image": "image/顶端横幅/1.png",
+    "link": "research-detail.html?id=rr4",
+    "title": "Multi-modal Fusion"
+  },
+  {
+    "id": "w-005",
+    "image": "image/顶端横幅/1.png",
+    "link": "research-detail.html?id=rr1",
+    "title": "Low-level Vision Restoration"
+  },
+  {
+    "id": "w-006",
+    "image": "image/顶端横幅/1.png",
+    "link": "research-detail.html?id=rr3",
+    "title": "High-level Vision"
+  }
+]

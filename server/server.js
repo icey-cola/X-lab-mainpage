@@ -17,6 +17,7 @@ const TECH_PATH = path.join(DATA_DIR, 'key_tech.json');
 const RESEARCH_PATH = path.join(DATA_DIR, 'research.json');
 const RESEARCH_PAPERS_PATH = path.join(DATA_DIR, 'research_papers.json');
 const PARTNERS_PATH = path.join(DATA_DIR, 'partners.json');
+const IMAGE_WALL_PATH = path.join(DATA_DIR, 'image_wall.json');
 const SECTIONS_PATH = path.join(DATA_DIR, 'sections.json');
 
 // Admin credentials (in production, store these securely in environment variables or database)
@@ -90,6 +91,7 @@ const ensureDataSetup = async () => {
     { path: RESEARCH_PATH, initial: [] },
     { path: RESEARCH_PAPERS_PATH, initial: {} },
     { path: PARTNERS_PATH, initial: [] },
+    { path: IMAGE_WALL_PATH, initial: [] },
     { path: SECTIONS_PATH, initial: [
       { id: 'hero', label: '首页横幅', order: 1, collapsed: false },
       { id: 'team', label: '团队成员', order: 2, collapsed: true },
@@ -449,6 +451,44 @@ app.delete('/api/partners/:id', requireAuth, async (req, res) => {
     return res.status(404).json({ message: 'Partner not found' });
   }
   await writeJson(PARTNERS_PATH, filtered);
+  res.status(204).end();
+});
+
+// Image Wall API
+app.get('/api/image-wall', async (_, res) => {
+  const items = await readJson(IMAGE_WALL_PATH);
+  res.json(items);
+});
+
+app.post('/api/image-wall', requireAuth, async (req, res) => {
+  const items = await readJson(IMAGE_WALL_PATH);
+  const newItem = {
+    id: `w-${Date.now()}`,
+    ...req.body,
+  };
+  items.push(newItem);
+  await writeJson(IMAGE_WALL_PATH, items);
+  res.status(201).json(newItem);
+});
+
+app.put('/api/image-wall/:id', requireAuth, async (req, res) => {
+  const items = await readJson(IMAGE_WALL_PATH);
+  const idx = items.findIndex((item) => item.id === req.params.id);
+  if (idx === -1) {
+    return res.status(404).json({ message: 'Item not found' });
+  }
+  items[idx] = { ...items[idx], ...req.body };
+  await writeJson(IMAGE_WALL_PATH, items);
+  res.json(items[idx]);
+});
+
+app.delete('/api/image-wall/:id', requireAuth, async (req, res) => {
+  const items = await readJson(IMAGE_WALL_PATH);
+  const filtered = items.filter((item) => item.id !== req.params.id);
+  if (filtered.length === items.length) {
+    return res.status(404).json({ message: 'Item not found' });
+  }
+  await writeJson(IMAGE_WALL_PATH, filtered);
   res.status(204).end();
 });
 

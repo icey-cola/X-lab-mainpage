@@ -11,7 +11,7 @@
     "paperUrl": "https://arxiv.org/pdf/2505.17581",
     "codeUrl": "https://github.com/hainuo-wang/MODEM",
     "year": 2025,
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-002",
@@ -53,7 +53,7 @@
     "summaryEn": "A luminance-color divide-and-conquer strategy enables controllable shadow editing and removal.",
     "paperUrl": "https://arxiv.org/pdf/2412.02545",
     "codeUrl": "https://github.com/lime-j/ShadowHack",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-1762051000003",
@@ -109,7 +109,7 @@
     "summaryEn": "Regional attention explicitly models diverse shadow regions for better removal results.",
     "paperUrl": "https://arxiv.org/pdf/2411.14201",
     "codeUrl": "https://github.com/CalcuLuUus/RASM",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2024-003",
@@ -151,7 +151,7 @@
     "summaryEn": "Depth-aware priors enable temporally consistent unpaired video dehazing.",
     "paperUrl": "https://www.semanticscholar.org/paper/Depth-Aware-Unpaired-Video-Dehazing-Yang-Guo/e6dd4807c3319cc4932a915f1b3995b2a5d79261",
     "codeUrl": "https://github.com/YaN9-Y/DUVD",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2024-006",
@@ -207,7 +207,7 @@
     "summaryEn": "Explicit density and depth decomposition enables robust unpaired image dehazing.",
     "paperUrl": "https://ieeexplore.ieee.org/document/9878571",
     "codeUrl": "https://github.com/YaN9-Y/D4_plus",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2023-003",
@@ -221,7 +221,7 @@
     "summaryEn": "Component synergy enhances interaction between scene and reflection layers for clearer results.",
     "paperUrl": "https://arxiv.org/pdf/2308.10027",
     "codeUrl": "https://github.com/mingcv/DSRNet",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2023-004",
@@ -249,7 +249,7 @@
     "summaryEn": "Progressive attention modules preserve spectral fidelity during pan-sharpening.",
     "paperUrl": "https://ieeexplore.ieee.org/document/10415854",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2023-006",
@@ -375,7 +375,7 @@
     "summaryEn": "A comprehensive survey covering enhancement, restoration, and fusion paradigms for dehazing.",
     "paperUrl": "https://www.sciencedirect.com/science/article/abs/pii/S1566253522000641",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2022-007",
@@ -557,7 +557,7 @@
     "summaryEn": "Interactive dual-stream strategy removes reflections from single images while keeping scene fidelity.",
     "paperUrl": "https://proceedings.neurips.cc/paper_files/paper/2021/file/cf1f78fe923afe05f7597da2be7a3da8-Paper.pdf",
     "codeUrl": "https://github.com/mingcv/YTMT-Strategy",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2021-002",
@@ -599,7 +599,7 @@
     "summaryEn": "Dual-domain distillation suppresses moiré patterns from captured screens.",
     "paperUrl": "https://ieeexplore.ieee.org/document/9428091",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2021-005",
@@ -754,7 +754,7 @@
     "summaryEn": "A mutually guided filtering framework preserves structures and details across modalities.",
     "paperUrl": "https://ieeexplore.ieee.org/document/8550683",
     "codeUrl": "https://sites.google.com/view/xjguo/mugif",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2019-002",
@@ -814,7 +814,7 @@
     "summaryEn": "Robust outlier estimation improves low-rank matrix recovery under heavy noise.",
     "paperUrl": "https://ieeexplore.ieee.org/document/8410580",
     "codeUrl": "https://sites.google.com/view/xjguo/route",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2018-003",
@@ -844,7 +844,7 @@
     "summaryEn": "Soft clustering guidance separates structure from texture for edge-aware smoothing.",
     "paperUrl": "https://ieeexplore.ieee.org/abstract/document/8486448",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2018-005",
@@ -859,7 +859,7 @@
     "summaryEn": "Joint structure discovery and texture smoothing enable high-quality decomposition.",
     "paperUrl": "https://ieeexplore.ieee.org/abstract/document/8486465",
     "codeUrl": "https://sites.google.com/view/xjguo/sdts",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2017-001",
@@ -874,7 +874,7 @@
     "summaryEn": "Mutually guided filtering shares structural cues across tasks for better editing.",
     "paperUrl": "https://dl.acm.org/doi/abs/10.1145/3123266.3123378",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2017-002",
@@ -889,7 +889,7 @@
     "summaryEn": "ROUTE improves low-rank recovery via robust outlier estimation.",
     "paperUrl": "https://www.ijcai.org/proceedings/2017/242",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2017-003",
@@ -934,7 +934,7 @@
     "summaryEn": "Layer priors enable single-image rain streak separation while keeping background details.",
     "paperUrl": "https://ieeexplore.ieee.org/abstract/document/7934436",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2016-001",
@@ -1069,7 +1069,7 @@
     "summaryEn": "Jointly separates reflections from multiple images to recover clean scenes.",
     "paperUrl": "https://ieeexplore.ieee.org/document/6909678",
     "codeUrl": "#",
-    "researchId": "rr2"
+    "researchId": "rr1"
   },
   {
     "id": "p-2014-003",
