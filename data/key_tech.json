@@ -25,9 +25,9 @@
     "descriptionEn": "Morton-order modeling with multi-scale degradation estimation delivers superior restoration under heavy rain and haze.",
     "media": "image/关键技术/modem.mp4",
     "mediaType": "video",
-    "link": "https://arxiv.org/abs/2505.17581",
-    "linkLabelZh": "查看论文 >",
-    "linkLabelEn": "Read Paper >",
+    "link": "https://github.com/hainuo-wang/MODEM",
+    "linkLabelZh": "访问项目 >",
+    "linkLabelEn": "Explore Project >",
     "altZh": "",
     "altEn": ""
   }

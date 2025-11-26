@@ -296,6 +296,7 @@ img {
   display: flex;
   align-items: center;
   gap: 14px;
+  overflow: visible;
 }
 
 .logo-mark {
@@ -304,6 +305,9 @@ img {
   display: block;
   border-radius: 14px;
   object-fit: contain;
+  transform: scale(1.6);
+  transform-origin: left center;
+  margin-right: 15px;
 }
 
 .logo-text {
@@ -1081,6 +1085,19 @@ main > section + section {
   }
 }
 
+@media (max-width: 640px) {
+  .partner-card {
+    padding: clamp(12px, 4vw, 18px);
+  }
+
+  .partner-card img {
+    width: auto;
+    height: auto;
+    max-width: clamp(80px, 30vw, 120px);
+    max-height: clamp(80px, 30vw, 120px);
+  }
+}
+
 
 /* Prevent subheadings from wrapping too early on wide screens */
 @media (min-width: 1024px) {
@@ -1154,8 +1171,9 @@ main > section + section {
     grid-template-columns: 1fr;
   }
   .team-card.mini .avatar {
-    width: 100%;
+    width: clamp(100px, 55vw, 160px);
     min-height: 55px;
+    margin: 0 auto;
   }
 }
 

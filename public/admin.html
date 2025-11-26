@@ -177,7 +177,7 @@
     <button class="logout-btn" onclick="handleLogout()">退出登录</button>
   </div>
 
-    <section id="slides-section" class="collapsible collapsed">
+  <section id="slides-section" class="collapsible collapsed">
     <div class="section-header">
       <h2>首页横幅</h2>
       <button type="button" class="collapse-btn" data-target="slides-section" aria-expanded="false">展开</button>
@@ -202,6 +202,27 @@
       <button type="submit">保存横幅</button>
     </form>
     <div id="slides-table-wrapper" class="empty">正在加载横幅列表…</div>
+  </section>
+
+  <section id="image-wall-section" class="collapsible collapsed">
+    <div class="section-header">
+      <h2>研究图片走马灯</h2>
+      <button type="button" class="collapse-btn" data-target="image-wall-section" aria-expanded="false">展开</button>
+    </div>
+    <form id="image-wall-form">
+      <input type="hidden" id="image-wall-id">
+      <label>标题（鼠标悬浮时显示，可选）
+        <input id="image-wall-title" placeholder="X-Lab · Vision Restoration">
+      </label>
+      <label>图片路径
+        <input id="image-wall-image" placeholder="image/wall/sample.jpg" required>
+      </label>
+      <label>跳转链接（可选）
+        <input id="image-wall-link" placeholder="https://example.com/detail">
+      </label>
+      <button type="submit">保存图片</button>
+    </form>
+    <div id="image-wall-table-wrapper" class="empty">正在加载图片墙…</div>
   </section>
 
   <section id="members-section" class="collapsible collapsed">
@@ -518,6 +539,8 @@
 
       const slideForm = getEl('slide-form');
       const slidesWrapper = getEl('slides-table-wrapper');
+      const imageWallForm = getEl('image-wall-form');
+      const imageWallWrapper = getEl('image-wall-table-wrapper');
       const techForm = getEl('tech-form');
       const techWrapper = getEl('tech-table-wrapper');
       const partnerForm = getEl('partner-form');
@@ -603,6 +626,86 @@
           try {
             await handleRequest(`/api/slides/${id}`, { method: 'DELETE' }, '删除横幅');
             await loadSlides();
+          } catch (error) {
+            alert(error.message);
+          }
+        }
+      });
+
+      const loadImageWallItems = async () => {
+        if (!imageWallWrapper) return;
+        setEmpty(imageWallWrapper, '正在加载图片墙…');
+        try {
+          const data = await fetchJson('/api/image-wall', '加载图片墙');
+          const rows = Array.isArray(data) ? data.map((item) => `
+            <tr>
+              <td>${escapeHtml(item.title || '')}</td>
+              <td>${escapeHtml(item.image || '')}</td>
+              <td>${escapeHtml(item.link || '')}</td>
+              <td>
+                <button data-type="image-wall" data-action="edit" data-id="${escapeHtml(item.id)}">编辑</button>
+                <button class="danger" data-type="image-wall" data-action="delete" data-id="${escapeHtml(item.id)}">删除</button>
+              </td>
+            </tr>
+          `).join('') : '';
+          renderTable(imageWallWrapper, ['标题', '图片', '链接', '操作'], rows);
+        } catch (error) {
+          setEmpty(imageWallWrapper, error.message || '加载失败，请检查服务器日志。');
+        }
+      };
+
+      imageWallForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const payload = {
+          title: getEl('image-wall-title').value,
+          image: getEl('image-wall-image').value,
+          link: getEl('image-wall-link').value,
+        };
+        const id = getEl('image-wall-id').value;
+        try {
+          if (id) {
+            await handleRequest(`/api/image-wall/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '更新图片墙');
+          } else {
+            await handleRequest('/api/image-wall', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }, '新增图片墙');
+          }
+          imageWallForm.reset();
+          await loadImageWallItems();
+        } catch (error) {
+          alert(error.message);
+        }
+      });
+
+      imageWallWrapper.addEventListener('click', async (event) => {
+        const btn = event.target.closest('button[data-type="image-wall"]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        if (!id) return;
+        if (action === 'edit') {
+          try {
+            const data = await fetchJson('/api/image-wall', '加载图片墙');
+            const item = Array.isArray(data) ? data.find((entry) => entry.id === id) : null;
+            if (!item) return;
+            getEl('image-wall-id').value = item.id;
+            getEl('image-wall-title').value = item.title || '';
+            getEl('image-wall-image').value = item.image || '';
+            getEl('image-wall-link').value = item.link || '';
+          } catch (error) {
+            alert(error.message);
+          }
+          return;
+        }
+        if (action === 'delete' && confirm('确定删除该图片吗？')) {
+          try {
+            await handleRequest(`/api/image-wall/${id}`, { method: 'DELETE' }, '删除图片');
+            await loadImageWallItems();
           } catch (error) {
             alert(error.message);
           }
@@ -990,6 +1093,7 @@
       await loadResearchOptions();
       await Promise.allSettled([
         loadSlides(),
+        loadImageWallItems(),
         loadKeyTech(),
         loadPartners(),
           loadMembers(),

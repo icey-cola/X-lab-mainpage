@@ -73,7 +73,7 @@ const translations = {
     heroCTAResearch: '探索研究方向',
     heroCTAJoin: '联系我们',
     heroStatPapers: '学术论文 (Top-tier)',
-    heroStatPatents: '奖项荣誉',
+    heroStatPatents: '授权发明专利',
     heroStatPartners: '国际合作伙伴',
     heroStatProjects: '合作项目',
     researchHeading: '核心研究方向',
@@ -101,18 +101,18 @@ const translations = {
     joinCTA: '立即投递简历',
     footerContactTitle: '联系我们',
     footerAddressLabel: '地址： ',
-    footerAddressText: '中国北京市海淀区学府大街 88 号未来科技园 B 座',
+    footerAddressText: '中国天津市津南区雅观路135号天津大学',
     footerPhoneLabel: '电话： ',
     footerPhoneText: '+86 10 1234 5678',
     footerEmailLabel: '邮箱： ',
-    footerEmailText: 'contact@futurelab.ai',
+    footerEmailText: 'xj.max.guo (at) gmail.com',
     footerLinksTitle: '快速链接',
     footerFollowTitle: '关注我们',
     footerSocialGithub: 'GitHub',
     footerSocialLinkedIn: 'LinkedIn',
     footerSocialTwitter: 'Twitter',
     footerPartnersLabel: '合作伙伴：',
-    footerCopyright: '© 2024 X-Lab · 版权所有 | 京ICP备 12345678 号'
+    footerCopyright: '©  2025 X-Lab · 版权所有 '
   },
   en: {
     siteNameZh: 'X-Lab',
@@ -132,7 +132,7 @@ const translations = {
     heroCTAResearch: 'Explore Research',
     heroCTAJoin: 'Contact Us',
     heroStatPapers: 'Top-tier publications',
-    heroStatPatents: 'Awards & Honors',
+    heroStatPatents: 'Granted patents',
     heroStatPartners: 'Global partners',
     heroStatProjects: 'Industry collaborations',
     researchHeading: 'Core Research Areas',
@@ -160,18 +160,18 @@ const translations = {
     joinCTA: 'Apply Now',
     footerContactTitle: 'Contact',
     footerAddressLabel: 'Address: ',
-    footerAddressText: 'Building B, Future Tech Park, 88 Xuefu Street, Haidian, Beijing, China',
+    footerAddressText: 'Tianjin University, 135 Yaguan Road, Jinnan District, Tianjin, China',
     footerPhoneLabel: 'Phone: ',
     footerPhoneText: '+86 10 1234 5678',
     footerEmailLabel: 'Email: ',
-    footerEmailText: 'contact@futurelab.ai',
+    footerEmailText: 'xj.max.guo (at) gmail.com',
     footerLinksTitle: 'Quick Links',
     footerFollowTitle: 'Follow Us',
     footerSocialGithub: 'GitHub',
     footerSocialLinkedIn: 'LinkedIn',
     footerSocialTwitter: 'Twitter',
     footerPartnersLabel: 'Partners:',
-    footerCopyright: '© 2024 X-Lab · All rights reserved | Beijing ICP 12345678'
+    footerCopyright: '©  2025 X-Lab · All rights reserved'
   }
 };
 
@@ -350,6 +350,33 @@ const FALLBACK_MEMBERS = [
     bioEn: 'Focuses on urban perception and efficient video analytics, contributing to platform engineering.'
   }
 ];
+const FALLBACK_IMAGE_WALL = [
+  {
+    id: 'fw-1',
+    image: 'image/顶端横幅/1.png',
+    link: 'research-detail.html?id=rr1',
+    title: '底层视觉 · Low-level Vision'
+  },
+  {
+    id: 'fw-2',
+    image: 'image/顶端横幅/1.png',
+    link: 'research-detail.html?id=rr3',
+    title: '高层感知 · High-level Perception'
+  },
+  {
+    id: 'fw-3',
+    image: 'image/顶端横幅/1.png',
+    link: 'research-detail.html?id=rr4',
+    title: '多模态协同 · Multimodal Fusion'
+  },
+  {
+    id: 'fw-4',
+    image: 'image/顶端横幅/1.png',
+    link: 'research-detail.html?id=rr1',
+    title: '视觉重建 · Vision Restoration'
+  }
+];
+
 
 const selectText = (entry, key) => {
   if (!entry) return '';
@@ -911,31 +938,65 @@ const loadMembers = async () => {
   }
 };
 
+const renderImageWall = (track, items) => {
+  if (!track) return;
+  const escapeHtml = (value = '') => String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  const validItems = (Array.isArray(items) ? items : []).filter((item) => item && item.image);
+  if (!validItems.length) {
+    track.innerHTML = '';
+    track.classList.add('is-empty');
+    track.style.removeProperty('--image-wall-duration');
+    return;
+  }
+
+  const MIN_BASE_LENGTH = 6;
+  const MAX_BASE_LENGTH = 18;
+  let base = [...validItems];
+  while (base.length < MIN_BASE_LENGTH) {
+    base = base.concat(validItems);
+    if (base.length >= MAX_BASE_LENGTH) break;
+  }
+  const itemsToRender = base.concat(base);
+
+  const duration = Math.min(90, Math.max(26, itemsToRender.length * 3));
+  track.style.setProperty('--image-wall-duration', `${duration}s`);
+  track.classList.remove('is-empty');
+  track.innerHTML = itemsToRender.map((item) => {
+    const safeImage = escapeHtml(item.image);
+    const safeTitle = item.title ? escapeHtml(item.title) : '';
+    const safeLink = escapeHtml(item.link || '#');
+    const extraAttrs = item.link ? ' target="_blank" rel="noopener"' : '';
+    return `
+      <div class="image-wall-item">
+        <a href="${safeLink}"${extraAttrs}>
+          <img src="${safeImage}" alt="${safeTitle}" loading="lazy" decoding="async">
+          ${safeTitle ? `<div class="image-wall-caption">${safeTitle}</div>` : ''}
+        </a>
+      </div>
+    `;
+  }).join('');
+};
+
 const loadImageWall = async () => {
   const track = document.getElementById('image-wall-track');
   if (!track) return;
-  
+  track.classList.add('is-empty');
   try {
     const data = await fetchCollection('/api/image-wall');
-    if (!data || !data.length) return;
-
-    // Duplicate items to create seamless loop effect
-    // We need enough items to fill the screen width + buffer
-    // Simple strategy: repeat the list enough times
-    const itemsToRender = [...data, ...data, ...data, ...data]; 
-
-    track.innerHTML = itemsToRender.map(item => `
-      <div class="image-wall-item">
-        <a href="${item.link || '#'}" target="${item.link ? '_blank' : '_self'}">
-          <img src="${item.image}" alt="${item.title || ''}" loading="lazy">
-          ${item.title ? `<div class="image-wall-caption">${item.title}</div>` : ''}
-        </a>
-      </div>
-    `).join('');
-    
+    if (data.length) {
+      renderImageWall(track, data);
+      return;
+    }
   } catch (error) {
     console.error('Failed to load image wall.', error);
   }
+  renderImageWall(track, FALLBACK_IMAGE_WALL);
 };
 
 const initLangSwitch = () => {
@@ -1090,4 +1151,3 @@ const init = () => {
 };
 
 init();
-
