@@ -9,18 +9,26 @@
     "descriptionEn": "Integrating foundation models with vision AI to power smarter cities, industries, and research labs.",
     "link": "https://cic.tju.edu.cn/",
     "media": "image/顶端横幅/1.png",
-    "mediaType": "image"
-  },
-  {
-    "id": "s-1762587875492",
-    "tagZh": "",
-    "tagEn": "",
-    "titleZh": "1",
-    "titleEn": "1",
-    "descriptionZh": "1",
-    "descriptionEn": "1",
-    "media": "image/顶端横幅/介绍.mp4",
-    "mediaType": "video",
-    "link": ""
+    "mediaType": "image",
+    "subImages": [
+      {
+        "src": "image/合作伙伴/中国科学院.png",
+        "labelZh": "科学研究",
+        "labelEn": "科学研究",
+        "link": ""
+      },
+      {
+        "src": "image/合作伙伴/华为.png",
+        "labelZh": "产业落地",
+        "labelEn": "产业落地",
+        "link": ""
+      },
+      {
+        "src": "image/合作伙伴/新加坡国立大学.png",
+        "labelZh": "国际合作",
+        "labelEn": "国际合作",
+        "link": ""
+      }
+    ]
   }
 ]

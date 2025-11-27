@@ -199,6 +199,54 @@
         跳转链接（可选）
         <input id="slide-link" placeholder="https://example.com">
       </label>
+      <fieldset class="subimage-fieldset">
+        <legend>子图（图中图展示，最多三张）</legend>
+        <div class="subimage-group">
+          <strong>子图 1</strong>
+          <label>图片路径
+            <input id="slide-sub1-image" placeholder="image/sub1.png">
+          </label>
+          <label>跳转链接
+            <input id="slide-sub1-link" placeholder="https://example.com">
+          </label>
+          <label>文字（中文）
+            <input id="slide-sub1-label-zh">
+          </label>
+          <label>Text (English)
+            <input id="slide-sub1-label-en">
+          </label>
+        </div>
+        <div class="subimage-group">
+          <strong>子图 2</strong>
+          <label>图片路径
+            <input id="slide-sub2-image" placeholder="image/sub2.png">
+          </label>
+          <label>跳转链接
+            <input id="slide-sub2-link" placeholder="https://example.com">
+          </label>
+          <label>文字（中文）
+            <input id="slide-sub2-label-zh">
+          </label>
+          <label>Text (English)
+            <input id="slide-sub2-label-en">
+          </label>
+        </div>
+        <div class="subimage-group">
+          <strong>子图 3</strong>
+          <label>图片路径
+            <input id="slide-sub3-image" placeholder="image/sub3.png">
+          </label>
+          <label>跳转链接
+            <input id="slide-sub3-link" placeholder="https://example.com">
+          </label>
+          <label>文字（中文）
+            <input id="slide-sub3-label-zh">
+          </label>
+          <label>Text (English)
+            <input id="slide-sub3-label-en">
+          </label>
+        </div>
+      </fieldset>
       <button type="submit">保存横幅</button>
     </form>
     <div id="slides-table-wrapper" class="empty">正在加载横幅列表…</div>
@@ -322,7 +370,7 @@
 
   <section id="publications-section" class="collapsible collapsed">
     <div class="section-header">
-      <h2>精选出版物</h2>
+      <h2>出版物</h2>
       <button type="button" class="collapse-btn" data-target="publications-section" aria-expanded="false">展开</button>
     </div>
     <form id="pub-form">
@@ -539,6 +587,36 @@
 
       const slideForm = getEl('slide-form');
       const slidesWrapper = getEl('slides-table-wrapper');
+      const subImageInputs = [1, 2, 3].map((index) => ({
+        image: getEl(`slide-sub${index}-image`),
+        link: getEl(`slide-sub${index}-link`),
+        labelZh: getEl(`slide-sub${index}-label-zh`),
+        labelEn: getEl(`slide-sub${index}-label-en`),
+      }));
+
+      const collectSubImages = () => subImageInputs
+        .map((field) => {
+          const src = field.image?.value?.trim();
+          if (!src) return null;
+          return {
+            src,
+            link: field.link?.value?.trim() || '',
+            labelZh: field.labelZh?.value || '',
+            labelEn: field.labelEn?.value || '',
+          };
+        })
+        .filter(Boolean);
+
+      const populateSubImages = (subImages = []) => {
+        subImageInputs.forEach((field, idx) => {
+          const data = subImages[idx];
+          if (!field.image) return;
+          field.image.value = data?.src || '';
+          field.link.value = data?.link || '';
+          field.labelZh.value = data?.labelZh || '';
+          field.labelEn.value = data?.labelEn || '';
+        });
+      };
       const imageWallForm = getEl('image-wall-form');
       const imageWallWrapper = getEl('image-wall-table-wrapper');
       const techForm = getEl('tech-form');
@@ -580,6 +658,7 @@
         media: getEl('slide-media').value,
         mediaType: getEl('slide-media-type').value,
         link: getEl('slide-link').value,
+        subImages: collectSubImages(),
       };
         const id = getEl('slide-id').value;
         try {
@@ -597,6 +676,7 @@
             }, '新增横幅');
           }
           slideForm.reset();
+          populateSubImages([]);
           await loadSlides();
         } catch (error) {
           alert(error.message);
@@ -617,6 +697,7 @@
         getEl('slide-media').value = item.media || '';
             getEl('slide-media-type').value = (item.mediaType || 'image').toLowerCase();
             getEl('slide-link').value = item.link || '';
+            populateSubImages(item.subImages || []);
           } catch (error) {
             alert(error.message);
           }

@@ -54,136 +54,80 @@ try {
   console.warn('Unable to access localStorage for language preference.', error);
 }
 
+const zhTranslations = {
+  siteNameZh: 'X-Lab',
+  siteNameEn: 'X-Lab',
+  navHome: '首页',
+  navResearch: '研究方向',
+  navKeyTech: '科研成果',
+  navTeam: '团队成员',
+  navPublications: '出版物',
+  navJoin: '联系我们',
+  navContact: '联系方式',
+  langChinese: '中文',
+  langEnglish: 'EN',
+  heroEyebrow: '探索视觉前沿 · 驱动未来智能',
+  heroHeadline: 'Stay Simple • Stay Diverse',
+  heroIntro: '聚焦视觉智能、模式识别与多模态 AI，打造从基础理论到产业落地的创新平台',
+  heroCTAResearch: '探索研究方向',
+  heroCTATeam: '团队介绍',
+  heroCTAJoin: '联系我们',
+  heroStatPapers: '学术论文 (Top-tier)',
+  heroStatPatents: '授权发明专利',
+  heroStatPartners: '国际合作伙伴',
+  heroStatProjects: '合作项目',
+  researchHeading: '核心研究方向',
+  researchSubheading: '',
+  researchCard1Title: '底层视觉恢复',
+  researchCard1Desc: '涵盖超分、低光增强、去除雨雪雾等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。',
+  researchCard3Title: '高层视觉感知',
+  researchCard3Desc: '面向跨域检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理，支撑城市与工业场景的实时智能感知。',
+  researchCard4Title: '多模态融合',
+  researchCard4Desc: '面向视觉、语言与异构传感器的协同理解，构建统一的多模态模型与对齐机制，兼顾泛化、解释性与实时性，赋能更鲁棒的智能决策。',
+  researchLearnMore: '了解详情',
+  keyTechHeading: '关键技术与最新成果',
+  keyTechSubheading: '',
+  pubsHeading: '出版物',
+  pubsSubheading: '',
+  pubsCTA: '查看全部出版物',
+  partnersHeading: '合作伙伴',
+  partnersSubheading: '',
+  teamHeading: '团队介绍',
+  teamSubheading: '跨学科精英团队，汇聚计算机视觉、机器学习、模式识别与多模态视觉模型的顶尖人才。',
+  teamCTA: '查看完整团队',
+  joinHeading: '与我们一起探索视觉前沿',
+  joinDescription: '实验室有多个博士与硕士名额，欢迎对计算机视觉、模式识别、机器学习充满热情与创新精神的同学加入，如有兴趣请将个人简历发送给我们。',
+  joinEmail: '邮箱： xj.max.guo (at) gmail.com',
+  joinCTA: '立即投递简历',
+  footerContactTitle: '联系我们',
+  footerAddressLabel: '地址： ',
+  footerAddressText: '中国天津市津南区雅观路135号天津大学',
+  footerPhoneLabel: '电话： ',
+  footerPhoneText: '+86 10 1234 5678',
+  footerEmailLabel: '邮箱： ',
+  footerEmailText: 'xj.max.guo (at) gmail.com',
+  footerLinksTitle: '快速链接',
+  footerFollowTitle: '关注我们',
+  footerSocialGithub: 'GitHub',
+  footerSocialLinkedIn: 'LinkedIn',
+  footerSocialTwitter: 'Twitter',
+  footerPartnersLabel: '合作伙伴：',
+  footerCopyright: '©  2025 X-Lab · 版权所有 '
+};
+
 const translations = {
-  zh: {
-    siteNameZh: 'X-Lab',
-    siteNameEn: 'X-Lab',
-    navHome: '首页',
-    navResearch: '研究方向',
-    navKeyTech: '科研成果',
-    navTeam: '团队成员',
-    navPublications: '出版物',
-    navJoin: '联系我们',
-    navContact: '联系方式',
-    langChinese: '中文',
-    langEnglish: 'EN',
-    heroEyebrow: '探索科学前沿 · 驱动未来智能',
-    heroHeadline: 'Stay Simple • Stay Diverse',
-    heroIntro: 'X-Lab聚焦视觉智能、模式识别与多模态 AI，打造从基础理论到产业落地的全链条创新平台。',
-    heroCTAResearch: '探索研究方向',
-    heroCTAJoin: '联系我们',
-    heroStatPapers: '学术论文 (Top-tier)',
-    heroStatPatents: '授权发明专利',
-    heroStatPartners: '国际合作伙伴',
-    heroStatProjects: '合作项目',
-    researchHeading: '核心研究方向',
-    researchSubheading: '围绕人工智能与计算机视觉的关键议题，布局未来十年的技术突破口。',
-    researchCard1Title: '底层视觉恢复',
-    researchCard1Desc: '涵盖超分、低光增强、去除雨雪雾等任务，构建端到端恢复工具箱（如 XReflection），保障真实应用的稳定输出。',
-    researchCard3Title: '高层视觉感知',
-    researchCard3Desc: '面向跨域检测与语义分割，探索鲁棒特征对齐、时空特征聚合与轻量化推理，支撑城市与工业场景的实时智能感知。',
-    researchCard4Title: '多模态融合',
-    researchCard4Desc: '面向视觉、语言与异构传感器的协同理解，构建统一的多模态模型与对齐机制，兼顾泛化、解释性与实时性，赋能更鲁棒的智能决策。',
-    researchLearnMore: '了解详情',
-    keyTechHeading: '关键技术与代表性成果',
-    keyTechSubheading: '从原创算法到产业级系统，持续输出高影响力的科研成果。',
-    pubsHeading: '精选出版物',
-    pubsSubheading: '聚焦顶级会议与期刊的最新成果，展现我们在视觉智能与多模态 AI 领域的持续突破。',
-    pubsCTA: '查看全部出版物',
-    partnersHeading: '合作伙伴',
-    partnersSubheading: '携手产业与科研伙伴，共同推动视觉智能技术的应用与落地。',
-    teamHeading: '团队介绍',
-    teamSubheading: '跨学科精英团队，汇聚计算机视觉、机器学习、模式识别与多模态视觉模型的顶尖人才。',
-    teamCTA: '查看完整团队',
-    joinHeading: '与我们一起探索未来智能',
-    joinDescription: '我们实验室今年有多个博士与硕士名额，欢迎对计算机视觉、模式识别、机器学习充满热情与创新精神的同学加入，如有兴趣请将个人简历发送给我们。',
-    joinEmail: '邮箱： xj.max.guo (at) gmail.com',
-    joinCTA: '立即投递简历',
-    footerContactTitle: '联系我们',
-    footerAddressLabel: '地址： ',
-    footerAddressText: '中国天津市津南区雅观路135号天津大学',
-    footerPhoneLabel: '电话： ',
-    footerPhoneText: '+86 10 1234 5678',
-    footerEmailLabel: '邮箱： ',
-    footerEmailText: 'xj.max.guo (at) gmail.com',
-    footerLinksTitle: '快速链接',
-    footerFollowTitle: '关注我们',
-    footerSocialGithub: 'GitHub',
-    footerSocialLinkedIn: 'LinkedIn',
-    footerSocialTwitter: 'Twitter',
-    footerPartnersLabel: '合作伙伴：',
-    footerCopyright: '©  2025 X-Lab · 版权所有 '
-  },
-  en: {
-    siteNameZh: 'X-Lab',
-    siteNameEn: 'X-Lab',
-    navHome: 'Home',
-    navResearch: 'Research',
-    navKeyTech: 'Key Technologies',
-    navTeam: 'Team',
-    navPublications: 'Publications',
-    navJoin: 'Contact Us',
-    navContact: 'Contact',
-    langChinese: '中文',
-    langEnglish: 'EN',
-    heroEyebrow: 'Exploring scientific frontiers · Driving future intelligence',
-    heroHeadline: 'Stay Simple \u2022 Stay Diverse',
-    heroIntro: 'X-Lab advances vision intelligence, cognitive computing, and multimodal AI from theory to real-world impact.',
-    heroCTAResearch: 'Explore Research',
-    heroCTAJoin: 'Contact Us',
-    heroStatPapers: 'Top-tier publications',
-    heroStatPatents: 'Granted patents',
-    heroStatPartners: 'Global partners',
-    heroStatProjects: 'Industry collaborations',
-    researchHeading: 'Core Research Areas',
-    researchSubheading: 'We map out the next decade of breakthroughs in AI and computer vision.',
-    researchCard1Title: 'Low-level Vision Restoration',
-    researchCard1Desc: 'Covering super-resolution, low-light enhancement, rain/snow/fog removal, etc., building end-to-end restoration toolboxes (e.g., XReflection) to ensure stable output in real-world applications.',
-    researchCard3Title: 'High-level Perception',
-    researchCard3Desc: 'Advance cross-domain detection and semantic segmentation through robust feature alignment, spatiotemporal aggregation, and lightweight inference.',
-    researchCard4Title: 'Multimodal Fusion',
-    researchCard4Desc: 'Unify vision, language, and heterogeneous sensor streams with shared models and alignment mechanisms to balance generalization, interpretability, and real-time decisions.',
-    researchLearnMore: 'Learn More',
-    keyTechHeading: 'Key Technologies & Flagship Outcomes',
-    keyTechSubheading: 'From original algorithms to production-grade systems, we deliver high-impact research.',
-    pubsHeading: 'Featured Publications',
-    pubsSubheading: 'Highlighting breakthroughs in vision intelligence and multimodal AI across top venues.',
-    pubsCTA: 'Browse All Publications',
-    partnersHeading: 'Partners',
-    partnersSubheading: 'We collaborate with industry and research allies to accelerate vision intelligence in practice.',
-    teamHeading: 'Meet the Team',
-    teamSubheading: 'An interdisciplinary team uniting top talents in computer vision, machine learning, pattern recognition, and multimodal vision models.',
-    teamCTA: 'Meet the Full Team',
-    joinHeading: 'Join Us to Explore Future Intelligence',
-    joinDescription: 'Our lab has several Ph.D. and Master positions this year. We are seeking passionate and innovative students to work on CV/PR/ML. Please send me your CV if interested.',
-    joinEmail: 'Email: xj.max.guo (at) gmail.com',
-    joinCTA: 'Apply Now',
-    footerContactTitle: 'Contact',
-    footerAddressLabel: 'Address: ',
-    footerAddressText: 'Tianjin University, 135 Yaguan Road, Jinnan District, Tianjin, China',
-    footerPhoneLabel: 'Phone: ',
-    footerPhoneText: '+86 10 1234 5678',
-    footerEmailLabel: 'Email: ',
-    footerEmailText: 'xj.max.guo (at) gmail.com',
-    footerLinksTitle: 'Quick Links',
-    footerFollowTitle: 'Follow Us',
-    footerSocialGithub: 'GitHub',
-    footerSocialLinkedIn: 'LinkedIn',
-    footerSocialTwitter: 'Twitter',
-    footerPartnersLabel: 'Partners:',
-    footerCopyright: '©  2025 X-Lab · All rights reserved'
-  }
+  zh: zhTranslations,
+  en: { ...zhTranslations }
+};
+
+const zhAttrTranslations = {
+  navAriaLabel: '主导航',
+  langSwitchLabel: '语言切换'
 };
 
 const attrTranslations = {
-  zh: {
-    navAriaLabel: '主导航',
-    langSwitchLabel: '语言切换'
-  },
-  en: {
-    navAriaLabel: 'Primary navigation',
-    langSwitchLabel: 'Language toggle'
-  }
+  zh: zhAttrTranslations,
+  en: { ...zhAttrTranslations }
 };
 
 const FALLBACK_SLIDES = [
@@ -563,6 +507,33 @@ const renderSlides = (slides) => {
       img.alt = selectText(slide, 'title') || selectText(slide, 'tag') || 'Hero slide';
       mediaBox.appendChild(img);
     }
+    if (Array.isArray(slide.subImages) && slide.subImages.length) {
+      const strip = document.createElement('div');
+      strip.className = 'slide-substrip';
+      slide.subImages.slice(0, 3).forEach((item) => {
+        const hasLink = Boolean(item?.link);
+        const wrapper = document.createElement(hasLink ? 'a' : 'div');
+        wrapper.className = 'slide-substrip-item';
+        if (hasLink) {
+          wrapper.href = item.link;
+          wrapper.target = '_blank';
+          wrapper.rel = 'noopener noreferrer';
+        }
+        const img = document.createElement('img');
+        img.src = item.src;
+        const altText = selectText(item, 'label') || selectText(slide, 'title') || 'Hero detail';
+        img.alt = altText;
+        wrapper.appendChild(img);
+        const labelText = selectText(item, 'label');
+        if (labelText) {
+          const label = document.createElement('span');
+          label.textContent = labelText;
+          wrapper.appendChild(label);
+        }
+        strip.appendChild(wrapper);
+      });
+      mediaBox.appendChild(strip);
+    }
     slideWrapper.appendChild(mediaBox);
     sliderTrack.appendChild(slideWrapper);
 
@@ -902,7 +873,7 @@ const loadPartners = async () => {
 
 const loadPublications = async () => {
   if (!pubFeatured) return;
-  setLoadingMessage(pubFeatured, currentLang === 'zh' ? '正在加载精选出版物...' : 'Loading featured publications...');
+  setLoadingMessage(pubFeatured, currentLang === 'zh' ? '正在加载出版物...' : 'Loading featured publications...');
   try {
     const data = await fetchCollection('/api/publications');
     publicationsCache = data.length
@@ -1146,7 +1117,7 @@ const init = () => {
   loadKeyTech();
   loadPartners();
   loadPublications();
-  loadMembers();
+  // loadMembers();
   loadImageWall();
 };
 

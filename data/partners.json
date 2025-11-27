@@ -1,33 +1,6 @@
 [
   {
     "id": "partner-001",
-    "nameZh": "清华大学",
-    "nameEn": "Tsinghua University",
-    "image": "image/合作伙伴/清华大学.png",
-    "link": "https://www.tsinghua.edu.cn/",
-    "altZh": "",
-    "altEn": ""
-  },
-  {
-    "id": "partner-004",
-    "nameZh": "北京大学",
-    "nameEn": "Peking University",
-    "image": "image/合作伙伴/北京大学.png",
-    "link": "https://www.pku.edu.cn/",
-    "altZh": "北京大学 Logo",
-    "altEn": "Peking University Logo"
-  },
-  {
-    "id": "partner-005",
-    "nameZh": "新加坡国立大学",
-    "nameEn": "National University of Singapore",
-    "image": "image/合作伙伴/新加坡国立大学.png",
-    "link": "https://nus.edu.sg/",
-    "altZh": "新加坡国立大学 Logo",
-    "altEn": "National University of Singapore Logo"
-  },
-  {
-    "id": "partner-006",
     "nameZh": "中国科学院",
     "nameEn": "Chinese Academy of Sciences",
     "image": "image/合作伙伴/中国科学院.png",
@@ -36,17 +9,70 @@
     "altEn": "Chinese Academy of Sciences Logo"
   },
   {
+    "id": "partner-002",
+    "nameZh": "北京大学",
+    "nameEn": "Peking University",
+    "image": "image/合作伙伴/北京大学.png",
+    "link": "https://www.pku.edu.cn/",
+    "altZh": "北京大学 Logo",
+    "altEn": "Peking University Logo"
+  },
+  {
+    "id": "partner-003",
+    "nameZh": "武汉大学",
+    "nameEn": "Wuhan University",
+    "image": "image/合作伙伴/武汉大学.png",
+    "link": "https://www.whu.edu.cn/",
+    "altZh": "武汉大学 Logo",
+    "altEn": "Wuhan University Logo"
+  },
+  {
+    "id": "partner-004",
+    "nameZh": "敦煌研究院",
+    "nameEn": "Dunhuang Academy",
+    "image": "image/合作伙伴/敦煌研究院.png",
+    "link": "https://www.dha.ac.cn/",
+    "altZh": "敦煌研究院 Logo",
+    "altEn": "Dunhuang Academy Logo"
+  },
+  {
+    "id": "partner-005",
+    "nameZh": "微软亚洲研究院",
+    "nameEn": "Microsoft Research Asia",
+    "image": "image/合作伙伴/微软亚洲研究院.png",
+    "link": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
+    "altZh": "微软亚洲研究院 Logo",
+    "altEn": "Microsoft Research Asia Logo"
+  },
+  {
+    "id": "partner-006",
+    "nameZh": "石溪大学",
+    "nameEn": "Stony Brook University",
+    "image": "image/合作伙伴/石溪大学.png",
+    "link": "https://www.stonybrook.edu/",
+    "altZh": "石溪大学 Logo",
+    "altEn": "Stony Brook University Logo"
+  },
+  {
     "id": "partner-007",
-    "nameZh": "斯坦福大学",
-    "nameEn": "Stanford University",
-    "image": "image/合作伙伴/斯坦福大学.png",
-    "link": "https://www.stanford.edu/",
-    "altZh": "斯坦福大学 Logo",
-    "altEn": "Stanford University Logo"
-  }
-  ,
+    "nameZh": "加州大学伯克利分校",
+    "nameEn": "UC Berkeley",
+    "image": "image/合作伙伴/伯克利.svg",
+    "link": "https://www.berkeley.edu/",
+    "altZh": "加州大学伯克利分校 Logo",
+    "altEn": "UC Berkeley Logo"
+  },
   {
     "id": "partner-008",
+    "nameZh": "新加坡国立大学",
+    "nameEn": "National University of Singapore",
+    "image": "image/合作伙伴/新加坡国立大学.png",
+    "link": "https://nus.edu.sg/",
+    "altZh": "新加坡国立大学 Logo",
+    "altEn": "National University of Singapore Logo"
+  },
+  {
+    "id": "partner-009",
     "nameZh": "腾讯",
     "nameEn": "Tencent",
     "image": "image/合作伙伴/腾讯.png",
@@ -55,7 +81,7 @@
     "altEn": "Tencent Logo"
   },
   {
-    "id": "partner-009",
+    "id": "partner-010",
     "nameZh": "华为",
     "nameEn": "Huawei",
     "image": "image/合作伙伴/华为.png",
@@ -64,7 +90,7 @@
     "altEn": "Huawei Logo"
   },
   {
-    "id": "partner-010",
+    "id": "partner-011",
     "nameZh": "小米",
     "nameEn": "Xiaomi",
     "image": "image/合作伙伴/小米.png",
@@ -73,7 +99,16 @@
     "altEn": "Xiaomi Logo"
   },
   {
-    "id": "partner-011",
+    "id": "partner-012",
+    "nameZh": "地平线",
+    "nameEn": "Horizon Robotics",
+    "image": "image/合作伙伴/地平线.svg",
+    "link": "https://www.horizon.ai/",
+    "altZh": "地平线 Logo",
+    "altEn": "Horizon Robotics Logo"
+  },
+  {
+    "id": "partner-013",
     "nameZh": "京东",
     "nameEn": "JD.com",
     "image": "image/合作伙伴/京东.png",
@@ -82,7 +117,7 @@
     "altEn": "JD.com Logo"
   },
   {
-    "id": "partner-012",
+    "id": "partner-014",
     "nameZh": "vivo",
     "nameEn": "vivo",
     "image": "image/合作伙伴/vivo.png",

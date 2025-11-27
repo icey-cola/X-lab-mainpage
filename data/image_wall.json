@@ -3,7 +3,7 @@
     "id": "w-001",
     "image": "image/顶端横幅/shadow.png",
     "link": "",
-    "title": "团队获得NTIRE 2025 Shadow Removal赛道冠军"
+    "title": "获得NTIRE 2025 Shadow Removal赛道冠军"
   },
   {
     "id": "w-003",
@@ -15,18 +15,18 @@
     "id": "w-004",
     "image": "image/顶端横幅/青年学者.jpg",
     "link": "",
-    "title": "郭晓杰教授荣获亚太人工智能教育优秀青年学者奖"
+    "title": "亚太人工智能教育优秀青年学者奖"
   },
   {
     "id": "w-005",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr1",
-    "title": "Low-level Vision Restoration"
+    "image": "image/顶端横幅/火花.jpg",
+    "link": "",
+    "title": "华为难题揭榜火花奖"
   },
   {
     "id": "w-006",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr3",
-    "title": "High-level Vision"
+    "image": "image/顶端横幅/龙图杯.jpg",
+    "link": "",
+    "title": "团队获得龙图杯全国BIM大赛一等奖"
   }
 ]
