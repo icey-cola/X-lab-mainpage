@@ -262,6 +262,9 @@
       <label>标题（鼠标悬浮时显示，可选）
         <input id="image-wall-title" placeholder="X-Lab · Vision Restoration">
       </label>
+      <label>Title (English, optional)
+        <input id="image-wall-title-en" placeholder="Vision Restoration">
+      </label>
       <label>图片路径
         <input id="image-wall-image" placeholder="image/wall/sample.jpg" required>
       </label>
@@ -720,7 +723,7 @@
           const data = await fetchJson('/api/image-wall', '加载图片墙');
           const rows = Array.isArray(data) ? data.map((item) => `
             <tr>
-              <td>${escapeHtml(item.title || '')}</td>
+              <td>${formatCell(item.title, item.titleEn)}</td>
               <td>${escapeHtml(item.image || '')}</td>
               <td>${escapeHtml(item.link || '')}</td>
               <td>
@@ -739,6 +742,7 @@
         event.preventDefault();
         const payload = {
           title: getEl('image-wall-title').value,
+          titleEn: getEl('image-wall-title-en').value,
           image: getEl('image-wall-image').value,
           link: getEl('image-wall-link').value,
         };
@@ -776,6 +780,7 @@
             if (!item) return;
             getEl('image-wall-id').value = item.id;
             getEl('image-wall-title').value = item.title || '';
+            getEl('image-wall-title-en').value = item.titleEn || '';
             getEl('image-wall-image').value = item.image || '';
             getEl('image-wall-link').value = item.link || '';
           } catch (error) {

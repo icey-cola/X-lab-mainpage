@@ -68,16 +68,15 @@
         <h3 data-i18n="footerLinksTitle">快速链接</h3>
         <ul class="quick-links">
           <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
-          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="team.html" data-i18n="navTeam">团队成员</a></li>
           <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
-          <li><a href="publications.html" data-i18n="navPublications">出版物</a></li>
-          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
+          <li><a href="index.html#publications" data-i18n="navPublications">出版物</a></li>
         </ul>
       </div>
       <div>
         <h3 data-i18n="footerFollowTitle">关注我们</h3>
         <ul class="social-links">
-          <li><a href="https://github.com/XGuoTJU" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
+          <li><a href="https://github.com/tjuxlab" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
         </ul>
       </div>
     </div>
@@ -139,7 +138,28 @@
 
     const translations = {
       zh: zhTranslations,
-      en: { ...zhTranslations }
+      en: {
+        navHome: 'Home',
+        navResearch: 'Research',
+        navTeam: 'Team',
+        navKeyTech: 'Key Achievements',
+        navPublications: 'Publications',
+        navJoin: 'Contact',
+        langChinese: '中文',
+        langEnglish: 'EN',
+        papersHeading: 'Related Papers',
+        papersEmpty: 'No papers yet.',
+        papersLoadFailed: 'Failed to load papers. Please try again later.',
+        footerContactTitle: 'Contact Us',
+        footerAddressLabel: 'Address:',
+        footerAddressText: '135 Yaguan Road, Jinnan District, Tianjin University, Tianjin, China',
+        footerEmailLabel: 'Email:',
+        footerEmailText: 'xj.max.guo (at) gmail.com',
+        footerLinksTitle: 'Quick Links',
+        footerFollowTitle: 'Follow Us',
+        footerSocialGithub: 'GitHub',
+        footerCopyright: '©  2025 X-Lab · All rights reserved'
+      }
     };
 
     const zhAttrTranslations = {
@@ -149,7 +169,10 @@
 
     const attrTranslations = {
       zh: zhAttrTranslations,
-      en: { ...zhAttrTranslations }
+      en: {
+        navAriaLabel: 'Main navigation',
+        langSwitchLabel: 'Language switch'
+      }
     };
 
     const selectText = (entry, key) => {

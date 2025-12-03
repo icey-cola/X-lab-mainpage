@@ -27,6 +27,42 @@
     "altEn": "Wuhan University Logo"
   },
   {
+    "id": "partner-006",
+    "nameZh": "石溪大学",
+    "nameEn": "Stony Brook University",
+    "image": "image/合作伙伴/石溪大学.png",
+    "link": "https://www.stonybrook.edu/",
+    "altZh": "石溪大学 Logo",
+    "altEn": "Stony Brook University Logo"
+  },
+  {
+    "id": "partner-010",
+    "nameZh": "华为",
+    "nameEn": "Huawei",
+    "image": "image/合作伙伴/华为.png",
+    "link": "https://www.huawei.com/",
+    "altZh": "华为 Logo",
+    "altEn": "Huawei Logo"
+  },
+  {
+    "id": "partner-011",
+    "nameZh": "小米",
+    "nameEn": "Xiaomi",
+    "image": "image/合作伙伴/小米.png",
+    "link": "https://www.mi.com/",
+    "altZh": "小米 Logo",
+    "altEn": "Xiaomi Logo"
+  },
+  {
+    "id": "partner-013",
+    "nameZh": "京东",
+    "nameEn": "JD.com",
+    "image": "image/合作伙伴/京东.png",
+    "link": "https://www.jd.com/",
+    "altZh": "京东 Logo",
+    "altEn": "JD.com Logo"
+  },
+  {
     "id": "partner-004",
     "nameZh": "敦煌研究院",
     "nameEn": "Dunhuang Academy",
@@ -43,15 +79,6 @@
     "link": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
     "altZh": "微软亚洲研究院 Logo",
     "altEn": "Microsoft Research Asia Logo"
-  },
-  {
-    "id": "partner-006",
-    "nameZh": "石溪大学",
-    "nameEn": "Stony Brook University",
-    "image": "image/合作伙伴/石溪大学.png",
-    "link": "https://www.stonybrook.edu/",
-    "altZh": "石溪大学 Logo",
-    "altEn": "Stony Brook University Logo"
   },
   {
     "id": "partner-007",
@@ -81,40 +108,13 @@
     "altEn": "Tencent Logo"
   },
   {
-    "id": "partner-010",
-    "nameZh": "华为",
-    "nameEn": "Huawei",
-    "image": "image/合作伙伴/华为.png",
-    "link": "https://www.huawei.com/",
-    "altZh": "华为 Logo",
-    "altEn": "Huawei Logo"
-  },
-  {
-    "id": "partner-011",
-    "nameZh": "小米",
-    "nameEn": "Xiaomi",
-    "image": "image/合作伙伴/小米.png",
-    "link": "https://www.mi.com/",
-    "altZh": "小米 Logo",
-    "altEn": "Xiaomi Logo"
-  },
-  {
     "id": "partner-012",
     "nameZh": "地平线",
     "nameEn": "Horizon Robotics",
     "image": "image/合作伙伴/地平线.svg",
-    "link": "https://www.horizon.ai/",
+    "link": "https://www.horizon.auto/",
     "altZh": "地平线 Logo",
     "altEn": "Horizon Robotics Logo"
-  },
-  {
-    "id": "partner-013",
-    "nameZh": "京东",
-    "nameEn": "JD.com",
-    "image": "image/合作伙伴/京东.png",
-    "link": "https://www.jd.com/",
-    "altZh": "京东 Logo",
-    "altEn": "JD.com Logo"
   },
   {
     "id": "partner-014",
@@ -124,5 +124,16 @@
     "link": "https://www.vivo.com/",
     "altZh": "vivo Logo",
     "altEn": "vivo Logo"
+  },
+  {
+    "id": "partner-cartech",
+    "nameZh": "中国汽车技术研究中心有限公司",
+    "nameEn": "China Automotive Technology and Research Center",
+    "order": 15,
+    "logo": "image/合作伙伴/icon.png",
+    "link": "https://www.catarc.ac.cn/",
+    "image": "image/合作伙伴/2.png",
+    "altZh": "",
+    "altEn": ""
   }
 ]

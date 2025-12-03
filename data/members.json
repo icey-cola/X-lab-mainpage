@@ -10,7 +10,6 @@
     "group": "teacher",
     "avatar": "image/members/郭晓杰.jpg"
   },
- 
   {
     "id": "m-huqiming-2022",
     "nameZh": "胡启明",
@@ -41,8 +40,8 @@
     "roleEn": "Since 2023",
     "group": "master",
     "avatar": "image/members/何欣雨.jpg",
-    "bioZh": "研究方向聚焦域适应/泛化与多模态理解，AAAI 2025 论文“Differential Alignment for Domain Adaptive Object Detection”第一作者。",
-    "bioEn": "Focuses on domain adaptation/generalization and multimodal understanding. First author of the AAAI 2025 paper “Differential Alignment for Domain Adaptive Object Detection.”"
+    "bioZh": "研究方向聚焦域适应/泛化与多模态理解 。",
+    "bioEn": "Focuses on domain adaptation/generalization and multimodal understanding.  "
   },
   {
     "id": "m-hujin-2023",
@@ -85,8 +84,8 @@
     "roleEn": "Since 2024",
     "group": "phd",
     "avatar": "image/members/姜腾腾.jpg",
-    "bioZh": "研究兴趣包括三维重建与模式识别，探究基于单/多目图像或视频的三维场景重建及结合物联网实现的综合理解。曾获“龙图杯”全国 BIM 大赛一等奖（第一完成人），参与发表 SCI Q1 与 EI 论文。",
-    "bioEn": "Research interests include 3D reconstruction and pattern recognition, reconstructing scenes from mono/multi-view imagery and combining IoT data for holistic understanding. First-place winner of the “Longtu Cup” National BIM Competition and contributor to SCI Q1 and EI papers."
+    "bioZh": "研究兴趣包括三维重建与模式识别，探究基于单/多目图像或视频的三维场景重建及结合物联网实现的综合理解。曾获“龙图杯”全国 BIM 大赛一等奖（第一完成人） ",
+    "bioEn": "Research interests include 3D reconstruction and pattern recognition, reconstructing scenes from mono/multi-view imagery and combining IoT data for holistic understanding. First-place winner of the “Longtu Cup” National BIM Competition  "
   },
   {
     "id": "m-maoxiaotong-2024",
@@ -162,8 +161,8 @@
     "roleEn": "Since 2025",
     "group": "phd",
     "avatar": "image/members/陈俊哲.jpg",
-    "bioZh": "天津大学博士研究生，本科毕业于北京交通大学，硕士毕业于约翰霍普金斯大学。研究方向为视觉语言模型的三维与时空表征学习，兴趣包括多模态学习、3D 视觉理解与大规模视觉语言模型。",
-    "bioEn": "Ph.D. student at Tianjin University. B.E. from Beijing Jiaotong University and M.S. from Johns Hopkins University. Research focuses on vision-language model representation learning for 3D and spatio-temporal understanding, with interests in multimodal learning, 3D vision, and large VLMs."
+    "bioZh": "研究方向为视觉语言模型的三维与时空表征学习，兴趣包括多模态学习、3D 视觉理解与大规模视觉语言模型。",
+    "bioEn": "Research focuses on vision-language model representation learning for 3D and spatio-temporal understanding, with interests in multimodal learning, 3D vision, and large VLMs."
   },
   {
     "id": "m-xiapeng-2025",
@@ -173,8 +172,8 @@
     "roleEn": "Since 2025",
     "group": "master",
     "avatar": "image/members/夏鹏.jpg",
-    "bioZh": "研究兴趣聚焦于底层视觉领域，特别是图像增强与图像恢复，正通过系统研读与复现夯实基础。",
-    "bioEn": "Research interests focus on low-level vision, especially image enhancement and restoration, currently building a solid foundation through systematic study and reproduction of advanced methods."
+    "bioZh": "研究兴趣聚焦于底层视觉领域，特别是图像增强与图像恢复 ",
+    "bioEn": "Research interests focus on low-level vision, especially image enhancement and restoration "
   },
   {
     "id": "m-wangjiarui-2026",
@@ -194,9 +193,9 @@
     "roleZh": "2019级",
     "roleEn": "Since 2019",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/杨洋.jpg",
+    "bioZh": "就职于 天津中德应用技术大学 ",
+    "bioEn": "Working at Tianjin Sino-German University of Applied Sciences"
   },
   {
     "id": "m-alumni-75305de796e8",
@@ -205,9 +204,9 @@
     "roleZh": "2019级",
     "roleEn": "Since 2019",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/田巧雨.png",
+    "bioZh": "就职于 Hikvision",
+    "bioEn": "Working at Hikvision"
   },
   {
     "id": "m-alumni-97e94e1c",
@@ -216,9 +215,9 @@
     "roleZh": "2019级",
     "roleEn": "Since 2019",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/韩东.jpg",
+    "bioZh": "就职于 Baidu",
+    "bioEn": "Working at Baidu"
   },
   {
     "id": "m-alumni-6c6a6d7794c3",
@@ -227,9 +226,9 @@
     "roleZh": "2019级",
     "roleEn": "Since 2019",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/汪海铃.png",
+    "bioZh": "美国东北大学读博",
+    "bioEn": "Pursuing PhD at Northeastern University (USA)"
   },
   {
     "id": "m-alumni-6b2796336bc594ee",
@@ -238,9 +237,9 @@
     "roleZh": "2020级",
     "roleEn": "Since 2020",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/欧阳毅铮.png",
+    "bioZh": "就职于 Tencent",
+    "bioEn": "Working at Tencent"
   },
   {
     "id": "m-alumni-4faf653f7ae0",
@@ -249,9 +248,9 @@
     "roleZh": "2020级",
     "roleEn": "Since 2020",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/侯政章.png",
+    "bioZh": "就职于 内蒙古银行",
+    "bioEn": "Working at Bank of Inner Mongolia"
   },
   {
     "id": "m-lixinhui-2020",
@@ -271,9 +270,9 @@
     "roleZh": "2020级",
     "roleEn": "Since 2020",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/刘智.png",
+    "bioZh": "就职于 Horizon.AI",
+    "bioEn": "Working at Horizon.AI"
   },
   {
     "id": "m-alumni-674e66539e4f",
@@ -282,9 +281,9 @@
     "roleZh": "2020级",
     "roleEn": "Since 2020",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/李晓鹏.png",
+    "bioZh": "就职于 中兴",
+    "bioEn": "Working at ZTE"
   },
   {
     "id": "m-alumni-53f280b26052",
@@ -293,9 +292,9 @@
     "roleZh": "2021级",
     "roleEn": "Since 2021",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/史育恒.jpg",
+    "bioZh": "悉尼大学读博",
+    "bioEn": "Pursuing PhD at the University of Sydney"
   },
   {
     "id": "m-alumni-8d3e96c57537",
@@ -304,9 +303,9 @@
     "roleZh": "2021级",
     "roleEn": "Since 2021",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/贾雅男.jpg",
+    "bioZh": "就职于 华为",
+    "bioEn": "Working at Huawei"
   },
   {
     "id": "m-alumni-67978000",
@@ -315,9 +314,9 @@
     "roleZh": "2022级",
     "roleEn": "Since 2022",
     "group": "alumni",
-    "avatar": "",
-    "bioZh": "",
-    "bioEn": ""
+    "avatar": "image/members/林耀.jpg",
+    "bioZh": "就职于拼多多",
+    "bioEn": "Working at Pinduoduo"
   },
   {
     "id": "m-zhaohao-2023",
@@ -326,9 +325,20 @@
     "roleEn": "Since 2023",
     "group": "master",
     "avatar": "image/members/赵灏.jpg",
-    "bioZh": "从事计算机视觉相关研究，关注多曝光图像融合与图像去反射，已在 CVPR 发表去反射方向论文。",
-    "bioEn": "Works on computer vision with a focus on multi-exposure fusion and reflection removal; published a CVPR paper on reflection removal.",
+    "bioZh": "从事计算机视觉相关研究，关注多曝光图像融合与图像去反射 ",
+    "bioEn": "Works on computer vision with a focus on multi-exposure fusion and reflection removal",
     "nameZh": "赵灏"
+  },
+  {
+    "id": "m-xionghongkun-2023",
+    "nameZh": "熊宏琨",
+    "nameEn": "Hongkun Xiong",
+    "roleZh": "2023级",
+    "roleEn": "Since 2023",
+    "group": "master",
+    "avatar": "image/members/熊宏琨.jpg",
+    "bioZh": "",
+    "bioEn": ""
   },
   {
     "id": "m-pangchao-2025",
@@ -348,8 +358,8 @@
     "roleZh": "2023级",
     "roleEn": "Since 2023",
     "group": "phd",
-    "avatar": "",
-    "bioZh": "",
+    "avatar": "image/members/李明佳.jpg",
+    "bioZh": "研究方向：计算机视觉",
     "bioEn": ""
   },
   {
@@ -359,11 +369,11 @@
     "roleZh": "2023级",
     "roleEn": "Since 2022",
     "group": "phd",
-    "avatar": "",
+    "avatar": "image/members/张大蔚.jpg",
     "bioZh": "",
     "bioEn": ""
   },
-    {
+  {
     "id": "m-fuyuanbin-2021",
     "nameZh": "付园斌",
     "nameEn": "Yuanbin Fu",
@@ -371,7 +381,7 @@
     "roleEn": "Since 2021",
     "group": "alumni",
     "avatar": "image/members/付园斌.jpg",
-    "bioZh": "研究方向为计算机视觉、图像处理与深度学习。",
-    "bioEn": "Research interests include computer vision, image processing, and deep learning."
+    "bioZh": "就职于 苏州大学",
+    "bioEn": "Working at Soochow University"
   }
 ]

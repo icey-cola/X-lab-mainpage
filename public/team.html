@@ -48,7 +48,7 @@
       <div class="hero-content">
         <p class="eyebrow" data-i18n="heroEyebrow">X-Lab · 团队</p>
         <h1 data-i18n="heroHeadline">聚集优秀人才，驱动智能研究</h1>
-        <p class="intro" data-i18n="heroIntro">我们的团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。</p>
+        <p class="intro" data-i18n="heroIntro">团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。</p>
       </div>
     </section>
 
@@ -75,38 +75,26 @@
         <h3 data-i18n="footerContactTitle">联系我们</h3>
         <ul class="contact-list">
           <li><strong data-i18n="footerAddressLabel">地址：</strong><span data-i18n="footerAddressText">中国天津市津南区雅观路135号天津大学</span></li>
-          <li><strong data-i18n="footerPhoneLabel">电话：</strong><span data-i18n="footerPhoneText">+86 10 1234 5678</span></li>
-          <li><strong data-i18n="footerEmailLabel">邮箱：</strong><a href="mailto:xj.max.guo@gmail.com" data-i18n="footerEmailText">xj.max.guo (at) gmail.com</a></li>
+          <li><strong data-i18n="footerEmailLabel">邮箱：</strong><span data-i18n="footerEmailText">xj.max.guo (at) gmail.com</span></li>
         </ul>
       </div>
       <div>
         <h3 data-i18n="footerLinksTitle">快速链接</h3>
         <ul class="quick-links">
           <li><a href="index.html#research" data-i18n="navResearch">研究方向</a></li>
-          <li><a href="index.html#team" data-i18n="navTeam">团队成员</a></li>
+          <li><a href="team.html" data-i18n="navTeam">团队成员</a></li>
           <li><a href="index.html#key-tech" data-i18n="navKeyTech">科研成果</a></li>
-          <li><a href="publications.html" data-i18n="navPublications">出版物</a></li>
-          <li><a href="index.html#contact" data-i18n="navJoin">联系我们</a></li>
+          <li><a href="index.html#publications" data-i18n="navPublications">出版物</a></li>
         </ul>
       </div>
       <div>
         <h3 data-i18n="footerFollowTitle">关注我们</h3>
         <ul class="social-links">
-          <li><a href="https://github.com/XGuoTJU" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
-          <li><a href="#" data-i18n="footerSocialLinkedIn">LinkedIn</a></li>
-          <li><a href="#" data-i18n="footerSocialTwitter">Twitter</a></li>
+          <li><a href="https://github.com/tjuxlab" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="partners">
-        <span data-i18n="footerPartnersLabel">合作伙伴：</span>
-        <div class="partner-logos">
-          <span class="badge">TechNova</span>
-          <span class="badge">DeepVision</span>
-          <span class="badge">GlobalAI</span>
-        </div>
-      </div>
       <p data-i18n="footerCopyright">©  2025 X-Lab · 版权所有 </p>
     </div>
   </footer>
@@ -145,7 +133,7 @@
       navContact: '联系方式',
       heroEyebrow: 'X-Lab · 团队',
       heroHeadline: '聚集优秀人才，驱动智能研究',
-      heroIntro: '我们的团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。',
+      heroIntro: '团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。',
       teamHeading: '核心团队',
       calloutTitle: '想要了解更多实验室动态？',
       calloutText: '返回主页探索我们的研究方向、关键成果与开放职位，欢迎与我们展开合作。',
@@ -170,7 +158,42 @@
 
     const translations = {
       zh: zhTranslations,
-      en: { ...zhTranslations }
+      en: {
+        navAriaLabel: 'Main navigation',
+        langSwitchLabel: 'Language switch',
+        langChinese: 'ZH',
+        langEnglish: 'EN',
+        navHome: 'Home',
+        navResearch: 'Research',
+        navKeyTech: 'Key Achievements',
+        navTeam: 'Team',
+        navPublications: 'Publications',
+        navJoin: 'Contact',
+        navContact: 'Contact',
+        heroEyebrow: 'X-Lab · Team',
+        heroHeadline: 'Great minds driving intelligent research',
+        heroIntro: 'We work across computer vision, pattern recognition, and multimodal learning, collaborating openly to bring research into impact.',
+        teamHeading: 'Core Team',
+        calloutTitle: 'Want to learn more about the lab?',
+        calloutText: 'Head back to the homepage to explore our research focuses, achievements, and openings. We welcome collaboration.',
+        calloutCTA: 'Back to Home',
+        emptyMembers: 'No team members yet.',
+        loadFailed: 'Failed to load members. Please try again later.',
+        footerContactTitle: 'Contact Us',
+        footerAddressLabel: 'Address:',
+        footerAddressText: 'Tianjin University, 135 Yaguan Road, Jinnan District, Tianjin, China',
+        footerPhoneLabel: 'Phone:',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: 'Email:',
+        footerEmailText: 'xj.max.guo (at) gmail.com',
+        footerLinksTitle: 'Quick Links',
+        footerFollowTitle: 'Follow Us',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: 'Partners:',
+        footerCopyright: '©  2025 X-Lab · All rights reserved'
+      }
     };
 
     const parseEnrollYear = (value) => {

@@ -13,21 +13,33 @@
     "subImages": [
       {
         "src": "image/合作伙伴/中国科学院.png",
-        "labelZh": "科学研究",
-        "labelEn": "科学研究",
-        "link": ""
+        "link": "",
+        "labelZh": "",
+        "labelEn": ""
       },
       {
         "src": "image/合作伙伴/华为.png",
-        "labelZh": "产业落地",
-        "labelEn": "产业落地",
-        "link": ""
+        "link": "",
+        "labelZh": "",
+        "labelEn": ""
       },
       {
         "src": "image/合作伙伴/新加坡国立大学.png",
-        "labelZh": "国际合作",
-        "labelEn": "国际合作",
-        "link": ""
+        "link": "",
+        "labelZh": "",
+        "labelEn": ""
+      },
+      {
+        "src": "image/合作伙伴/微软.png",
+        "link": "",
+        "labelZh": "",
+        "labelEn": ""
+      },
+      {
+        "src": "image/合作伙伴/清华大学.png",
+        "link": "",
+        "labelZh": "",
+        "labelEn": ""
       }
     ]
   }

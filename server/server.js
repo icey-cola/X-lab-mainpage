@@ -28,6 +28,9 @@ const ADMIN_CREDENTIALS = {
   passwordHash: '$2b$10$nk4jlU0rwdF2og5a9VI7he5mKbc0jN80fnqd.Uaw0OazOFl0Ay1UC'
 };
 
+// Toggle authentication via env: set AUTH_ENABLED=false to disable login checks
+const AUTH_ENABLED = process.env.AUTH_ENABLED !== 'false';
+
 const app = express();
 
 // Session configuration
@@ -50,6 +53,7 @@ app.use(express.json());
 
 // Authentication middleware
 const requireAuth = (req, res, next) => {
+  if (!AUTH_ENABLED) return next();
   if (req.session && req.session.isAuthenticated) {
     return next();
   }
@@ -120,6 +124,12 @@ const ensureDataSetup = async () => {
 // Login
 app.post('/api/auth/login', async (req, res) => {
   const { username, password } = req.body;
+
+  if (!AUTH_ENABLED) {
+    req.session.isAuthenticated = true;
+    req.session.username = username || ADMIN_CREDENTIALS.username;
+    return res.json({ success: true, message: '认证已关闭，已自动登录' });
+  }
   
   if (!username || !password) {
     return res.status(400).json({ error: '请提供用户名和密码' });
@@ -141,6 +151,10 @@ app.post('/api/auth/login', async (req, res) => {
 
 // Logout
 app.post('/api/auth/logout', (req, res) => {
+  if (!AUTH_ENABLED) {
+    return res.json({ success: true, message: '认证已关闭，无需登出' });
+  }
+
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ error: '登出失败' });
@@ -151,6 +165,14 @@ app.post('/api/auth/logout', (req, res) => {
 
 // Check auth status
 app.get('/api/auth/status', (req, res) => {
+  if (!AUTH_ENABLED) {
+    return res.json({ 
+      authenticated: true, 
+      username: ADMIN_CREDENTIALS.username,
+      authDisabled: true
+    });
+  }
+
   if (req.session && req.session.isAuthenticated) {
     return res.json({ 
       authenticated: true, 
@@ -519,7 +541,7 @@ app.put('/api/sections/:id', requireAuth, async (req, res) => {
 // Protect admin.html - require authentication
 app.get('/admin.html', (req, res) => {
   // Check if user is authenticated
-  if (!req.session || !req.session.isAuthenticated) {
+  if (AUTH_ENABLED && (!req.session || !req.session.isAuthenticated)) {
     return res.redirect('/login.html');
   }
   

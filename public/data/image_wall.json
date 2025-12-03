@@ -1,32 +1,37 @@
 ﻿[
   {
     "id": "w-001",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr1",
-    "title": "Low-level Vision Restoration"
+    "image": "image/顶端横幅/shadow.png",
+    "link": "",
+    "title": "获得NTIRE 2025 Shadow Removal赛道冠军",
+    "titleEn": "Winner of NTIRE 2025 Shadow Removal Track"
   },
   {
     "id": "w-003",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr3",
-    "title": "High-level Vision"
+    "image": "image/顶端横幅/SIRR.png",
+    "link": "",
+    "title": "团队获得NTIRE 2025 Single Image Reflection Removal赛道冠军",
+    "titleEn": "Team Won NTIRE 2025 Single Image Reflection Removal Track"
   },
   {
     "id": "w-004",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr4",
-    "title": "Multi-modal Fusion"
+    "image": "image/顶端横幅/青年学者.jpg",
+    "link": "",
+    "title": "亚太人工智能教育优秀青年学者奖",
+    "titleEn": "Asia-Pacific Outstanding Young Scholar Award in AI Education"
   },
   {
     "id": "w-005",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr1",
-    "title": "Low-level Vision Restoration"
+    "image": "image/顶端横幅/火花.jpg",
+    "link": "",
+    "title": "华为难题揭榜火花奖",
+    "titleEn": "Huawei Tough Problem Reveal · Spark Award"
   },
   {
     "id": "w-006",
-    "image": "image/顶端横幅/1.png",
-    "link": "research-detail.html?id=rr3",
-    "title": "High-level Vision"
+    "image": "image/顶端横幅/龙图杯.jpg",
+    "link": "",
+    "title": "团队获得龙图杯全国BIM大赛一等奖",
+    "titleEn": "First Prize, Longtu Cup National BIM Competition"
   }
 ]

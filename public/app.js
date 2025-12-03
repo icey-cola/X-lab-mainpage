@@ -23,6 +23,7 @@ let keyTechCache = [];
 let publicationsCache = [];
 let partnersCache = [];
 let membersCache = [];
+let imageWallCache = [];
 let snapWheelBuffer = 0;
 let snapLock = false;
 let heroLightClassApplied = false;
@@ -68,12 +69,11 @@ const zhTranslations = {
   langEnglish: 'EN',
   heroEyebrow: '探索视觉前沿 · 驱动未来智能',
   heroHeadline: 'Stay Simple • Stay Diverse',
-  heroIntro: '聚焦视觉智能、模式识别与多模态 AI，打造从基础理论到产业落地的创新平台',
+  heroIntro: '聚焦视觉智能，打造从基础理论到产业落地的创新平台',
   heroCTAResearch: '探索研究方向',
   heroCTATeam: '团队介绍',
   heroCTAJoin: '联系我们',
   heroStatPapers: '学术论文 (Top-tier)',
-  heroStatPatents: '授权发明专利',
   heroStatPartners: '国际合作伙伴',
   heroStatProjects: '合作项目',
   researchHeading: '核心研究方向',
@@ -117,7 +117,65 @@ const zhTranslations = {
 
 const translations = {
   zh: zhTranslations,
-  en: { ...zhTranslations }
+  en: {
+    siteNameZh: 'X-Lab',
+    siteNameEn: 'X-Lab',
+    navHome: 'Home',
+    navResearch: 'Research',
+    navKeyTech: 'Key Achievements',
+    navTeam: 'Team',
+    navPublications: 'Publications',
+    navJoin: 'Contact Us',
+    navContact: 'Contact',
+    langChinese: '中文',
+    langEnglish: 'EN',
+    heroEyebrow: 'Exploring Vision Frontiers · Powering Future Intelligence',
+    heroHeadline: 'Stay Simple • Stay Diverse',
+    heroIntro: 'Focused on vision intelligence, pattern recognition, and multimodal AI,<br>building an innovation platform from theory to real-world impact.',
+    heroCTAResearch: 'Explore Research',
+    heroCTATeam: 'Meet the Team',
+    heroCTAJoin: 'Contact Us',
+    heroStatPapers: 'Top-tier Papers',
+    heroStatPartners: 'Global Partners',
+    heroStatProjects: 'Collaboration Projects',
+    researchHeading: 'Core Research Areas',
+    researchSubheading: ' ',
+    researchCard1Title: 'Low-level Vision Restoration',
+    researchCard1Desc: 'Super-resolution, low-light enhancement, deweathering and more, delivering robust end-to-end restoration (e.g., XReflection) for real deployment.',
+    researchCard3Title: 'High-level Vision Perception',
+    researchCard3Desc: 'Robust domain-adaptive detection and segmentation with feature alignment, spatiotemporal aggregation, and lightweight inference for real-time scenarios.',
+    researchCard4Title: 'Multimodal Fusion',
+    researchCard4Desc: 'Unified models and alignment across vision, language, and heterogeneous sensors for better generalization, interpretability, and real-time decision-making.',
+    researchLearnMore: 'Learn More',
+    keyTechHeading: 'Key Technologies & Latest Results',
+    keyTechSubheading: ' ',
+    pubsHeading: 'Publications',
+    pubsSubheading: ' ',
+    pubsCTA: 'View All Publications',
+    partnersHeading: 'Partners',
+    partnersSubheading: ' ',
+    teamHeading: 'Team',
+    teamSubheading: 'An interdisciplinary team across computer vision, machine learning, pattern recognition, and multimodal visual models.',
+    teamCTA: 'View Full Team',
+    joinHeading: 'Join Us to Explore Vision Frontiers',
+    joinDescription: 'We welcome passionate researchers in computer vision, pattern recognition, and machine learning. If interested, please email us your CV.',
+    joinEmail: 'Email: xj.max.guo (at) gmail.com',
+    joinCTA: 'Send Your CV',
+    footerContactTitle: 'Contact Us',
+    footerAddressLabel: 'Address: ',
+    footerAddressText: '135 Yaguan Road, Jinnan District, Tianjin University, Tianjin, China',
+    footerPhoneLabel: 'Phone: ',
+    footerPhoneText: '+86 10 1234 5678',
+    footerEmailLabel: 'Email: ',
+    footerEmailText: 'xj.max.guo (at) gmail.com',
+    footerLinksTitle: 'Quick Links',
+    footerFollowTitle: 'Follow Us',
+    footerSocialGithub: 'GitHub',
+    footerSocialLinkedIn: 'LinkedIn',
+    footerSocialTwitter: 'Twitter',
+    footerPartnersLabel: 'Partners:',
+    footerCopyright: '©  2025 X-Lab · All rights reserved'
+  }
 };
 
 const zhAttrTranslations = {
@@ -127,7 +185,10 @@ const zhAttrTranslations = {
 
 const attrTranslations = {
   zh: zhAttrTranslations,
-  en: { ...zhAttrTranslations }
+  en: {
+    navAriaLabel: 'Main navigation',
+    langSwitchLabel: 'Language switch'
+  }
 };
 
 const FALLBACK_SLIDES = [
@@ -334,11 +395,16 @@ const selectText = (entry, key) => {
 
 const applyTranslations = () => {
   const dict = translations[currentLang];
+  const htmlKeys = new Set(['heroIntro']);
   i18nElements.forEach((element) => {
     const key = element.dataset.i18n;
     if (!key) return;
     const value = dict[key] ?? translations.zh[key] ?? '';
-    element.textContent = value;
+    if (htmlKeys.has(key)) {
+      element.innerHTML = value;
+    } else {
+      element.textContent = value;
+    }
   });
   i18nAttrElements.forEach((element) => {
     const mapping = element.dataset.i18nAttr;
@@ -510,7 +576,7 @@ const renderSlides = (slides) => {
     if (Array.isArray(slide.subImages) && slide.subImages.length) {
       const strip = document.createElement('div');
       strip.className = 'slide-substrip';
-      slide.subImages.slice(0, 3).forEach((item) => {
+      slide.subImages.forEach((item) => {
         const hasLink = Boolean(item?.link);
         const wrapper = document.createElement(hasLink ? 'a' : 'div');
         wrapper.className = 'slide-substrip-item';
@@ -532,6 +598,7 @@ const renderSlides = (slides) => {
         }
         strip.appendChild(wrapper);
       });
+      enableHorizontalScroll(strip);
       mediaBox.appendChild(strip);
     }
     slideWrapper.appendChild(mediaBox);
@@ -793,9 +860,16 @@ const renderMembers = (items) => {
 
     const bioText = selectText(member, 'bio');
     if (bioText) {
+      const escapeHtml = (value = '') => String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+      const linkified = escapeHtml(bioText).replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
       const desc = document.createElement('p');
       desc.className = 'member-desc';
-      desc.textContent = bioText;
+      desc.innerHTML = linkified;
       textBox.appendChild(desc);
     }
 
@@ -911,6 +985,7 @@ const loadMembers = async () => {
 
 const renderImageWall = (track, items) => {
   if (!track) return;
+  const dict = translations[currentLang] || translations.zh;
   const escapeHtml = (value = '') => String(value)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -940,14 +1015,16 @@ const renderImageWall = (track, items) => {
   track.classList.remove('is-empty');
   track.innerHTML = itemsToRender.map((item) => {
     const safeImage = escapeHtml(item.image);
-    const safeTitle = item.title ? escapeHtml(item.title) : '';
+    const safeTitle = currentLang === 'zh'
+      ? (item.titleZh || item.title || item.titleEn || '')
+      : (item.titleEn || item.title || item.titleZh || '');
     const safeLink = escapeHtml(item.link || '#');
     const extraAttrs = item.link ? ' target="_blank" rel="noopener"' : '';
     return `
       <div class="image-wall-item">
         <a href="${safeLink}"${extraAttrs}>
           <img src="${safeImage}" alt="${safeTitle}" loading="lazy" decoding="async">
-          ${safeTitle ? `<div class="image-wall-caption">${safeTitle}</div>` : ''}
+          ${safeTitle ? `<div class="image-wall-caption">${escapeHtml(safeTitle)}</div>` : ''}
         </a>
       </div>
     `;
@@ -961,13 +1038,15 @@ const loadImageWall = async () => {
   try {
     const data = await fetchCollection('/api/image-wall');
     if (data.length) {
-      renderImageWall(track, data);
+      imageWallCache = data;
+      renderImageWall(track, imageWallCache);
       return;
     }
   } catch (error) {
     console.error('Failed to load image wall.', error);
   }
-  renderImageWall(track, FALLBACK_IMAGE_WALL);
+  imageWallCache = FALLBACK_IMAGE_WALL;
+  renderImageWall(track, imageWallCache);
 };
 
 const initLangSwitch = () => {
@@ -991,6 +1070,10 @@ const initLangSwitch = () => {
       renderPartners(partnersCache);
       renderPublications(publicationsCache);
       renderMembers(membersCache);
+      const track = document.getElementById('image-wall-track');
+      if (track && imageWallCache.length) {
+        renderImageWall(track, imageWallCache);
+      }
     });
   });
 };
