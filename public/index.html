@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -165,7 +165,7 @@
       <div class="join-content">
         <h2 data-i18n="joinHeading">与我们一起探索未来智能</h2>
         <p data-i18n="joinDescription">
-          我们实验室今年有多个博士与硕士名额，欢迎对计算机视觉、模式识别、机器学习充满热情与创新精神的同学加入，如有兴趣请将个人简历发送给我们。
+          欢迎对计算机视觉、模式识别、机器学习充满热情与创新精神的同学加入，如有兴趣请将个人简历发送给我们。
         </p>
         <p class="join-email" data-i18n="joinEmail">邮箱： xj.max.guo (at) gmail.com</p>
       </div>
@@ -187,47 +187,30 @@
           <li><a href="#research" data-i18n="navResearch">研究方向</a></li>
           <li><a href="team.html" data-i18n="navTeam">团队成员</a></li>
           <li><a href="#key-tech" data-i18n="navKeyTech">科研成果</a></li>
-          <li><a href="#publications" data-i18n="navPublications">出版物</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 data-i18n="footerFollowTitle">关注我们</h3>
-        <ul class="social-links">
-          <li><a href="https://github.com/tjuxlab" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
-        </ul>
+        <li><a href="#publications" data-i18n="navPublications">出版物</a></li>
+      </ul>
+    </div>
+      <div class="footer-follow">
+        <div class="footer-follow-row">
+          <div class="footer-follow-main">
+            <h3 data-i18n="footerFollowTitle">关注我们</h3>
+            <ul class="social-links">
+              <li><a href="https://github.com/tjuxlab" target="_blank" rel="noopener" data-i18n="footerSocialGithub">GitHub</a></li>
+            </ul>
+          </div>
+          <div class="footer-visitstats">
+            <div>👁️ 总访问量：<span id="busuanzi_value_site_pv"></span></div>
+            <div>👤 访客数：<span id="busuanzi_value_site_uv"></span></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <!-- 访问统计显示区域 -->
-      <div id="visitor-stats" style="margin-top:20px;font-size:18px;color:#f5f5f5;">
-        <p>总访问量：<span id="total-visits">加载中...</span></p>
-        <p>🌍 今日国家访问：<span id="country-stats">加载中...</span></p>
-        <div style="margin-top:10px;">
-          <a href="https://info.flagcounter.com/X1Iz">
-            <img src="https://s01.flagcounter.com/count2/X1Iz/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0">
-          </a>
-        </div>
-      </div>
       <p data-i18n="footerCopyright">© 2024 X-Lab · 版权所有 </p>
     </div>
   </footer>
 
-  <script>
-    async function loadVisitorStats() {
-      const counterEl = document.getElementById("total-visits");
-      const countryEl = document.getElementById("country-stats");
-      try {
-        const res = await fetch("https://visitor-country-api.w574583469.workers.dev/?mode=visits");
-        const data = await res.json();
-        counterEl.textContent = data.total_visits ?? "0";
-        countryEl.textContent = `${data.country}：${data.country_visits} 次`;
-      } catch (err) {
-        counterEl.textContent = "加载失败";
-        countryEl.textContent = "加载失败";
-      }
-    }
-    loadVisitorStats();
-  </script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <!-- Cloudflare Web Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "cb5cb0e3a2be4575a4b5a6847ba95cbc"}'></script>
   <!-- End Cloudflare Web Analytics -->

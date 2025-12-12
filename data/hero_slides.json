@@ -10,37 +10,6 @@
     "link": "https://cic.tju.edu.cn/",
     "media": "image/顶端横幅/1.png",
     "mediaType": "image",
-    "subImages": [
-      {
-        "src": "image/合作伙伴/中国科学院.png",
-        "link": "",
-        "labelZh": "",
-        "labelEn": ""
-      },
-      {
-        "src": "image/合作伙伴/华为.png",
-        "link": "",
-        "labelZh": "",
-        "labelEn": ""
-      },
-      {
-        "src": "image/合作伙伴/新加坡国立大学.png",
-        "link": "",
-        "labelZh": "",
-        "labelEn": ""
-      },
-      {
-        "src": "image/合作伙伴/微软.png",
-        "link": "",
-        "labelZh": "",
-        "labelEn": ""
-      },
-      {
-        "src": "image/合作伙伴/清华大学.png",
-        "link": "",
-        "labelZh": "",
-        "labelEn": ""
-      }
-    ]
+    "subImages": []
   }
 ]

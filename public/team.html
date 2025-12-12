@@ -9,8 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body.team-page[data-lang="en"] .page-hero .hero-content {
+      max-width: 760px;
+    }
+  </style>
 </head>
-<body>
+<body class="team-page">
   <header class="site-header" id="top">
     <a class="logo" href="index.html">
       <img class="logo-mark" src="image/logo.png" alt="X-Lab Logo">
@@ -48,7 +53,7 @@
       <div class="hero-content">
         <p class="eyebrow" data-i18n="heroEyebrow">X-Lab · 团队</p>
         <h1 data-i18n="heroHeadline">聚集优秀人才，驱动智能研究</h1>
-        <p class="intro" data-i18n="heroIntro">团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。</p>
+        <p class="intro" data-i18n="heroIntro">团队覆盖计算机视觉方向，以开放协作的方式推动科研成果落地。</p>
       </div>
     </section>
 
@@ -133,7 +138,7 @@
       navContact: '联系方式',
       heroEyebrow: 'X-Lab · 团队',
       heroHeadline: '聚集优秀人才，驱动智能研究',
-      heroIntro: '团队覆盖计算机视觉、模式识别和多模态学习等方向，以开放协作的方式推动科研成果落地。',
+      heroIntro: '团队覆盖计算机视觉方向，以开放协作的方式推动科研成果落地。',
       teamHeading: '核心团队',
       calloutTitle: '想要了解更多实验室动态？',
       calloutText: '返回主页探索我们的研究方向、关键成果与开放职位，欢迎与我们展开合作。',
@@ -161,18 +166,18 @@
       en: {
         navAriaLabel: 'Main navigation',
         langSwitchLabel: 'Language switch',
-        langChinese: 'ZH',
+        langChinese: '中文',
         langEnglish: 'EN',
         navHome: 'Home',
         navResearch: 'Research',
         navKeyTech: 'Key Achievements',
         navTeam: 'Team',
         navPublications: 'Publications',
-        navJoin: 'Contact',
-        navContact: 'Contact',
+        navJoin: 'Contact Us',
+        navContact: 'Contact Us',
         heroEyebrow: 'X-Lab · Team',
         heroHeadline: 'Great minds driving intelligent research',
-        heroIntro: 'We work across computer vision, pattern recognition, and multimodal learning, collaborating openly to bring research into impact.',
+        heroIntro: 'The team focuses on computer vision, collaborating openly to bring research into impact.',
         teamHeading: 'Core Team',
         calloutTitle: 'Want to learn more about the lab?',
         calloutText: 'Head back to the homepage to explore our research focuses, achievements, and openings. We welcome collaboration.',
@@ -192,7 +197,7 @@
         footerSocialLinkedIn: 'LinkedIn',
         footerSocialTwitter: 'Twitter',
         footerPartnersLabel: 'Partners:',
-        footerCopyright: '©  2025 X-Lab · All rights reserved'
+        footerCopyright: '©  2025 X-Lab · All Rights Reserved'
       }
     };
 
@@ -247,6 +252,7 @@
       const resolved = lang === 'en' ? 'en' : 'zh';
       currentLang = resolved;
       const dict = translations[resolved] || translations.zh;
+      document.body.setAttribute('data-lang', resolved);
 
       i18nElements.forEach((el) => {
         const key = el.dataset.i18n;
@@ -268,6 +274,15 @@
       document.documentElement.lang = resolved === 'en' ? 'en' : 'zh-CN';
       renderMembers(membersCache);
     }
+
+    const escapeHtml = (value = '') => String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    const linkify = (text = '') => escapeHtml(text).replace(/(https?:\/\/[^\s]+)/g, '<a class="link" href="$1" target="_blank" rel="noopener">$1</a>');
 
     function renderMembers(members) {
       if (!teamContainer) return;
@@ -316,7 +331,7 @@
               <div class="team-info">
                 <h4>${name}</h4>
                 <p class="role">${rawEnroll ? (currentLang === 'zh' ? `${rawEnroll}` : `${rawEnroll}`) : ''}</p>
-                ${bio ? `<p class="bio">${bio}</p>` : ''}
+                ${bio ? `<p class="bio">${linkify(bio)}</p>` : ''}
                 <div class="team-links">
                   ${links}
                 </div>

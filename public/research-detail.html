@@ -6,7 +6,7 @@
   <title>研究方向 · 详情</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="page-solid-header">
   <header class="site-header" id="top">
     <a class="logo" href="index.html">
       <img class="logo-mark" src="image/logo.png" alt="X-Lab Logo">
@@ -144,7 +144,7 @@
         navTeam: 'Team',
         navKeyTech: 'Key Achievements',
         navPublications: 'Publications',
-        navJoin: 'Contact',
+      navJoin: 'Contact Us',
         langChinese: '中文',
         langEnglish: 'EN',
         papersHeading: 'Related Papers',
@@ -158,7 +158,7 @@
         footerLinksTitle: 'Quick Links',
         footerFollowTitle: 'Follow Us',
         footerSocialGithub: 'GitHub',
-        footerCopyright: '©  2025 X-Lab · All rights reserved'
+        footerCopyright: '©  2025 X-Lab · All Rights Reserved'
       }
     };
 
@@ -302,18 +302,27 @@
       return r.json();
     }
 
-    (async () => {
-      initNavMenu();
-      initLangSwitch();
-      applyTranslations();
+    async function loadResearchDetail() {
       try {
         const info = await fetchJSON(`/api/research/${id}`);
         currentResearch = info;
-        updateResearchContent();
+        return;
       } catch (error) {
+        try {
+          const all = await fetchJSON('data/research.json');
+          const found = Array.isArray(all) ? all.find((item) => item.id === id) : null;
+          if (found) {
+            currentResearch = found;
+            return;
+          }
+        } catch (err) {
+          // ignore and fall through
+        }
         currentResearch = null;
-        introEl.textContent = currentLang === 'zh' ? '（加载失败）' : '(failed to load)';
       }
+    }
+
+    async function loadPapers() {
       try {
         const publications = await fetchJSON('/api/publications');
         paperCache = Array.isArray(publications)
@@ -321,12 +330,31 @@
               .sort((a, b) => (b.year || 0) - (a.year || 0))
           : [];
         paperStatus = paperCache.length ? 'ready' : 'empty';
-        renderPaperState();
+        return;
       } catch (error) {
-        paperCache = [];
-        paperStatus = 'error';
-        renderPaperState();
+        try {
+          const publications = await fetchJSON('data/publications.json');
+          paperCache = Array.isArray(publications)
+            ? publications.filter((pub) => (pub.researchId || '') === id)
+                .sort((a, b) => (b.year || 0) - (a.year || 0))
+            : [];
+          paperStatus = paperCache.length ? 'ready' : 'empty';
+          return;
+        } catch (err) {
+          paperCache = [];
+          paperStatus = 'error';
+        }
       }
+    }
+
+    (async () => {
+      initNavMenu();
+      initLangSwitch();
+      applyTranslations();
+      await loadResearchDetail();
+      updateResearchContent();
+      await loadPapers();
+      renderPaperState();
     })();
   </script>
 </body>

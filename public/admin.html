@@ -246,6 +246,36 @@
             <input id="slide-sub3-label-en">
           </label>
         </div>
+        <div class="subimage-group">
+          <strong>子图 4</strong>
+          <label>图片路径
+            <input id="slide-sub4-image" placeholder="image/sub4.png">
+          </label>
+          <label>跳转链接
+            <input id="slide-sub4-link" placeholder="https://example.com">
+          </label>
+          <label>文字（中文）
+            <input id="slide-sub4-label-zh">
+          </label>
+          <label>Text (English)
+            <input id="slide-sub4-label-en">
+          </label>
+        </div>
+        <div class="subimage-group">
+          <strong>子图 5</strong>
+          <label>图片路径
+            <input id="slide-sub5-image" placeholder="image/sub5.png">
+          </label>
+          <label>跳转链接
+            <input id="slide-sub5-link" placeholder="https://example.com">
+          </label>
+          <label>文字（中文）
+            <input id="slide-sub5-label-zh">
+          </label>
+          <label>Text (English)
+            <input id="slide-sub5-label-en">
+          </label>
+        </div>
       </fieldset>
       <button type="submit">保存横幅</button>
     </form>
@@ -590,7 +620,7 @@
 
       const slideForm = getEl('slide-form');
       const slidesWrapper = getEl('slides-table-wrapper');
-      const subImageInputs = [1, 2, 3].map((index) => ({
+      const subImageInputs = [1, 2, 3, 4, 5].map((index) => ({
         image: getEl(`slide-sub${index}-image`),
         link: getEl(`slide-sub${index}-link`),
         labelZh: getEl(`slide-sub${index}-label-zh`),

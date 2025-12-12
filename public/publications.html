@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page-solid-header">
   <header class="site-header" id="top">
     <a class="logo" href="index.html">
       <img class="logo-mark" src="image/logo.png" alt="X-Lab Logo">
@@ -141,7 +141,42 @@
 
     const translations = {
       zh: zhTranslations,
-      en: { ...zhTranslations }
+      en: {
+        navAriaLabel: 'Main navigation',
+        langSwitchLabel: 'Language switch',
+        langChinese: '中文',
+        langEnglish: 'EN',
+        navHome: 'Home',
+        navResearch: 'Research',
+        navKeyTech: 'Key Achievement',
+        navTeam: 'Team',
+        navPublications: 'Publication',
+      navJoin: 'Contact Us',
+      navContact: 'Contact Us',
+        heroEyebrow: 'X-Lab Publications',
+        heroHeadline: 'Consistently Delivering High-Impact Research',
+        heroIntro: 'Featuring research across top conferences and journals—explore and collaborate with us.',
+        pubHeading: 'All Publications',
+        pubAuthorsLabel: 'Authors:',
+        pubPaper: 'Paper',
+        pubCode: 'Code',
+        emptyPubs: 'No publications yet.',
+        loadFailed: 'Failed to load publications. Please try again later.',
+        footerContactTitle: 'Contact Us',
+        footerAddressLabel: 'Address:',
+        footerAddressText: 'Tianjin University, 135 Yaguan Road, Jinnan District, Tianjin, China',
+        footerPhoneLabel: 'Phone:',
+        footerPhoneText: '+86 10 1234 5678',
+        footerEmailLabel: 'Email:',
+        footerEmailText: 'xj.max.guo (at) gmail.com',
+        footerLinksTitle: 'Quick Links',
+        footerFollowTitle: 'Follow Us',
+        footerSocialGithub: 'GitHub',
+        footerSocialLinkedIn: 'LinkedIn',
+        footerSocialTwitter: 'Twitter',
+        footerPartnersLabel: 'Partners:',
+        footerCopyright: '©  2025 X-Lab · All Rights Reserved'
+      }
     };
 
     navToggle.addEventListener('click', () => {
@@ -171,6 +206,11 @@
       });
     }
 
+    const attrTranslations = {
+      zh: { navAriaLabel: '主导航', langSwitchLabel: '语言切换' },
+      en: { navAriaLabel: 'Main navigation', langSwitchLabel: 'Language switch' }
+    };
+
     function applyLanguage(lang) {
       const resolved = lang === 'en' ? 'en' : 'zh';
       currentLang = resolved;
@@ -187,8 +227,11 @@
         const mappings = (el.dataset.i18nAttr || '').split(',');
         mappings.forEach((mapping) => {
           const [attr, key] = mapping.split(':').map((item) => item.trim());
-          if (attr && key && dict[key] !== undefined) {
-            el.setAttribute(attr, dict[key]);
+          if (attr && key) {
+            const value = attrTranslations[resolved]?.[key] ?? attrTranslations.zh[key];
+            if (value !== undefined) {
+              el.setAttribute(attr, value);
+            }
           }
         });
       });

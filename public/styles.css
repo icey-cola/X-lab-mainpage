@@ -94,6 +94,10 @@ img {
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 20px rgba(32, 33, 39, 0.1);
 }
+.page-solid-header .site-header {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 16px rgba(32, 33, 39, 0.08);
+}
 
 .hero-slider {
   position: relative;
@@ -569,13 +573,13 @@ img {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 900px;
 }
 
 .hero .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 16px;
+  letter-spacing: 0.18em;
+  font-size: 14px;
   color: var(--accent);
 }
 
@@ -771,6 +775,9 @@ main > section + section {
 
 .research-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding: 28px;
   border-radius: var(--radius-md);
   /* 为四个研究方向卡片加入与首屏一致的柔和底色与描边 */
@@ -809,6 +816,10 @@ main > section + section {
   color: var(--text-secondary);
   font-size: 17px;
   margin: 0 0 20px 0;
+}
+
+.research-card .link {
+  margin-top: auto;
 }
 
 .link {
@@ -916,10 +927,12 @@ main > section + section {
 
 .tag {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
-  padding: 8px 16px;
+  justify-content: center;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 18px;
   border-radius: 999px;
   /* 统一为旗舰成果的底色 */
   background: rgba(255, 107, 82, 0.22);
@@ -929,9 +942,8 @@ main > section + section {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
+  min-width: 150px;
+  white-space: nowrap;
   box-sizing: border-box;
 }
 
@@ -1584,8 +1596,8 @@ main > section + section {
 
 .site-footer {
   background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-  padding: 48px clamp(32px, 6vw, 96px);
-  margin-top: 120px;
+  padding: 32px clamp(24px, 5vw, 64px);
+  margin-top: 80px;
   color: rgba(255, 255, 255, 0.78);
   width: 100%;
   border-radius: 0;
@@ -1596,7 +1608,8 @@ main > section + section {
   gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   max-width: var(--max-width);
-  margin: 0 auto 40px;
+  margin: 0 auto 24px;
+  align-items: flex-start;
 }
 
 .site-footer h3 {
@@ -1614,6 +1627,41 @@ main > section + section {
   display: grid;
   gap: 10px;
   color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-follow {
+  display: block;
+}
+
+.footer-follow-title {
+  margin: 0 0 10px 0;
+}
+
+.footer-visitor {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.footer-visitstats {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  justify-self: end;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.footer-follow-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.social-links a {
+  display: inline-block;
 }
 
 .contact-list a,

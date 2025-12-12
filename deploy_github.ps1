@@ -2,7 +2,6 @@
 
 $ErrorActionPreference = "Stop"
 $originalDir = Get-Location
-Set-Location $originalDir
 $DEPLOY_DIR = "deploy_temp"
 $REPO_URL = "https://github.com/tjuxlab/tjuxlab.github.io"
 
@@ -25,10 +24,18 @@ if (!(Test-Path "$DEPLOY_DIR\data")) {
 }
 Copy-Item -Path "data\*.json" -Destination "$DEPLOY_DIR\data" -Force
 
-# 4. Transform files for static hosting
+# ⭐⭐⭐ 4. Copy API folder (新增逻辑)
+Write-Host "Copying API folder..."
+if (Test-Path "api") {
+    Copy-Item -Path "api" -Destination "$DEPLOY_DIR\api" -Recurse -Force
+    Write-Host "  API folder copied."
+} else {
+    Write-Host "  No API folder found, skipping."
+}
+
+# 5. Transform files for static hosting
 Write-Host "Transforming files for static hosting..."
 
-# Function to replace string in file
 function Replace-InFile {
     param (
         [string]$FilePath,
@@ -45,43 +52,14 @@ function Replace-InFile {
     }
 }
 
-# app.js replacements
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/slides" "data/hero_slides.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/key-tech" "data/key_tech.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/partners" "data/partners.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/publications" "data/publications.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/members" "data/members.json"
 Replace-InFile "$DEPLOY_DIR\app.js" "/api/image-wall" "data/image_wall.json"
-
-# team.html replacements
 Replace-InFile "$DEPLOY_DIR\team.html" "/api/members" "data/members.json"
-
-# publications.html replacements
 Replace-InFile "$DEPLOY_DIR\publications.html" "/api/publications" "data/publications.json"
-
-# research-detail.html replacements
-# This one is tricky because of the logic change. We'll do a regex replace for the block.
-$researchFile = "$DEPLOY_DIR\research-detail.html"
-if (Test-Path $researchFile) {
-    $content = Get-Content $researchFile -Raw -Encoding UTF8
-    
-    # Replace the fetch logic
-    $oldLogic = "const info = await fetchJSON(`/api/research/${id}`);`r`n        currentResearch = info;"
-    $newLogic = "const allResearch = await fetchJSON('data/research.json');`r`n        const info = allResearch.find(r => r.id === id);`r`n        if (!info) throw new Error('Research not found');`r`n        currentResearch = info;"
-    
-    # Note: The backticks above are for PowerShell string escaping. 
-    # Let's try a simpler replace for the URL first, then inject the logic.
-    # Actually, let's just replace the URL and hope the logic holds? No, /api/research/id returns one object, data/research.json returns array.
-    
-    # We will use a more robust replacement for research-detail
-    $content = $content.Replace('const info = await fetchJSON(`/api/research/${id}`);', 
-        'const allResearch = await fetchJSON(''data/research.json''); const info = allResearch.find(r => r.id === id); if (!info) throw new Error(''Research not found'');')
-    
-    $content = $content.Replace('/api/publications', 'data/publications.json')
-    
-    Set-Content -Path $researchFile -Value $content -Encoding UTF8
-    Write-Host "  Updated $researchFile"
-}
 
 # 5. Git Push
 Write-Host "Pushing to GitHub..."
@@ -95,6 +73,6 @@ git push -f origin main
 
 Write-Host "Deployment complete!"
 
-# 6. Return to the previous directory
-
+# ⭐⭐⭐ Return to original directory（修复你之前的 bug）
+Set-Location $originalDir
 Write-Host "Returned to original directory: $originalDir"

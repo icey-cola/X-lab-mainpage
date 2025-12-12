@@ -18,8 +18,8 @@
     "roleEn": "Since 2022",
     "group": "phd",
     "avatar": "image/members/胡启明.jpeg",
-    "bioZh": "主要研究方向包括低光照图像增强、图像反射分解、图像超分辨率等，已发表 CCF-A 类文章 8 篇（学生一作 5 篇），谷歌学术引用 479 次。",
-    "bioEn": "Research interests include low-light image enhancement, reflection separation, and image super-resolution. To date I have authored 8 CCF-A ranked papers (5 as student first author) with 479 total citations."
+    "bioZh": "主要研究方向包括低光照图像增强、图像反射分解、图像超分辨率等",
+    "bioEn": "Research interests include low-light image enhancement, reflection separation, and image super-resolution."
   },
   {
     "id": "m-liuhengxing-2022",
@@ -227,8 +227,8 @@
     "roleEn": "Since 2019",
     "group": "alumni",
     "avatar": "image/members/汪海铃.png",
-    "bioZh": "美国东北大学读博",
-    "bioEn": "Pursuing PhD at Northeastern University (USA)"
+    "bioZh": "曾就职于华为诺亚实验室，美国东北大学读博",
+    "bioEn": "Formerly at Huawei Noah's Ark Lab; pursuing PhD at Northeastern University (USA)"
   },
   {
     "id": "m-alumni-6b2796336bc594ee",
@@ -360,7 +360,7 @@
     "group": "phd",
     "avatar": "image/members/李明佳.jpg",
     "bioZh": "研究方向：计算机视觉",
-    "bioEn": ""
+    "bioEn": "Research areas:Computer Vision"
   },
   {
     "id": "m-zhangdawei-2022",
@@ -370,8 +370,8 @@
     "roleEn": "Since 2022",
     "group": "phd",
     "avatar": "image/members/张大蔚.jpg",
-    "bioZh": "",
-    "bioEn": ""
+    "bioZh": "鲁棒图像去噪研究方向，利用合成噪声训练去噪网络，期望泛化到域外与真实噪声。",
+    "bioEn": "Research on robust image denoising; trains denoising networks with synthetic noise to generalize to out-of-domain and real-world noise."
   },
   {
     "id": "m-fuyuanbin-2021",
